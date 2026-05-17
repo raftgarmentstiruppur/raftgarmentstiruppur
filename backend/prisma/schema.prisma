@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  BUYER
+}
+
+enum QuoteStatus {
+  PENDING
+  REVIEWING
+  QUOTED
+  ACCEPTED
+  REJECTED
+}
+
+enum OrderStatus {
+  CONFIRMED
+  IN_PRODUCTION
+  QUALITY_CHECK
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(BUYER)
+  company   String
+  country   String
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  quotes   QuoteRequest[]
+  orders   Order[]
+  accounts Account[]
+  sessions Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model QuoteRequest {
+  id          String      @id @default(cuid())
+  userId      String?
+  company     String
+  name        String
+  email       String
+  phone       String?
+  country     String
+  product     String
+  inquiryType String
+  message     String
+  status      QuoteStatus @default(PENDING)
+  adminNotes  String?
+  quotedPrice String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user   User?   @relation(fields: [userId], references: [id])
+  orders Order[]
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  orderNumber       String      @unique
+  userId            String
+  quoteId           String?
+  product           String
+  quantity          Int
+  unitPrice         Float?
+  totalAmount       Float?
+  currency          String      @default("USD")
+  status            OrderStatus @default(CONFIRMED)
+  notes             String?
+  trackingNumber    String?
+  estimatedDelivery DateTime?
+  shippedAt         DateTime?
+  deliveredAt       DateTime?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  user          User                 @relation(fields: [userId], references: [id])
+  quote         QuoteRequest?        @relation(fields: [quoteId], references: [id])
+  statusHistory OrderStatusHistory[]
+}
+
+model OrderStatusHistory {
+  id        String      @id @default(cuid())
+  orderId   String
+  status    OrderStatus
+  note      String?
+  createdAt DateTime    @default(now())
+
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model SiteContent {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id             String   @id @default(cuid())
+  category       String
+  subcategory    String?
+  slug           String   @unique
+  name           String
+  description    String?
+  fabric         String?
+  sizes          String?
+  priceRange     String?
+  badge          String?
+  // extended specs
+  ageRange       String?
+  dyes           String?
+  closures       String?
+  seams          String?
+  prints         String?
+  embellishments String?
+  weights        String?
+  colors         String?
+  printMethods   String?
+  finishes       String?
+  certifications String?
+  moq            String?
+  leadTime       String?
+  images         String[]
+  sortOrder      Int      @default(0)
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([category])
+  @@index([category, subcategory])
+}
