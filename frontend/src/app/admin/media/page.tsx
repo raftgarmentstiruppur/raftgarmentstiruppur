@@ -23,9 +23,9 @@ interface CloudinaryResource {
 const FOLDERS = [
   // Products
   { label: "Products — Babies Wear",   value: "Raft Garments/products/babies-wear",   section: "Products" },
-  { label: "Products — Kids Wear",     value: "Raft Garments/products/kids-wear",     section: "Products" },
-  { label: "Products — Mens Wear",     value: "Raft Garments/products/mens-wear",     section: "Products" },
-  { label: "Products — Womens Wear",   value: "Raft Garments/products/womens-wear",   section: "Products" },
+  { label: "Products — Kids' Wear",     value: "Raft Garments/products/kids-wear",     section: "Products" },
+  { label: "Products — Men's Wear",     value: "Raft Garments/products/mens-wear",     section: "Products" },
+  { label: "Products — Women's Wear",   value: "Raft Garments/products/womens-wear",   section: "Products" },
   // Homepage
   { label: "Hero & Main Banners",      value: "Raft Garments/banners",                section: "Homepage" },
   { label: "Client / Brand Logos",     value: "Raft Garments/clients",                section: "Homepage" },
@@ -79,7 +79,7 @@ export default function MediaPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-black text-black uppercase tracking-tight">Media Library</h1>
+          <h1 className="text-2xl font-black text-brand-navy uppercase tracking-tight">Media Library</h1>
           <p className="text-sm text-brand-slate mt-1">Upload and manage images stored on Cloudinary</p>
         </div>
         <button
@@ -103,8 +103,8 @@ export default function MediaPage() {
                   onClick={() => setActiveFolder(f.value)}
                   className={`px-3 py-1.5 text-xs font-semibold border transition-colors ${
                     activeFolder === f.value
-                      ? "bg-black text-white border-black"
-                      : "border-brand-border text-brand-slate hover:border-black hover:text-black"
+                      ? "bg-brand-navy text-white border-brand-navy"
+                      : "border-brand-border text-brand-slate hover:border-brand-navy hover:text-brand-navy"
                   }`}
                 >
                   {f.label}
@@ -119,7 +119,7 @@ export default function MediaPage() {
       <div className="border border-brand-border p-6 bg-white">
         <div className="flex items-center justify-between mb-4">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-ash">
-            Uploading to: <span className="text-black">{FOLDERS.find(f => f.value === activeFolder)?.label}</span>
+            Uploading to: <span className="text-brand-navy">{FOLDERS.find(f => f.value === activeFolder)?.label}</span>
           </p>
           <p className="text-xs text-brand-ash">
             After upload → copy URL → go to{" "}
@@ -174,7 +174,7 @@ export default function MediaPage() {
                   <button
                     onClick={() => copyUrl(img.secure_url)}
                     title="Copy URL"
-                    className="flex-1 flex items-center justify-center gap-1 py-1.5 text-[10px] font-bold uppercase tracking-wide border border-brand-border hover:border-black hover:text-black transition-colors text-brand-slate"
+                    className="flex-1 flex items-center justify-center gap-1 py-1.5 text-[10px] font-bold uppercase tracking-wide border border-brand-border hover:border-brand-navy hover:text-brand-navy transition-colors text-brand-slate"
                   >
                     {copied === img.secure_url ? (
                       <><Check className="w-3 h-3 text-brand-accent" /> Copied</>

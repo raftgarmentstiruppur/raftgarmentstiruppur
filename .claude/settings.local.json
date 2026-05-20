@@ -70,7 +70,24 @@
       "PowerShell(cd \"C:\\\\Users\\\\shaju\\\\Draft-Garments\\\\frontend\"; npx tsc --noEmit 2>&1 | Where-Object { $_ -notmatch \"resources/page\" } | Select-Object -First 15)",
       "PowerShell(Start-Sleep -Seconds 3; $body = '{\"email\":\"raftgarmentstiruppur@gmail.com\"}'; try { $resp = Invoke-WebRequest -Uri \"http://localhost:4000/auth/forgot-password\" -Method POST -Body $body -ContentType \"application/json\" -UseBasicParsing; Write-Host \"Status: $\\($resp.StatusCode\\)\"; Write-Host \"Response: $\\($resp.Content\\)\" } catch { Write-Host \"Backend not ready yet — restart it with: cd backend && npm run dev\" })",
       "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"cd 'C:\\\\Users\\\\shaju\\\\Draft-Garments\\\\backend'; npm run dev\" -WindowStyle Normal)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(Invoke-WebRequest -Uri \"http://localhost:4000/health\" -UseBasicParsing -TimeoutSec 3)",
+      "Bash(Select-Object -First 5)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(f'{len\\(d\\)} content keys stored'\\); [print\\(f'  {k}: {v[:60]}...'\\) for k,v in list\\(d.items\\(\\)\\)[:8]]\")",
+      "PowerShell(Stop-Process *)",
+      "mcp__claude_ai_Figma__whoami",
+      "mcp__claude_ai_Figma__create_new_file",
+      "WebFetch(domain:threadyft.com)",
+      "WebSearch",
+      "Bash(grep -n \"q_auto,f_auto,w_1400\\\\|cloudinaryHQ\\\\|quality={90}\" \"C:\\\\Users\\\\shaju\\\\Draft-Garments\\\\frontend\\\\src\\\\components\\\\shared\\\\DivisionImageSlider.tsx\")",
+      "Skill(frontend-design)",
+      "Bash(dir /b \"C:\\\\Users\\\\shaju\\\\Draft-Garments\\\\frontend\\\\src\\\\components\\\\homepage\\\\\")",
+      "Bash(npx ts-node *)",
+      "Bash(Copy-Item *)",
+      "Bash(findstr /i \"script\\\\|build\\\\|start\\\\|deploy\")",
+      "Bash(vercel *)",
+      "Bash(dir *)",
+      "Read(//mnt/c/Users/shaju/Draft-Garments/backend/**)"
     ]
   }
 }

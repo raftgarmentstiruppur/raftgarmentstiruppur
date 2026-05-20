@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 const WA_NUMBER = "919843166345"
 const WA_DEFAULT_MSG = encodeURIComponent("Hello! I'd like to enquire about Raft Garments products.")
@@ -9,17 +9,28 @@ export default function WhatsAppButton() {
   const [showBubble, setShowBubble] = useState(false)
   const [bubbleDismissed, setBubbleDismissed] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const dismissedRef = useRef(false)
 
   useEffect(() => {
     setMounted(true)
-    // Show bubble after 3s
-    const show = setTimeout(() => setShowBubble(true), 3000)
-    // Auto-hide after 9s
-    const hide = setTimeout(() => {
-      setShowBubble(false)
-      setBubbleDismissed(true)
-    }, 9000)
-    return () => { clearTimeout(show); clearTimeout(hide) }
+
+    let showTimer: ReturnType<typeof setTimeout>
+    let hideTimer: ReturnType<typeof setTimeout>
+
+    const cycle = () => {
+      if (dismissedRef.current) return
+      showTimer = setTimeout(() => {
+        if (dismissedRef.current) return
+        setShowBubble(true)
+        hideTimer = setTimeout(() => {
+          setShowBubble(false)
+          cycle()
+        }, 5000)
+      }, 1500)
+    }
+
+    cycle()
+    return () => { clearTimeout(showTimer); clearTimeout(hideTimer) }
   }, [])
 
   if (!mounted) return null
@@ -38,7 +49,7 @@ export default function WhatsAppButton() {
         <div className="relative bg-white rounded-2xl rounded-br-none shadow-xl px-4 py-3 max-w-[220px] border border-gray-100">
           {/* Close */}
           <button
-            onClick={() => { setShowBubble(false); setBubbleDismissed(true) }}
+            onClick={() => { setShowBubble(false); setBubbleDismissed(true); dismissedRef.current = true }}
             className="absolute -top-2 -right-2 w-5 h-5 bg-gray-400 hover:bg-gray-600 text-white rounded-full text-[10px] flex items-center justify-center transition-colors"
             aria-label="Close"
           >
@@ -82,7 +93,7 @@ export default function WhatsAppButton() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          onClick={() => setShowBubble(false)}
+          onClick={() => { setShowBubble(false); setBubbleDismissed(true); dismissedRef.current = true }}
           onMouseEnter={() => !bubbleDismissed && setShowBubble(true)}
           className="relative w-14 h-14 rounded-full bg-[#25D366] shadow-lg shadow-green-500/40 flex items-center justify-center hover:scale-110 hover:shadow-green-500/60 transition-all duration-300"
         >

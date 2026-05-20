@@ -1,137 +1,126 @@
 "use client"
 import { motion } from "framer-motion"
-import { ChevronDown } from "lucide-react"
-import CTAButton from "@/components/shared/CTAButton"
+import Link from "next/link"
 import CountUp from "@/components/shared/CountUp"
+import { ArrowRight } from "lucide-react"
 
 interface HeroSectionProps {
   headline: string
   subheadline: string
   ctaPrimary: { label: string; href: string }
   ctaSecondary: { label: string; href: string }
-  bgImage?: string
 }
 
 const stats = [
-  { value: "18", label: "Facilities" },
   { value: "30+", label: "Years" },
+  { value: "100K", label: "Pieces / Day" },
   { value: "40+", label: "Countries" },
+  { value: "18", label: "Facilities" },
 ]
 
-export default function HeroSection({
-  headline,
-  subheadline,
-  ctaPrimary,
-  ctaSecondary,
-}: HeroSectionProps) {
+const ease = [0.22, 0.61, 0.36, 1] as const
+
+export default function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary }: HeroSectionProps) {
+  const words = headline.split(" ")
+
   return (
-    <>
-      {/* Full-screen video with headline overlay */}
-      <section className="relative min-h-screen overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
+    <section className="relative min-h-screen bg-white flex flex-col justify-between pt-16 overflow-hidden">
+
+      {/* Full-bleed video behind text */}
+      <div className="absolute inset-0 z-0">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-[0.08]">
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/50" />
+      </div>
 
-        {/* Headline overlay */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-10 text-center px-6"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-        >
-          <div className="max-w-5xl">
-            <motion.p
-              className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-5"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+      {/* Top bar */}
+      <div className="relative z-10 border-b-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex items-center justify-between py-3">
+            <motion.span
+              className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Since 1993 &nbsp;·&nbsp; Tirupur, India
-            </motion.p>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] font-black tracking-tight text-white leading-none uppercase">
-              {headline}
-            </h1>
+              Est. 1993 — Tirupur, India
+            </motion.span>
+            <motion.span
+              className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              01 / Home
+            </motion.span>
           </div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.6 }}
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-5 h-5 text-white/40" />
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Content block below the video */}
-      <section className="bg-black text-white py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-          <motion.p
-            className="text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {subheadline}
-          </motion.p>
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <CTAButton
-              label={ctaPrimary.label}
-              href={ctaPrimary.href}
-              variant="secondary"
-              size="lg"
-              arrow
-            />
-            <CTAButton
-              label={ctaSecondary.label}
-              href={ctaSecondary.href}
-              variant="outline-light"
-              size="lg"
-            />
-          </motion.div>
-
-          {/* Stats bar with count-up */}
-          <motion.div
-            className="mt-16 grid grid-cols-3 max-w-md mx-auto divide-x divide-white/10 border border-white/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center py-6 px-4">
-                <div className="text-2xl font-black text-white">
-                  <CountUp value={stat.value} />
-                </div>
-                <div className="text-[10px] text-white/40 uppercase tracking-widest font-semibold mt-0.5">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* Main headline */}
+      <div className="relative z-10 flex-1 flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full py-12">
+          <div className="grid lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-end">
+
+            {/* Left — display headline */}
+            <div>
+              <motion.h1
+                className="font-display uppercase leading-[0.88] tracking-tight text-brand-navy"
+                style={{ fontSize: "clamp(3.5rem, 9vw, 9rem)" }}
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease }}
+              >
+                {words.map((word, i) => (
+                  <span key={i} className={i % 3 === 1 ? "text-brand-accent" : ""}>{word}{" "}</span>
+                ))}
+              </motion.h1>
+
+              <motion.div
+                className="flex flex-col sm:flex-row items-start gap-3 mt-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.55, ease }}
+              >
+                <Link href={ctaPrimary.href} className="inline-flex items-center gap-2.5 bg-brand-navy text-white border-2 border-brand-navy font-heading font-700 text-xs uppercase tracking-widest px-8 py-4 hover:bg-white hover:text-brand-navy transition-all duration-200">
+                  {ctaPrimary.label} <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href={ctaSecondary.href} className="inline-flex items-center gap-2.5 bg-transparent text-brand-navy border-2 border-brand-navy font-heading font-700 text-xs uppercase tracking-widest px-8 py-4 hover:bg-brand-navy hover:text-white transition-all duration-200">
+                  {ctaSecondary.label}
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right — subheading + vertical rule */}
+            <motion.div
+              className="lg:border-l-2 lg:border-brand-navy lg:pl-8 pb-2"
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.45, ease }}
+            >
+              <p className="text-sm font-heading font-700 uppercase tracking-[0.2em] text-brand-ash mb-4">About</p>
+              <p className="text-base text-brand-slate leading-relaxed font-sans">{subheadline}</p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats bar — full width, bottom */}
+      <motion.div
+        className="relative z-10 border-t-2 border-brand-navy"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.7, ease }}
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x-2 divide-brand-navy">
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center py-6 px-4 bg-white hover:bg-brand-navy group transition-colors duration-300 cursor-default">
+              <div className="text-3xl md:text-4xl font-display text-brand-navy group-hover:text-white leading-none transition-colors duration-300">
+                <CountUp value={stat.value} />
+              </div>
+              <div className="text-[9px] font-heading font-700 uppercase tracking-[0.25em] text-brand-ash group-hover:text-white/60 mt-1.5 transition-colors duration-300">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   )
 }

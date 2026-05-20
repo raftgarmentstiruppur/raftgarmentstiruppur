@@ -18,8 +18,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const pathname = usePathname()
 
   return (
-    <div className="min-h-screen bg-brand-light-gray flex">
-      <aside className="w-60 bg-black text-white flex flex-col shrink-0">
+    <div className="min-h-screen bg-brand-off-white flex">
+      <aside className="w-60 bg-brand-navy text-white flex flex-col shrink-0 border-r-2 border-brand-navy">
         <div className="px-6 py-5 border-b border-white/10">
           <Link href="/" className="font-black text-lg tracking-tight text-white uppercase">
             Raft<span className="font-light">Garments</span>

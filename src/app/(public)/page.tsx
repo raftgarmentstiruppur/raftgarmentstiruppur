@@ -1,4 +1,5 @@
 import HeroSection from "@/components/homepage/HeroSection"
+import BentoGrid from "@/components/homepage/BentoGrid"
 import ProductCategoryCards from "@/components/homepage/ProductCategoryCards"
 import MarketingBanner from "@/components/homepage/MarketingBanner"
 import CertificationStrip from "@/components/homepage/CertificationStrip"
@@ -56,12 +57,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection
-        headline="Fiber to Fashion. Built for the World."
-        subheadline="India's fully vertical garment manufacturer — 18 facilities, zero middlemen. From spinning to shipping."
-        ctaPrimary={{ label: "Request a Sample", href: "/contact" }}
-        ctaSecondary={{ label: "Browse Products", href: "/products" }}
-        bgImage="https://placehold.co/1920x1080/000000/FFFFFF?text=RAFT+GARMENTS"
+        headline="India's finest knitwear. Built for the world."
+        subheadline="Fully vertical garment manufacturer — 18 facilities, zero middlemen. From spinning to shipping, Tirupur to everywhere."
+        ctaPrimary={{ label: "Explore Products", href: "/products" }}
+        ctaSecondary={{ label: "Download Brochure", href: "/resources" }}
       />
+      <BentoGrid />
       <ProductCategoryCards categories={productCategories} />
       <MarketingBanner
         eyebrow="2025 Collection"

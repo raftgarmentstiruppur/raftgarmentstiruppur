@@ -1,106 +1,55 @@
 "use client"
-
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import type { NavItem } from "@/types"
 import { cn } from "@/lib/utils"
 
-interface NavMobileProps {
-  items: NavItem[]
-}
-
-export default function NavMobile({ items }: NavMobileProps) {
+export default function NavMobile({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false)
   const [expanded, setExpanded] = useState<string | null>(null)
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
+    document.body.style.overflow = open ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
   }, [open])
 
-  const close = () => {
-    setOpen(false)
-    setExpanded(null)
-  }
+  const close = () => { setOpen(false); setExpanded(null) }
 
   return (
     <>
-      <button
-        className="lg:hidden p-2 text-white cursor-pointer"
-        aria-label="Open menu"
-        onClick={() => setOpen(true)}
-      >
+      <button className="lg:hidden p-2 text-brand-navy" aria-label="Open menu" onClick={() => setOpen(true)}>
         <Menu className="w-6 h-6" />
       </button>
 
       {open && (
         <div className="fixed inset-0 z-50 flex">
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/60" onClick={close} />
-
-          {/* Drawer */}
-          <div className="relative w-72 sm:w-80 bg-black h-full flex flex-col shadow-2xl">
-            {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 h-16">
-              <Link
-                href="/"
-                className="font-black text-lg tracking-tight text-white uppercase"
-                onClick={close}
-              >
-                Raft<span className="font-light">Garments</span>
-              </Link>
-              <button
-                onClick={close}
-                className="text-white/60 hover:text-white p-1 transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5" />
-              </button>
+          <div className="absolute inset-0 bg-black/70" onClick={close} />
+          <div className="relative w-72 bg-white border-r-2 border-brand-navy h-full flex flex-col">
+            <div className="flex items-center justify-between px-5 py-4 border-b-2 border-brand-navy">
+              <span className="font-display text-xl uppercase tracking-widest text-brand-navy">Menu</span>
+              <button onClick={close} className="text-brand-navy p-1"><X className="w-5 h-5" /></button>
             </div>
 
-            {/* Nav links */}
-            <nav className="flex-1 overflow-y-auto py-4">
+            <nav className="flex-1 overflow-y-auto">
               {items.map((item) => (
-                <div key={item.label}>
+                <div key={item.label} className="border-b border-brand-border">
                   {item.megaMenu ? (
                     <>
                       <button
-                        className="flex items-center justify-between w-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:text-brand-accent transition-colors cursor-pointer"
-                        onClick={() =>
-                          setExpanded(expanded === item.label ? null : item.label)
-                        }
+                        className="flex items-center justify-between w-full px-5 py-4 text-xs font-heading font-700 uppercase tracking-[0.2em] text-brand-navy hover:text-brand-accent transition-colors"
+                        onClick={() => setExpanded(expanded === item.label ? null : item.label)}
                       >
                         {item.label}
-                        <ChevronDown
-                          className={cn(
-                            "w-4 h-4 transition-transform duration-200 text-white/40",
-                            expanded === item.label && "rotate-180 text-brand-accent"
-                          )}
-                        />
+                        <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", expanded === item.label && "rotate-180")} />
                       </button>
-
                       {expanded === item.label && (
-                        <div className="bg-white/5 border-y border-white/10 py-3 mb-1">
+                        <div className="bg-brand-light-gray border-t border-brand-border px-5 py-3">
                           {item.megaMenu.map((col) => (
-                            <div key={col.heading} className="px-5 mb-3">
-                              <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-2">
-                                {col.heading}
-                              </p>
+                            <div key={col.heading} className="mb-3">
+                              <p className="text-[9px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash mb-2">{col.heading}</p>
                               {col.links.map((link) => (
-                                <Link
-                                  key={link.label}
-                                  href={link.href}
-                                  className="block py-2 text-sm text-white/70 hover:text-brand-accent transition-colors font-medium"
-                                  onClick={close}
-                                >
-                                  {link.label}
-                                </Link>
+                                <Link key={link.label} href={link.href} className="block py-1.5 text-xs text-brand-navy hover:text-brand-accent transition-colors font-sans" onClick={close}>{link.label}</Link>
                               ))}
                             </div>
                           ))}
@@ -108,11 +57,7 @@ export default function NavMobile({ items }: NavMobileProps) {
                       )}
                     </>
                   ) : (
-                    <Link
-                      href={item.href}
-                      className="block px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:text-brand-accent transition-colors"
-                      onClick={close}
-                    >
+                    <Link href={item.href} className="block px-5 py-4 text-xs font-heading font-700 uppercase tracking-[0.2em] text-brand-navy hover:text-brand-accent transition-colors" onClick={close}>
                       {item.label}
                     </Link>
                   )}
@@ -120,22 +65,9 @@ export default function NavMobile({ items }: NavMobileProps) {
               ))}
             </nav>
 
-            {/* Bottom CTAs */}
-            <div className="px-5 pb-8 pt-4 border-t border-white/10 space-y-3">
-              <Link
-                href="/login"
-                className="block w-full text-center border border-white/20 text-white/80 font-semibold py-3 text-sm uppercase tracking-wide hover:border-white hover:text-white transition-colors"
-                onClick={close}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/contact"
-                className="block w-full text-center bg-brand-accent text-white font-bold py-3 text-xs uppercase tracking-widest hover:bg-brand-accent-hover transition-colors"
-                onClick={close}
-              >
-                Get a Quote
-              </Link>
+            <div className="p-5 border-t-2 border-brand-navy space-y-3">
+              <Link href="/login" className="block w-full text-center border-2 border-brand-navy text-brand-navy font-heading font-700 py-3 text-xs uppercase tracking-widest hover:bg-brand-navy hover:text-white transition-colors" onClick={close}>Sign In</Link>
+              <Link href="/contact" className="block w-full text-center bg-brand-navy text-white font-heading font-700 py-3 text-xs uppercase tracking-widest hover:bg-brand-accent transition-colors" onClick={close}>Get a Quote</Link>
             </div>
           </div>
         </div>

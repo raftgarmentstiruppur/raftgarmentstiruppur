@@ -8,9 +8,9 @@ export const navItems: NavItem[] = [
       {
         heading: "Categories",
         links: [
-          { label: "Kids Innerwear",   href: "/products/kids-innerwear" },
-          { label: "Mens Innerwear",   href: "/products/mens-innerwear" },
-          { label: "Womens Innerwear", href: "/products/womens-innerwear" },
+          { label: "Kids' Innerwear",   href: "/products/kids-innerwear" },
+          { label: "Men's Innerwear",   href: "/products/mens-innerwear" },
+          { label: "Women's Innerwear", href: "/products/womens-innerwear" },
           { label: "Outerwear",        href: "/products/outerwear" },
         ],
       },
@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
           { label: "Cutting",              href: "/infrastructure#cutting" },
           { label: "Elastic Weaving",      href: "/infrastructure#elastic-weaving" },
           { label: "Sewing",               href: "/infrastructure#sewing" },
-          { label: "Finishing & Packaging",href: "/infrastructure#finishing-packaging" },
+          { label: "Finishing & Packing",  href: "/infrastructure#finishing-packing" },
         ],
       },
     ],
@@ -65,6 +65,8 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-  { label: "Resources", href: "/resources" },
-  { label: "Contact",   href: "/contact" },
+  { label: "Sustainability",  href: "/sustainability" },
+  { label: "Certifications", href: "/certifications" },
+  { label: "Resources",      href: "/resources" },
+  { label: "Contact",        href: "/contact" },
 ]

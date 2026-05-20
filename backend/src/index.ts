@@ -23,6 +23,8 @@ app.use(cors({
       cb(new Error(`CORS: ${origin} not allowed`))
   },
   credentials: true,
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }))
 app.use(express.json())
 app.use(cookieParser())

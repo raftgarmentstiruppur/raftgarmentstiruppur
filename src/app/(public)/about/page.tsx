@@ -1,98 +1,141 @@
 import type { Metadata } from "next"
 import PageHero from "@/components/shared/PageHero"
-import SectionHeader from "@/components/shared/SectionHeader"
 import StatCard from "@/components/shared/StatCard"
 import CTAButton from "@/components/shared/CTAButton"
 import AnimateIn from "@/components/shared/AnimateIn"
 import { leadership } from "@/data/leadership"
+import { Target, Eye, Users, Leaf, Award, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Raft-Garments — established 1993, India's leading fully vertical clothing manufacturer. Our story, leadership, and milestones.",
+  description: "Raft-Garments — established 1993, India's leading fully vertical clothing manufacturer.",
 }
 
 const milestones = [
   { year: "1993", event: "Founded in Tirupur with a single knitting unit and a vision for vertical integration." },
   { year: "2000", event: "Expanded into yarn spinning — bringing fiber processing in-house for the first time." },
   { year: "2005", event: "Launched export operations to European markets. First major brand partnership." },
-  { year: "2010", event: "Commissioned in-house dyeing and printing facilities. 10,000 pieces/day milestone." },
-  { year: "2015", event: "Achieved ISO 9001 and GOTS certifications. Began Disney and Lego approvals process." },
+  { year: "2010", event: "Commissioned in-house dyeing and printing. 10,000 pieces/day milestone reached." },
+  { year: "2015", event: "Achieved ISO 9001 and GOTS certifications. Disney and Lego approvals completed." },
   { year: "2019", event: "Received Government of Tamil Nadu Green Award. Commissioned 13 MW windmill." },
-  { year: "2023", event: "Opened 18th facility. 100,000 pieces/day total capacity. 40+ export countries." },
+  { year: "2023", event: "Opened 18th facility. 100,000 pieces/day capacity. Active in 40+ export countries." },
+]
+
+const values = [
+  { icon: <Award className="w-5 h-5" />, title: "Uncompromising Quality", description: "AQL 2.5 final audit on every order. Quality is not a feature — it's the baseline." },
+  { icon: <Leaf className="w-5 h-5" />, title: "Sustainable by Design", description: "GOTS-certified, wind-powered, zero-liquid discharge. Green is built into our process." },
+  { icon: <Users className="w-5 h-5" />, title: "People First", description: "WRAP-certified, fair wages, safe workplaces — our team is our foundation." },
+  { icon: <Zap className="w-5 h-5" />, title: "Innovation Always", description: "CAD/CAM automation, digital printing, and R&D investment that keeps us ahead." },
 ]
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        title="Established 1993. Built to Last."
-        subtitle="Thirty years of vertical integration, quality craftsmanship, and a relentless commitment to our customers."
-        breadcrumb={[{ label: "About Us", href: "/about" }]}
-      />
+      <PageHero title="A legacy built in Tirupur." subtitle="Three decades of craft, quality, and relentless vertical integration." breadcrumb={[{ label: "About", href: "/about" }]} number="01" />
 
-      {/* Story */}
-      <section id="story" className="py-section bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Heritage */}
+      <section className="border-t-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+          <div className="flex items-center gap-5 mb-10">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">01</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-accent">Our Heritage</span>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-14 items-start">
             <AnimateIn direction="left">
-              <SectionHeader
-                overline="Our Story"
-                title="From One Unit to a Full Campus"
-                align="left"
-              />
-              <div className="mt-6 space-y-4 text-brand-slate leading-relaxed">
-                <p>
-                  In 1993, Raft-Garments began as a single knitting unit in Tirupur — a city that would come to define India's garment export identity. From that first machine, our founder KM Subramanian had one belief: if you control your process, you control your quality.
-                </p>
-                <p>
-                  Over three decades, that belief shaped every investment we made — our own spinning mills, our own dyeing vats, our own embroidery heads. Today, we operate 18 state-of-the-art facilities across a single integrated campus, producing 100,000 garments every day for brands across 40+ countries.
-                </p>
-                <p>
-                  We don't just manufacture garments. We grow them — from fiber to fashion, under one roof, with one standard of quality.
-                </p>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display uppercase leading-[0.9] text-brand-navy mb-8">
+                From One Unit<br />to a Full Campus
+              </h2>
+              <div className="space-y-4 text-brand-slate leading-relaxed">
+                <p>In 1993, Raft-Garments began as a single knitting unit in Tirupur with one belief: if you control your process, you control your quality. That conviction shaped every investment over thirty years.</p>
+                <p>Today we operate 18 state-of-the-art facilities on a single integrated campus, producing 100,000 garments every day for brands across 40+ countries — from fiber to fashion, under one roof.</p>
               </div>
               <div className="mt-8">
                 <CTAButton label="Our Infrastructure" href="/infrastructure" variant="primary" arrow />
               </div>
             </AnimateIn>
             <AnimateIn direction="right" delay={0.1}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-px bg-brand-navy">
                 <StatCard value="1993" label="Founded" variant="dark" className="col-span-2" animate />
-                <StatCard value="18" label="Facilities" animate />
-                <StatCard value="30+" label="Years" animate />
-                <StatCard value="100K" label="Pieces/Day" animate />
-                <StatCard value="40+" label="Countries" animate />
+                <StatCard value="18" label="Facilities" variant="dark" animate />
+                <StatCard value="30+" label="Years" variant="dark" animate />
+                <StatCard value="100K" label="Pieces/Day" variant="dark" animate />
+                <StatCard value="40+" label="Countries" variant="dark" animate />
               </div>
             </AnimateIn>
           </div>
         </div>
       </section>
 
+      {/* Mission & Vision */}
+      <section className="bg-brand-off-white border-t-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+          <div className="flex items-center gap-5 mb-10">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">02</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-accent">Purpose</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-px bg-brand-navy">
+            <AnimateIn direction="left" delay={0.1}>
+              <div className="bg-brand-navy text-white p-10 h-full">
+                <div className="text-brand-accent mb-5"><Target className="w-7 h-7" /></div>
+                <h3 className="text-2xl font-display uppercase text-white mb-5">Our Mission</h3>
+                <p className="text-white/60 leading-relaxed">To be India's most trusted garment manufacturing partner — delivering world-class quality at scale, with complete transparency and a sustainable footprint future generations can be proud of.</p>
+              </div>
+            </AnimateIn>
+            <AnimateIn direction="right" delay={0.15}>
+              <div className="bg-white border-l-0 p-10 h-full">
+                <div className="text-brand-accent mb-5"><Eye className="w-7 h-7" /></div>
+                <h3 className="text-2xl font-display uppercase text-brand-navy mb-5">Our Vision</h3>
+                <p className="text-brand-slate leading-relaxed">A world where every garment tells a story of craftsmanship, care, and conscience. We are building the factory of the future — automated, sustainable, powered by people who take pride in every stitch.</p>
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values */}
+      <section className="border-t-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+          <div className="flex items-center gap-5 mb-10">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">03</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-accent">What Drives Us</span>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 border-2 border-brand-navy divide-y-2 divide-x-0 sm:divide-x-2 sm:divide-y-0 divide-brand-navy">
+            {values.map((val, i) => (
+              <AnimateIn key={val.title} delay={i * 0.08}>
+                <div className="p-7 group hover:bg-brand-navy transition-colors duration-300 h-full">
+                  <div className="text-brand-accent mb-5">{val.icon}</div>
+                  <h3 className="font-heading font-800 uppercase text-brand-navy group-hover:text-white transition-colors duration-300 mb-2">{val.title}</h3>
+                  <p className="text-sm text-brand-slate group-hover:text-white/55 leading-relaxed transition-colors duration-300">{val.description}</p>
+                </div>
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Leadership */}
-      <section id="leadership" className="py-section bg-brand-light-gray">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <AnimateIn>
-            <SectionHeader
-              overline="Leadership"
-              title="The Team Behind the Craft"
-              subtitle="Three generations of vision, driving one mission — to make the world's best garments."
-              className="mb-12"
-            />
-          </AnimateIn>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="bg-brand-off-white border-t-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+          <div className="flex items-center gap-5 mb-10">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">04</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-accent">Leadership</span>
+          </div>
+          <div className="grid md:grid-cols-3 gap-px bg-brand-navy">
             {leadership.map((member, i) => (
               <AnimateIn key={member.name} delay={i * 0.1}>
-                <div className="bg-white p-8 border border-brand-border h-full hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-brand-navy to-brand-accent/30 ring-2 ring-brand-accent/20 flex items-center justify-center mb-6">
-                    <span className="text-2xl font-black text-brand-accent">
+                <div className="bg-white p-8 group hover:bg-brand-navy transition-colors duration-300 h-full">
+                  <div className="w-12 h-12 bg-brand-navy group-hover:bg-white border-2 border-brand-navy flex items-center justify-center mb-5 transition-colors duration-300">
+                    <span className="text-lg font-display text-white group-hover:text-brand-navy transition-colors duration-300">
                       {member.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                     </span>
                   </div>
-                  <h3 className="font-bold text-brand-navy text-lg">{member.name}</h3>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mt-1 mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-sm text-brand-slate leading-relaxed">{member.bio}</p>
+                  <h3 className="font-heading font-800 uppercase text-brand-navy group-hover:text-white transition-colors duration-300">{member.name}</h3>
+                  <p className="text-[10px] font-heading font-700 uppercase tracking-widest text-brand-accent mt-1 mb-4">{member.role}</p>
+                  <p className="text-sm text-brand-slate group-hover:text-white/55 leading-relaxed transition-colors duration-300">{member.bio}</p>
                 </div>
               </AnimateIn>
             ))}
@@ -101,55 +144,44 @@ export default function AboutPage() {
       </section>
 
       {/* Milestones */}
-      <section id="milestones" className="py-section bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <AnimateIn>
-            <SectionHeader
-              overline="Our Journey"
-              title="Three Decades of Growth"
-              className="mb-16"
-            />
-          </AnimateIn>
-          <div className="relative">
-            <div className="absolute left-16 top-0 bottom-0 w-px bg-brand-border" />
-            <div className="space-y-8">
-              {milestones.map((m, i) => (
-                <AnimateIn key={m.year} delay={i * 0.08} direction="left">
-                  <div className="flex gap-8 items-start">
-                    <div className="w-32 shrink-0 text-right">
-                      <span className="text-sm font-black text-brand-accent">{m.year}</span>
-                    </div>
-                    <div className="relative">
-                      <div
-                        className="absolute -left-[25px] top-1.5 w-3 h-3 rounded-full border-2 border-brand-accent bg-white"
-                        style={{ animationDelay: `${i * 0.2}s` }}
-                      >
-                        <span className="absolute inset-0 rounded-full bg-brand-accent/30 animate-ping" style={{ animationDelay: `${i * 0.3}s` }} />
-                      </div>
-                      <p className="text-sm text-brand-slate leading-relaxed pl-4">{m.event}</p>
-                    </div>
-                  </div>
-                </AnimateIn>
-              ))}
-            </div>
+      <section className="border-t-2 border-brand-navy">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-16">
+          <div className="flex items-center gap-5 mb-14">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">05</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-accent">Our Journey</span>
+            <h2 className="text-2xl font-display uppercase text-brand-navy ml-2">Three Decades of Growth</h2>
           </div>
+          {milestones.map((m, i) => (
+            <AnimateIn key={m.year} delay={i * 0.07} direction="left">
+              <div className="grid grid-cols-[80px_2px_1fr] gap-0 items-start mb-0">
+                <div className="text-right pr-5 pt-1">
+                  <span className="text-sm font-display text-brand-accent">{m.year}</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-2 h-2 bg-brand-accent shrink-0 mt-1.5" />
+                  {i < milestones.length - 1 && <div className="w-px flex-1 bg-brand-border min-h-[3rem]" />}
+                </div>
+                <div className="pl-5 pb-10">
+                  <p className="text-sm text-brand-slate leading-relaxed">{m.event}</p>
+                </div>
+              </div>
+            </AnimateIn>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-navy text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)", backgroundSize: "20px 20px" }} />
-        <div className="relative z-10 container mx-auto px-4 max-w-2xl">
-          <AnimateIn>
-            <h2 className="text-3xl font-bold">Ready to Work Together?</h2>
-            <p className="mt-4 text-white/60">
-              Join the global brands that trust Raft-Garments for quality, reliability, and scale.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-              <CTAButton label="Contact Us" href="/contact" variant="primary" size="lg" arrow />
-              <CTAButton label="Browse Products" href="/products" variant="outline-light" size="lg" />
-            </div>
-          </AnimateIn>
+      <section className="bg-brand-navy border-t-2 border-brand-navy text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-display uppercase leading-[0.9] text-white">Ready to Work<br />Together?</h2>
+            <p className="mt-4 text-white/50 max-w-md leading-relaxed">Join the global brands that trust Raft-Garments for quality, reliability, and scale.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <CTAButton label="Contact Us" href="/contact" variant="accent" size="lg" arrow />
+            <CTAButton label="Browse Products" href="/products" variant="outline-light" size="lg" />
+          </div>
         </div>
       </section>
     </>

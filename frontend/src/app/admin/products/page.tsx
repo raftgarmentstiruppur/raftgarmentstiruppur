@@ -5,6 +5,7 @@ import dynamicImport from "next/dynamic"
 import Image from "next/image"
 import { Plus, Pencil, Trash2, X, Loader2, ImagePlus } from "lucide-react"
 import { apiFetch, apiDelete } from "@/lib/api"
+import ColorPaletteSelector from "@/components/admin/ColorPaletteSelector"
 
 const CldUploadWidget = dynamicImport(
   () => import("next-cloudinary").then((m) => m.CldUploadWidget),
@@ -32,6 +33,7 @@ const SPEC_KEYS: SpecKey[] = ["ageRange","dyes","closures","seams","prints","emb
 const CATEGORY_SPECS: Record<string, { key: SpecKey; label: string; default: string }[]> = {
   "kids-innerwear": [
     { key: "ageRange",       label: "Age Range",       default: "2–14 years" },
+    { key: "colors",         label: "Available Colours", default: "[]" },
     { key: "closures",       label: "Waistband",       default: "Soft elastic with branded label option" },
     { key: "seams",          label: "Seam Finish",     default: "Flatlock seams for skin comfort" },
     { key: "certifications", label: "Certifications",  default: "Oeko-Tex Standard 100" },
@@ -41,7 +43,7 @@ const CATEGORY_SPECS: Record<string, { key: SpecKey; label: string; default: str
   "mens-innerwear": [
     { key: "closures",       label: "Waistband",       default: "Soft elastic, branded waistband available" },
     { key: "dyes",           label: "Leg Length",      default: "Brief, mid-thigh, long leg" },
-    { key: "colors",         label: "Colors",          default: "150+ standard + custom Pantone matching" },
+    { key: "colors",         label: "Available Colours", default: "[]" },
     { key: "weights",        label: "Fabric Weight",   default: "140 GSM – 200 GSM" },
     { key: "certifications", label: "Certifications",  default: "Oeko-Tex Standard 100, WRAP" },
     { key: "moq",            label: "MOQ",             default: "500 units per style, per color" },
@@ -49,6 +51,7 @@ const CATEGORY_SPECS: Record<string, { key: SpecKey; label: string; default: str
   ],
   "womens-innerwear": [
     { key: "closures",       label: "Cup Sizes",       default: "A, B, C, D, DD (for underwired styles)" },
+    { key: "colors",         label: "Available Colours", default: "[]" },
     { key: "embellishments", label: "Details & Trim",  default: "Lace trim, mesh panels, bow detail" },
     { key: "finishes",       label: "Finishes",        default: "Enzyme wash, soft-touch finish" },
     { key: "certifications", label: "Certifications",  default: "Oeko-Tex Standard 100" },
@@ -57,7 +60,7 @@ const CATEGORY_SPECS: Record<string, { key: SpecKey; label: string; default: str
   ],
   "outerwear": [
     { key: "weights",        label: "Fabric Weight",   default: "160 GSM – 340 GSM" },
-    { key: "colors",         label: "Colors",          default: "Custom Pantone matching available" },
+    { key: "colors",         label: "Available Colours", default: "[]" },
     { key: "printMethods",   label: "Print Methods",   default: "Screen print, digital print, embroidery" },
     { key: "finishes",       label: "Finishes",        default: "Enzyme wash, pigment wash, soft-touch" },
     { key: "certifications", label: "Certifications",  default: "Oeko-Tex Standard 100, WRAP" },
@@ -86,9 +89,9 @@ const DESC_DEFAULTS: Record<string, string> = {
 }
 
 const CATEGORIES = [
-  { id: "kids-innerwear",   label: "Kids Innerwear" },
-  { id: "mens-innerwear",   label: "Mens Innerwear" },
-  { id: "womens-innerwear", label: "Womens Innerwear" },
+  { id: "kids-innerwear",   label: "Kids' Innerwear" },
+  { id: "mens-innerwear",   label: "Men's Innerwear" },
+  { id: "womens-innerwear", label: "Women's Innerwear" },
   { id: "outerwear",        label: "Outerwear" },
 ]
 
@@ -322,14 +325,33 @@ export default function AdminProductsPage() {
                   <p className="text-xs font-bold uppercase tracking-widest text-brand-ash mb-3 border-b border-brand-border pb-2">
                     Specifications
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    {categorySpecs.map(spec => (
-                      <div key={spec.key}>
-                        <SpecFieldLabel label={spec.label} fieldKey={spec.key} form={form} category={activeCategory} set={set} def={spec.default} />
-                        <input value={form[spec.key]} onChange={e => set(spec.key, e.target.value)}
-                          className="w-full border border-brand-border px-3 py-2 text-sm focus:outline-none focus:border-brand-accent" />
-                      </div>
-                    ))}
+                  <div className="space-y-4">
+                    {/* Color palette selector — full width */}
+                    {categorySpecs.filter(s => s.key === "colors").map(spec => {
+                      let selected: string[] = []
+                      try { selected = JSON.parse(form.colors || "[]") } catch { selected = [] }
+                      return (
+                        <div key={spec.key} className="border border-brand-border p-4 bg-brand-light-gray">
+                          <p className="text-xs font-black uppercase tracking-widest text-brand-ash mb-3">
+                            {spec.label}
+                          </p>
+                          <ColorPaletteSelector
+                            selected={selected}
+                            onChange={(colors) => set("colors", JSON.stringify(colors))}
+                          />
+                        </div>
+                      )
+                    })}
+                    {/* Other spec fields — 2-col grid */}
+                    <div className="grid grid-cols-2 gap-4">
+                      {categorySpecs.filter(s => s.key !== "colors").map(spec => (
+                        <div key={spec.key}>
+                          <SpecFieldLabel label={spec.label} fieldKey={spec.key} form={form} category={activeCategory} set={set} def={spec.default} />
+                          <input value={form[spec.key]} onChange={e => set(spec.key, e.target.value)}
+                            className="w-full border border-brand-border px-3 py-2 text-sm focus:outline-none focus:border-brand-accent" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

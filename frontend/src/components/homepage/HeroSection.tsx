@@ -1,8 +1,9 @@
 "use client"
 
-import Link from "next/link"
+import { motion } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 import CTAButton from "@/components/shared/CTAButton"
-import { Phone, Mail, MapPin, ChevronDown } from "lucide-react"
+import MagneticButton from "@/components/shared/MagneticButton"
 
 interface HeroSectionProps {
   headline: string
@@ -12,120 +13,73 @@ interface HeroSectionProps {
   bgImage?: string
 }
 
-const leftNavLinks = [
-  { label: "About Us",        href: "/about" },
-  { label: "Infrastructure",  href: "/infrastructure" },
-  { label: "Products",        href: "/products" },
-  { label: "Corporate Video", href: "/resources" },
-  { label: "Contact Us",      href: "/contact" },
-]
-
-const rightActions = [
-  { icon: <Phone  className="w-5 h-5" />, href: "tel:+919843166345",          label: "Call us" },
-  { icon: <Mail   className="w-5 h-5" />, href: "mailto:info@raftgarments.com", label: "Email us" },
-  { icon: <MapPin className="w-5 h-5" />, href: "/contact",                    label: "Location" },
-]
-
-export default function HeroSection({
-  headline,
-  subheadline,
-  ctaPrimary,
-  ctaSecondary,
-}: HeroSectionProps) {
+export default function HeroSection({ headline, ctaPrimary, ctaSecondary }: HeroSectionProps) {
   return (
-    <>
-      {/* Full-screen video with side panels */}
-      <section className="relative min-h-screen overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/40" />
+    <section className="relative h-screen overflow-hidden bg-black">
 
-        {/* Left nav panel */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col">
-          {leftNavLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="px-5 py-3.5 text-xs font-semibold text-white tracking-wide bg-black/50 hover:bg-black/80 border-b border-white/10 transition-colors whitespace-nowrap backdrop-blur-sm"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+      {/* Video */}
+      <video
+        autoPlay muted loop playsInline
+        poster="/images/hero-poster.jpg"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
 
-        {/* Right action panel */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-0">
-          {rightActions.map((action) => (
-            <a
-              key={action.label}
-              href={action.href}
-              aria-label={action.label}
-              className="w-12 h-12 flex items-center justify-center bg-brand-accent hover:bg-brand-accent-hover text-white transition-colors border-b border-white/20"
-            >
-              {action.icon}
-            </a>
-          ))}
-        </div>
+      {/* Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-[55%] md:h-[45%] bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
 
-        {/* Scroll down arrow */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-white/60" />
-          <ChevronDown className="w-6 h-6 text-white/30 -mt-3" />
-        </div>
-      </section>
-
-      {/* Content block below the video */}
-      <section className="bg-black text-white py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-6">
-            40+ Years &nbsp;·&nbsp; Tirupur, India
-          </p>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-white leading-none uppercase max-w-4xl mx-auto">
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 pb-8 sm:pb-10 md:pb-14">
+        <div className="px-5 sm:px-8 md:px-12 lg:px-16">
+          <motion.h1
+            className="text-white mb-4 md:mb-5"
+            style={{
+              fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif',
+              fontWeight: 900,
+              fontSize: "clamp(2rem, 6vw, 5.5rem)",
+              lineHeight: 1,
+              letterSpacing: "-0.02em",
+              wordBreak: "break-word",
+            }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+          >
             {headline}
-          </h1>
-          <p className="mt-6 text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
-            {subheadline}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <CTAButton
-              label={ctaPrimary.label}
-              href={ctaPrimary.href}
-              variant="secondary"
-              size="lg"
-              arrow
-            />
-            <CTAButton
-              label={ctaSecondary.label}
-              href={ctaSecondary.href}
-              variant="outline-light"
-              size="lg"
-            />
-          </div>
+          </motion.h1>
 
-          {/* Stats bar */}
-          <div className="mt-16 grid grid-cols-3 max-w-md mx-auto divide-x divide-white/10 border border-white/10">
-            {[
-              { value: "800", label: "Employees" },
-              { value: "350", label: "Machines" },
-              { value: "80K", label: "Garments/Day" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center py-6 px-4">
-                <div className="text-2xl font-black text-white">{stat.value}</div>
-                <div className="text-[10px] text-white/40 uppercase tracking-widest font-semibold mt-0.5">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          <motion.div
+            className="flex flex-wrap items-center gap-3"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.45 }}
+          >
+            <MagneticButton>
+              <CTAButton label={ctaPrimary.label} href={ctaPrimary.href} variant="primary" size="lg" arrow />
+            </MagneticButton>
+            <MagneticButton>
+              <CTAButton label={ctaSecondary.label} href={ctaSecondary.href} variant="outline-light" size="lg" />
+            </MagneticButton>
+          </motion.div>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* Scroll hint */}
+      <motion.div
+        className="absolute bottom-10 right-10 z-10 hidden lg:flex flex-col items-center gap-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" as const }}
+        >
+          <ChevronDown className="w-5 h-5 text-white/40" />
+        </motion.div>
+        <span className="text-[8px] font-bold uppercase tracking-widest text-white/30 [writing-mode:vertical-rl] mt-1">Scroll</span>
+      </motion.div>
+    </section>
   )
 }

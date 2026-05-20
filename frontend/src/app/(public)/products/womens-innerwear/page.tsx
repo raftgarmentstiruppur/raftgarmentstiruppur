@@ -5,8 +5,8 @@ import ContentStyleGrid from "@/components/shared/ContentStyleGrid"
 import ProductsAlternatingSection from "@/components/shared/ProductsAlternatingSection"
 
 export const metadata: Metadata = {
-  title: "Womens Innerwear",
-  description: "Premium womens innerwear — bras, panties, camisoles, thermals and nightwear in cotton, modal and microfibre. Lace trim capability.",
+  title: "Women's Innerwear",
+  description: "Premium women's innerwear — bras, panties, camisoles, thermals and nightwear in cotton, modal and microfibre. Lace trim capability.",
 }
 
 const P = "product-womens-innerwear"
@@ -21,19 +21,20 @@ export default function WomensInnerwearPage() {
       <ContentPageHero
         titleKey="page-womens-innerwear-title"
         subtitleKey="page-womens-innerwear-subtitle"
-        defaultTitle="Womens Innerwear"
+        defaultTitle="Women's Innerwear"
         defaultSubtitle="Cotton, modal, and microfibre constructions with full lace trim and embellishment capability — from everyday basics to premium nightwear."
         breadcrumb={[
           { label: "Products", href: "/products" },
-          { label: "Womens Innerwear", href: "/products/womens-innerwear" },
+          { label: "Women's Innerwear", href: "/products/womens-innerwear" },
         ]}
+        defaultImage="/images/womens-hero.png"
       />
 
       <ProductsAlternatingSection category="womens-innerwear" categoryPath="womens-innerwear" />
 
       <section className="py-section bg-brand-light-gray">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <SectionHeader overline="Available Styles" title="Full Womens Innerwear Range" className="mb-10" />
+          <SectionHeader overline="Available Styles" title="Full Women's Innerwear Range" className="mb-10" />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <ContentStyleGrid productKey={P} defaultStyles={DEFAULT_STYLES} />
           </div>

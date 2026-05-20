@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils"
 const WA_NUMBER = "919843166345"
 
 const productOptions = [
-  "Kids Innerwear",
-  "Mens Innerwear",
-  "Womens Innerwear",
+  "Kids' Innerwear",
+  "Men's Innerwear",
+  "Women's Innerwear",
   "Outerwear",
   "Seamless / Bonded Underwear",
   "Shapewear / Swimwear",
@@ -62,7 +62,7 @@ export default function ContactForm() {
         <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center mx-auto">
           <MessageCircle className="w-7 h-7 text-white" />
         </div>
-        <p className="font-bold text-black text-lg uppercase tracking-tight">WhatsApp Opened!</p>
+        <p className="font-bold text-brand-navy text-lg uppercase tracking-tight">WhatsApp Opened!</p>
         <p className="text-brand-slate text-sm leading-relaxed">
           Your enquiry has been prepared. Complete sending it on WhatsApp — our team will respond promptly.
         </p>

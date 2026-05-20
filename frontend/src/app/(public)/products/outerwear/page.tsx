@@ -28,6 +28,7 @@ export default function OuterwearPage() {
           { label: "Products", href: "/products" },
           { label: "Outerwear", href: "/products/outerwear" },
         ]}
+        defaultImage="/images/outerwear-hero.png"
       />
 
       <ProductsAlternatingSection category="outerwear" categoryPath="outerwear" />

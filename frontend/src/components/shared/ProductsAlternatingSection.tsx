@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { COLOR_PALETTE } from "@/data/colorPalette"
 
 interface Product {
   id: string
@@ -105,7 +106,8 @@ function ProductRow({
     { label: isKids ? "Seam Finish" : isMens ? "Leg Length" : "Details & Trim", value: isKids ? product.seams : isMens ? product.dyes : product.seams },
     { label: "Embellishments / Trim",                                value: product.embellishments },
     { label: "Fabric Weight",                                        value: product.weights },
-    { label: "Colors",                                               value: product.colors },
+    // Colors handled separately as swatches — skip from plain text specs
+
     { label: "Finishes",                                             value: product.finishes },
     { label: "Certifications",                                       value: product.certifications },
     { label: "MOQ",                                                  value: product.moq },
@@ -123,8 +125,44 @@ function ProductRow({
       <h2 className="text-3xl font-black text-brand-navy leading-tight">{product.name}</h2>
 
       {product.description && (
-        <p className="mt-4 text-brand-slate leading-relaxed">{product.description}</p>
+        <p className="mt-4 text-base text-brand-slate leading-relaxed text-justify">{product.description}</p>
       )}
+
+      {/* Colour swatches */}
+      {product.colors && (() => {
+        let hexArr: string[] = []
+        try { hexArr = JSON.parse(product.colors) } catch { /* not JSON, skip */ }
+        if (!hexArr.length) return null
+        return (
+          <div className="mt-5 space-y-2">
+            <p className="text-xs font-black uppercase tracking-widest text-brand-ash flex items-center gap-2">
+              Available Colours
+              <span className="text-brand-accent font-black">{hexArr.length}+</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {hexArr.map((hex) => {
+                const name    = COLOR_PALETTE.find(c => c.hex === hex)?.name ?? hex
+                const isLight = (() => {
+                  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16)
+                  return (r*299+g*587+b*114)/1000 > 180
+                })()
+                return (
+                  <div key={hex} className="relative group cursor-default">
+                    <div
+                      title={name}
+                      className={`w-7 h-7 transition-transform duration-150 hover:scale-125 ${isLight ? "border border-brand-border" : ""}`}
+                      style={{ backgroundColor: hex }}
+                    />
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-brand-navy text-white text-[9px] px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 rounded-sm">
+                      {name}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })()}
 
       {specs.length > 0 && (
         <div className="mt-6 border border-brand-border divide-y divide-brand-border">
@@ -133,7 +171,7 @@ function ProductRow({
               <span className="text-xs font-semibold uppercase tracking-wide text-brand-ash">
                 {s.label}
               </span>
-              <span className="text-sm text-brand-charcoal">{s.value}</span>
+              <span className="text-base text-brand-charcoal">{s.value}</span>
             </div>
           ))}
         </div>

@@ -30,16 +30,21 @@ export function setStoredUser(user: unknown) {
 
 export async function apiFetch(path: string, init?: RequestInit) {
   const token = getStoredToken()
-  const res = await fetch(`${API}${path}`, {
-    ...init,
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(init?.headers ?? {}),
-    },
-  })
-  return res
+  try {
+    const res = await fetch(`${API}${path}`, {
+      ...init,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(init?.headers ?? {}),
+      },
+    })
+    return res
+  } catch (err) {
+    console.error(`[api] Network error on ${path}:`, err)
+    throw new Error("Cannot reach the backend server. Make sure it is running on port 4000.")
+  }
 }
 
 export async function apiGet(path: string) {
@@ -55,5 +60,19 @@ export async function apiPatch(path: string, body: unknown) {
 }
 
 export async function apiDelete(path: string) {
-  return apiFetch(path, { method: "DELETE" })
+  // No Content-Type on DELETE — avoids CORS preflight rejection on bodyless requests
+  const token = getStoredToken()
+  const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"
+  try {
+    return await fetch(`${API}${path}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+    })
+  } catch (err) {
+    console.error(`[api] Network error on DELETE ${path}:`, err)
+    throw new Error("Cannot reach the backend server. Make sure it is running on port 4000.")
+  }
 }

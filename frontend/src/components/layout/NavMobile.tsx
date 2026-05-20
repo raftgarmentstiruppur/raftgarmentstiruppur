@@ -1,28 +1,24 @@
 "use client"
 
-import Link from "next/link"
-import Image from "next/image"
 import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
+import Link from "next/link"
+import ScrollLink from "@/components/shared/ScrollLink"
 import { Menu, X, ChevronDown } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import type { NavItem } from "@/types"
-import { cn } from "@/lib/utils"
 import { useAuthContext } from "@/context/AuthContext"
 
-interface NavMobileProps {
-  items: NavItem[]
-}
+interface NavMobileProps { items: NavItem[] }
 
 export default function NavMobile({ items }: NavMobileProps) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]       = useState(false)
   const [expanded, setExpanded] = useState<string | null>(null)
-  const { user } = useAuthContext()
+  const [mounted, setMounted] = useState(false)
+  const { user }              = useAuthContext()
 
-  const portalLink = user?.role === "ADMIN"
-    ? { href: "/admin",     label: "Admin Panel" }
-    : user?.role === "BUYER"
-    ? { href: "/dashboard", label: "My Dashboard" }
-    : { href: "/login",     label: "Sign In" }
+  // Only portal after hydration
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -31,148 +27,209 @@ export default function NavMobile({ items }: NavMobileProps) {
 
   const close = () => { setOpen(false); setExpanded(null) }
 
-  return (
-    <>
-      <motion.button
-        className="lg:hidden p-2 text-white cursor-pointer"
-        aria-label="Open menu"
-        onClick={() => setOpen(true)}
-        whileTap={{ scale: 0.9 }}
-      >
-        <Menu className="w-6 h-6" />
-      </motion.button>
+  const portalHref  = user?.role === "ADMIN" ? "/admin" : user?.role === "BUYER" ? "/dashboard" : "/login"
+  const portalLabel = user?.role === "ADMIN" ? "Admin Panel" : user?.role === "BUYER" ? "My Dashboard" : "Sign In"
 
-      <AnimatePresence>
-        {open && (
-          <div className="fixed inset-0 z-50 flex lg:hidden">
-            {/* Backdrop */}
-            <motion.div
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              onClick={close}
-            />
+  const drawer = (
+    <AnimatePresence>
+      {open && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999 }}>
 
-            {/* Drawer */}
-            <motion.div
-              className="relative w-72 sm:w-80 bg-black h-full flex flex-col shadow-2xl"
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 h-16">
-                <Link href="/" onClick={close}>
-                  <Image src="/logo.png" alt="Raft Garments" width={90} height={44} className="h-9 w-auto object-contain" />
-                </Link>
-                <motion.button
-                  onClick={close}
-                  className="text-white/60 hover:text-white p-1 transition-colors"
-                  aria-label="Close menu"
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-5 h-5" />
-                </motion.button>
-              </div>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={close}
+            style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.55)" }}
+          />
 
-              {/* Nav links */}
-              <nav className="flex-1 overflow-y-auto py-4">
-                {items.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.08 + i * 0.04, duration: 0.25, ease: "easeOut" }}
-                  >
-                    {item.megaMenu ? (
-                      <>
-                        <button
-                          className="flex items-center justify-between w-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:text-brand-accent transition-colors cursor-pointer"
-                          onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                        >
-                          {item.label}
-                          <ChevronDown
-                            className={cn(
-                              "w-4 h-4 transition-transform duration-200 text-white/40",
-                              expanded === item.label && "rotate-180 text-brand-accent"
-                            )}
-                          />
-                        </button>
+          {/* Drawer panel */}
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: "82vw",
+              maxWidth: "320px",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: "#06194A",
+              boxShadow: "6px 0 40px rgba(0,0,0,0.6)",
+              overflowY: "auto",
+            }}
+          >
 
-                        <AnimatePresence>
-                          {expanded === item.label && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.22, ease: "easeOut" }}
-                              className="overflow-hidden"
-                            >
-                              <div className="bg-white/5 border-y border-white/10 py-3 mb-1">
-                                {item.megaMenu.map((col) => (
-                                  <div key={col.heading} className="px-5 mb-3">
-                                    <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 mb-2">
-                                      {col.heading}
-                                    </p>
-                                    {col.links.map((link) => (
-                                      <Link
-                                        key={link.label}
-                                        href={link.href}
-                                        className="block py-2 text-sm text-white/70 hover:text-brand-accent transition-colors font-medium"
-                                        onClick={close}
-                                      >
-                                        {link.label}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className="block px-5 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:text-brand-accent transition-colors"
-                        onClick={close}
+            {/* Header row */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 20px",
+              height: 64,
+              flexShrink: 0,
+              borderBottom: "1px solid rgba(255,255,255,0.1)",
+            }}>
+              <span style={{ color: "#fff", fontSize: 13, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                Menu
+              </span>
+              <button onClick={close} aria-label="Close menu" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 0, padding: 4 }}>
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Nav items */}
+            <nav style={{ flex: 1 }}>
+              {items.map((item) => (
+                <div key={item.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+
+                  {item.megaMenu ? (
+                    <>
+                      <button
+                        onClick={() => setExpanded(expanded === item.label ? null : item.label)}
+                        style={{
+                          display: "flex", alignItems: "center", justifyContent: "space-between",
+                          width: "100%", padding: "17px 20px",
+                          background: "none", border: "none", cursor: "pointer",
+                          color: "#fff", fontSize: 13, fontWeight: 700,
+                          letterSpacing: "0.1em", textTransform: "uppercase",
+                          textAlign: "left",
+                        }}
                       >
                         {item.label}
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
-              </nav>
+                        <ChevronDown
+                          size={16}
+                          style={{
+                            color: "rgba(255,255,255,0.4)",
+                            transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)",
+                            transition: "transform 0.2s",
+                            flexShrink: 0,
+                          }}
+                        />
+                      </button>
 
-              {/* Bottom CTAs */}
-              <motion.div
-                className="px-5 pb-8 pt-4 border-t border-white/10 space-y-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.28, duration: 0.25 }}
+                      <AnimatePresence initial={false}>
+                        {expanded === item.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            style={{ overflow: "hidden" }}
+                          >
+                            <div style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
+                              {item.megaMenu.map((col) => (
+                                <div key={col.heading}>
+                                  <p style={{
+                                    padding: "10px 20px 4px 28px",
+                                    fontSize: 9, fontWeight: 700,
+                                    letterSpacing: "0.2em", textTransform: "uppercase",
+                                    color: "rgba(255,255,255,0.35)",
+                                    margin: 0,
+                                  }}>
+                                    {col.heading}
+                                  </p>
+                                  {col.links.map((link) => (
+                                    <ScrollLink
+                                      key={link.href}
+                                      href={link.href}
+                                      onClick={close}
+                                      style={{
+                                        display: "block",
+                                        padding: "12px 20px 12px 28px",
+                                        fontSize: 13, fontWeight: 500,
+                                        color: "rgba(255,255,255,0.7)",
+                                        textDecoration: "none",
+                                        borderBottom: "1px solid rgba(255,255,255,0.06)",
+                                      }}
+                                    >
+                                      {link.label}
+                                    </ScrollLink>
+                                  ))}
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  ) : (
+                    <ScrollLink
+                      href={item.href}
+                      onClick={close}
+                      style={{
+                        display: "block",
+                        padding: "17px 20px",
+                        color: "#fff", fontSize: 13, fontWeight: 700,
+                        letterSpacing: "0.1em", textTransform: "uppercase",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {item.label}
+                    </ScrollLink>
+                  )}
+
+                </div>
+              ))}
+            </nav>
+
+            {/* Bottom CTAs */}
+            <div style={{ padding: "20px", borderTop: "1px solid rgba(255,255,255,0.1)", flexShrink: 0 }}>
+              <ScrollLink
+                href={portalHref}
+                onClick={close}
+                style={{
+                  display: "block", textAlign: "center",
+                  padding: "13px", marginBottom: 10,
+                  border: "1px solid rgba(255,255,255,0.3)",
+                  color: "rgba(255,255,255,0.85)",
+                  fontSize: 11, fontWeight: 700,
+                  letterSpacing: "0.12em", textTransform: "uppercase",
+                  textDecoration: "none",
+                }}
               >
-                <Link
-                  href={portalLink.href}
-                  className="block w-full text-center border border-white/20 text-white/80 font-semibold py-3 text-sm uppercase tracking-wide hover:border-white hover:text-white transition-colors"
-                  onClick={close}
-                >
-                  {portalLink.label}
-                </Link>
-                <Link
-                  href="/contact"
-                  className="block w-full text-center bg-brand-accent text-white font-bold py-3 text-xs uppercase tracking-widest hover:bg-brand-accent-hover transition-colors"
-                  onClick={close}
-                >
-                  Get a Quote
-                </Link>
-              </motion.div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                {portalLabel}
+              </ScrollLink>
+              <ScrollLink
+                href="/contact"
+                onClick={close}
+                style={{
+                  display: "block", textAlign: "center", padding: "13px",
+                  backgroundColor: "#43A047", color: "#fff",
+                  fontSize: 11, fontWeight: 700,
+                  letterSpacing: "0.12em", textTransform: "uppercase",
+                  textDecoration: "none",
+                }}
+              >
+                Get a Quote
+              </ScrollLink>
+            </div>
+
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  )
+
+  return (
+    <>
+      {/* Hamburger — stays inside the navbar */}
+      <button
+        className="xl:hidden p-2 text-white"
+        aria-label="Open menu"
+        onClick={() => setOpen(true)}
+      >
+        <Menu className="w-6 h-6" />
+      </button>
+
+      {/* Drawer — portalled directly onto document.body, bypassing the transformed header */}
+      {mounted && createPortal(drawer, document.body)}
     </>
   )
 }

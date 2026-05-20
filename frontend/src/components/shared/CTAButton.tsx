@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { ArrowRight } from "lucide-react"
@@ -23,25 +25,40 @@ export default function CTAButton({
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-2 font-bold uppercase tracking-wider transition-all duration-200",
-        size === "sm" && "text-xs px-4 py-2",
-        size === "md" && "text-xs px-6 py-3",
-        size === "lg" && "text-sm px-8 py-4",
-        variant === "primary" &&
-          "bg-black text-white hover:bg-brand-charcoal",
-        variant === "secondary" &&
-          "bg-white text-black hover:bg-brand-light-gray border border-white",
-        variant === "outline" &&
-          "border-2 border-black text-black hover:bg-black hover:text-white",
-        variant === "outline-light" &&
-          "border-2 border-white text-white hover:bg-white hover:text-black",
-        variant === "ghost" &&
-          "text-black underline underline-offset-4 hover:text-brand-slate",
+        "group relative inline-flex items-center gap-2.5 font-bold uppercase tracking-widest overflow-hidden transition-colors duration-300",
+        size === "sm" && "text-[11px] px-5 py-2.5",
+        size === "md" && "text-xs px-7 py-3.5",
+        size === "lg" && "text-xs px-9 py-4.5",
+        variant === "primary" && "bg-brand-navy text-white",
+        variant === "secondary" && "bg-white text-brand-navy border border-white",
+        variant === "outline" && "border-2 border-brand-navy text-brand-navy",
+        variant === "outline-light" && "border-2 border-white text-white",
+        variant === "ghost" && "text-brand-navy",
         className
       )}
     >
-      {label}
-      {arrow && <ArrowRight className="w-4 h-4" />}
+      {/* Slide-fill layer */}
+      {variant === "primary" && (
+        <span className="absolute inset-0 bg-brand-accent -translate-x-full group-hover:translate-x-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.76,0,0.24,1)]" />
+      )}
+      {variant === "outline" && (
+        <span className="absolute inset-0 bg-brand-navy -translate-x-full group-hover:translate-x-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.76,0,0.24,1)]" />
+      )}
+      {variant === "outline-light" && (
+        <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.76,0,0.24,1)]" />
+      )}
+
+      <span className={cn(
+        "relative z-10 transition-colors duration-300",
+        variant === "outline" && "group-hover:text-white",
+        variant === "outline-light" && "group-hover:text-brand-navy",
+      )}>
+        {label}
+      </span>
+
+      {arrow && (
+        <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+      )}
     </Link>
   )
 }

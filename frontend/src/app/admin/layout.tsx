@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <p className="text-brand-slate text-sm">
             {hasToken ? "Session expired. Please sign in again." : "Admin access required."}
           </p>
-          <Link href="/login" className="inline-block bg-brand-navy text-white px-6 py-2.5 text-sm font-semibold hover:bg-black transition-colors">
+          <Link href="/login" className="inline-block bg-brand-navy text-white px-6 py-2.5 text-sm font-semibold hover:bg-brand-charcoal transition-colors">
             Sign In
           </Link>
         </div>

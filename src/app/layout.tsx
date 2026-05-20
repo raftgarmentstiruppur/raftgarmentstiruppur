@@ -1,11 +1,25 @@
 import type { Metadata } from "next"
-import { Barlow } from "next/font/google"
+import { Bebas_Neue, Barlow_Condensed, Inter } from "next/font/google"
 import "./globals.css"
 
-const barlow = Barlow({
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-barlow",
+  weight: ["400"],
+  variable: "--font-display",
+  display: "swap",
+})
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-heading",
+  display: "swap",
+})
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 })
 
@@ -27,12 +41,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={barlow.variable}>
+    <html lang="en" className={`${bebasNeue.variable} ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans antialiased min-h-full flex flex-col bg-white">
+      <body className="font-sans antialiased min-h-full flex flex-col bg-brand-surface">
         {children}
       </body>
     </html>

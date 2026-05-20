@@ -5,66 +5,42 @@ import { Package, Tag, Globe, BookOpen, ArrowRight } from "lucide-react"
 import type { CTACard } from "@/types"
 
 const iconMap: Record<string, React.ReactNode> = {
-  Package: <Package className="w-7 h-7" />,
-  Tag:     <Tag className="w-7 h-7" />,
-  Globe:   <Globe className="w-7 h-7" />,
-  BookOpen:<BookOpen className="w-7 h-7" />,
+  Package: <Package className="w-6 h-6" />, Tag: <Tag className="w-6 h-6" />,
+  Globe: <Globe className="w-6 h-6" />, BookOpen: <BookOpen className="w-6 h-6" />,
 }
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-}
+const ease = [0.22, 0.61, 0.36, 1] as const
 
-const cardVariant = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-}
-
-interface FourColumnCTAProps {
-  cards: CTACard[]
-  heading?: string
-}
-
-export default function FourColumnCTA({ cards, heading }: FourColumnCTAProps) {
+export default function FourColumnCTA({ cards, heading }: { cards: CTACard[]; heading?: string }) {
   return (
-    <section className="py-section bg-brand-light-gray">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section className="bg-brand-off-white border-t-2 border-brand-navy">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
         {heading && (
-          <h2 className="text-center text-3xl md:text-4xl font-black text-black uppercase tracking-tight mb-12">
-            {heading}
-          </h2>
+          <div className="flex items-center gap-5 mb-10">
+            <span className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash">05</span>
+            <div className="h-px w-10 bg-brand-navy" />
+            <h2 className="text-2xl md:text-3xl font-display uppercase text-brand-navy">{heading}</h2>
+          </div>
         )}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-brand-border"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {cards.map((card) => (
-            <motion.div key={card.title} variants={cardVariant}>
-              <div className="bg-white p-8 flex flex-col gap-4 hover:bg-black group transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
-                <div className="w-12 h-12 flex items-center justify-center bg-brand-light-gray group-hover:bg-brand-accent/20 transition-colors duration-300 text-black group-hover:text-brand-accent">
-                  {iconMap[card.icon] ?? null}
-                </div>
-                <h3 className="text-base font-black text-black group-hover:text-white uppercase tracking-tight transition-colors duration-300">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-brand-slate group-hover:text-white/60 leading-relaxed flex-1 transition-colors duration-300">
-                  {card.description}
-                </p>
-                <Link
-                  href={card.ctaHref}
-                  className="group/link inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-black group-hover:text-brand-accent transition-colors duration-300"
-                >
-                  {card.ctaLabel}
-                  <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-2 border-brand-navy divide-y-2 divide-x-0 sm:divide-x-2 sm:divide-y-0 divide-brand-navy">
+          {cards.map((card, i) => (
+            <motion.div key={card.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: i * 0.08, ease }}
+            >
+              <div className="p-7 flex flex-col h-full bg-white hover:bg-brand-navy group transition-all duration-300">
+                <div className="text-brand-accent mb-5">{iconMap[card.icon]}</div>
+                <h3 className="text-base font-heading font-800 uppercase tracking-tight text-brand-navy group-hover:text-white transition-colors duration-300 mb-3">{card.title}</h3>
+                <p className="text-sm text-brand-slate group-hover:text-white/60 leading-relaxed flex-1 transition-colors duration-300 mb-6">{card.description}</p>
+                <Link href={card.ctaHref} className="inline-flex items-center gap-1.5 text-[10px] font-heading font-700 uppercase tracking-widest text-brand-navy group-hover:text-brand-accent transition-colors duration-300">
+                  {card.ctaLabel} <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

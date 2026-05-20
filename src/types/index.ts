@@ -24,6 +24,7 @@ export interface Division {
   name: string
   capacity: string
   description: string
+  bullets?: string[]
   icon?: string
 }
 

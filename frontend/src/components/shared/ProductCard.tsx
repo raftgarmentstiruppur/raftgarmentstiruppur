@@ -34,7 +34,7 @@ export default function ProductCard({
         )}
         <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
           <h3 className="text-xl font-bold text-white">{title}</h3>
-          <p className="mt-1 text-sm text-white/80 leading-relaxed line-clamp-2">
+          <p className="mt-1 text-base text-white/85 leading-relaxed line-clamp-2">
             {description}
           </p>
           <span className="inline-flex items-center gap-1 mt-3 text-xs font-semibold uppercase tracking-widest text-brand-accent group-hover:gap-2 transition-all">

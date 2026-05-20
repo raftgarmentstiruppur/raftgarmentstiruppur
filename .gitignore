@@ -45,6 +45,12 @@ frontend/.env.local
 # vercel
 .vercel
 
+# deployment artifacts
+backend-deploy/
+backend-deploy.zip
+.env.production
+frontend/.env.production
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -35,6 +35,7 @@ export default function ResourcesPage() {
         title="Resources & Downloads"
         subtitle="Everything you need to evaluate, specify, and order from Raft Garments. All documents available as free PDF downloads."
         breadcrumb={[{ label: "Resources", href: "/resources" }]}
+        bgImage="/images/resources-hero.png"
       />
 
       <section className="py-section bg-white">
@@ -55,14 +56,14 @@ export default function ResourcesPage() {
               >
                 <div className="text-brand-accent">{res.icon}</div>
                 <div>
-                  <h3 className="font-bold text-brand-navy text-lg">{res.title}</h3>
-                  <p className="text-xs text-brand-ash mt-1">{res.fileType}</p>
+                  <h3 className="font-black text-brand-navy text-2xl">{res.title}</h3>
+                  <p className="text-sm text-brand-ash mt-1 uppercase tracking-widest font-semibold">PDF Download</p>
                 </div>
-                <p className="text-sm text-brand-slate leading-relaxed flex-1">{res.description}</p>
+                <p className="text-lg text-brand-slate leading-relaxed flex-1 text-justify">{res.description}</p>
                 <a
                   href={res.file}
                   download
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent-hover transition-colors self-start"
+                  className="inline-flex items-center gap-2 text-base font-bold self-start animate-blink-highlight hover:[animation-play-state:paused]"
                 >
                   <Download className="w-4 h-4" />
                   {res.ctaLabel}
@@ -76,9 +77,9 @@ export default function ResourcesPage() {
       {/* Request samples */}
       <section className="py-section bg-brand-navy text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-4">Physical Samples</p>
-          <h2 className="text-3xl font-bold">Need Fabric Swatches or Garment Samples?</h2>
-          <p className="mt-4 text-white/60 leading-relaxed">
+          <p className="text-sm font-black uppercase tracking-widest text-brand-accent mb-4">Physical Samples</p>
+          <h2 className="text-4xl md:text-5xl font-black">Need Fabric Swatches or Garment Samples?</h2>
+          <p className="mt-6 text-xl text-white/85 leading-relaxed">
             Request physical samples via email or our contact form. Fabric swatches dispatched within 2–3 business days. Garment samples within 10 business days.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">

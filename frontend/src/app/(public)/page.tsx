@@ -1,4 +1,5 @@
 import HeroSection from "@/components/homepage/HeroSection"
+import AnimatedImageStrip from "@/components/homepage/AnimatedImageStrip"
 import ProductCategoryCards from "@/components/homepage/ProductCategoryCards"
 import MarketingBanner from "@/components/homepage/MarketingBanner"
 import CertificationStrip from "@/components/homepage/CertificationStrip"
@@ -21,32 +22,28 @@ const fourColumnCards: CTACard[] = [
   {
     icon: "Package",
     title: "Wholesale Direct",
-    description:
-      "Order in bulk, direct from manufacturer. No agents, no markups. MOQ from 500 units per style.",
+    description: "Order in bulk, direct from manufacturer. No agents, no markups. MOQ from 500 units per style.",
     ctaLabel: "Get a Quote",
     ctaHref: "/contact",
   },
   {
     icon: "Tag",
     title: "Private Label",
-    description:
-      "Your brand on our world-class garments. Full service from tech pack to retail-ready packaging.",
+    description: "Your brand on our world-class garments. Full service from tech pack to retail-ready packaging.",
     ctaLabel: "Learn More",
     ctaHref: "/about#private-label",
   },
   {
     icon: "Globe",
     title: "Global Distributors",
-    description:
-      "Authorized distributor programs with dedicated account management and preferential pricing.",
+    description: "Authorized distributor programs with dedicated account management and preferential pricing.",
     ctaLabel: "Partner With Us",
     ctaHref: "/contact",
   },
   {
     icon: "BookOpen",
     title: "Catalog & Samples",
-    description:
-      "Download our 2025 product catalog or request physical fabric swatches and garment samples.",
+    description: "Download our 2025 product catalog or request physical fabric swatches and garment samples.",
     ctaLabel: "Request Samples",
     ctaHref: "/resources",
   },
@@ -55,42 +52,67 @@ const fourColumnCards: CTACard[] = [
 export default function HomePage() {
   return (
     <>
+      {/* 1 — Full-screen video hero */}
       <HeroSection
-        headline="Crafting Quality, Pioneering Sustainability, Shaping Fashion."
-        subheadline="Taking India's finest knitwear to the world — 40+ years of premium innerwear and outerwear manufacturing from Tirupur."
+        headline="Built For Better Comfort"
+        subheadline="India's finest knitwear — crafted for the world."
         ctaPrimary={{ label: "Request a Sample", href: "/contact" }}
         ctaSecondary={{ label: "Browse Products", href: "/products" }}
-        bgImage="https://placehold.co/1920x1080/000000/FFFFFF?text=RAFT+GARMENTS"
+        bgImage=""
       />
+
+      {/* 2 — 2×2 portrait category grid */}
       <ProductCategoryCards categories={productCategories} />
+
+      {/* 3 — Animated scrolling image strip */}
+      <AnimatedImageStrip />
+
+      {/* 4 — Full-bleed editorial banner */}
       <MarketingBanner
         eyebrow="2025 Collection"
         headline="Crafted at Scale. Finished to Perfection."
-        description="Premium innerwear and outerwear — from intimate essentials to versatile casual styles. Cotton, bamboo, Tencel, recycled polyester, and more. Custom NOOS programs available."
+        description="Premium innerwear and outerwear — cotton, bamboo, Tencel, recycled polyester, and more. Custom NOOS programs available."
         ctaLabel="Download Catalog"
         ctaHref="/resources"
       />
+
+      {/* 5 — Certification marquee strip */}
       <CertificationStrip certs={certifications} />
+
+      {/* 6 — Split image + brand story */}
       <BrandNarrative
         eyebrow="40+ Years of Legacy"
         statement="Different by Design. Driven by Craft."
-        body="For over four decades, Raft Garments has built its reputation on quality without compromise. From premium innerwear to versatile outerwear, every garment we produce — for brands across Europe, the USA, and India — carries the trust of 40+ years and the strength of 10+ global certifications."
+        body="For over four decades, Raft Garments has built its reputation on quality without compromise. Every garment carries the trust of 40+ years and the strength of 10+ global certifications."
         ctaLabel="Our Story"
         ctaHref="/about"
-        stat1={{ value: "800", label: "Employees" }}
-        stat2={{ value: "350", label: "Machines" }}
-        stat3={{ value: "80K", label: "Garments Per Day" }}
+        stat1={{ value: "Expert",    label: "Skilled Workforce" }}
+        stat2={{ value: "Precision", label: "Advanced Machinery" }}
+        stat3={{ value: "Scale",     label: "Daily Production" }}
+        stat4={{ value: "10+",       label: "Global Certifications" }}
       />
+
+      {/* 7 — Partnership CTA grid */}
       <FourColumnCTA cards={fourColumnCards} heading="Create With Us" />
+
+      {/* 8 — Infrastructure division cards */}
       <InfrastructureCards divisions={divisions} />
+
+      {/* 9 — Sustainability */}
       <SustainabilityBanner
         headline={sustainabilityData.headline}
         stats={sustainabilityData.stats}
         ctaLabel="Our Green Journey"
         ctaHref="/sustainability"
       />
+
+      {/* 10 — FAQ */}
       <FAQAccordion faqs={faqs} />
+
+      {/* 11 — Client logos */}
       <ClientLogos clients={clients} heading="Trusted by Leading Global Brands" />
+
+      {/* 12 — Newsletter */}
       <NewsletterSignup
         headline="Stay Ahead of the Trend"
         description="Get quarterly updates on new fabric developments, collection previews, and sustainability reports."
@@ -100,4 +122,3 @@ export default function HomePage() {
     </>
   )
 }
-

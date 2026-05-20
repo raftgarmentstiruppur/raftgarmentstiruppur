@@ -1,186 +1,76 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { siteConfig } from "@/data/siteConfig"
 
-const footerLinks = {
-  Products: [
-    { label: "Babies Wear", href: "/products/babies-wear" },
-    { label: "Kids Wear", href: "/products/kids-wear" },
-    { label: "Mens Wear", href: "/products/mens-wear" },
-    { label: "Womens Wear & Nightwear", href: "/products/womens-wear" },
-  ],
-  Company: [
-    { label: "About Us", href: "/about" },
-    { label: "Infrastructure", href: "/infrastructure" },
-    { label: "Sustainability", href: "/sustainability" },
-    { label: "Certifications", href: "/certifications" },
-  ],
-  Resources: [
-    { label: "Product Catalog", href: "/resources#catalog" },
-    { label: "Colour Card", href: "/resources#colour-card" },
-    { label: "Product Specs", href: "/resources#specs" },
-    { label: "Sustainability Report", href: "/resources#sustainability" },
-  ],
-  Support: [
-    { label: "Contact Us", href: "/contact" },
-    { label: "Request a Sample", href: "/contact" },
-    { label: "FAQs", href: "/#faq" },
-    { label: "Sign In", href: "/login" },
-  ],
+const cols = {
+  Products: [{ label: "Babies Wear", href: "/products/babies-wear" }, { label: "Kids Wear", href: "/products/kids-wear" }, { label: "Mens Wear", href: "/products/mens-wear" }, { label: "Womens Wear", href: "/products/womens-wear" }],
+  Company:  [{ label: "About Us", href: "/about" }, { label: "Infrastructure", href: "/infrastructure" }, { label: "Sustainability", href: "/sustainability" }, { label: "Certifications", href: "/certifications" }],
+  Resources:[{ label: "Product Catalog", href: "/resources#catalog" }, { label: "Colour Card", href: "/resources#colour-card" }, { label: "Product Specs", href: "/resources#specs" }, { label: "Sustainability Report", href: "/resources#sustainability" }],
+  Support:  [{ label: "Contact Us", href: "/contact" }, { label: "Request a Sample", href: "/contact" }, { label: "FAQs", href: "/#faq" }, { label: "Sign In", href: "/login" }],
 }
 
-const socialLinks = [
+const socials = [
   { label: "LI", title: "LinkedIn", href: siteConfig.social.linkedin },
   { label: "IG", title: "Instagram", href: siteConfig.social.instagram },
   { label: "FB", title: "Facebook", href: siteConfig.social.facebook },
   { label: "TW", title: "Twitter", href: siteConfig.social.twitter },
-  { label: "YT", title: "YouTube", href: siteConfig.social.youtube },
 ]
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09 } },
-}
-
-const col = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
-}
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-16 pb-10">
+    <footer className="bg-brand-navy text-white border-t-2 border-brand-navy">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
-        {/* Main grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-        >
-          {/* Brand + logo column */}
-          <motion.div className="lg:col-span-1" variants={col}>
-            <Link href="/" className="inline-block">
-              {/* Entrance scale + glow pulse (same treatment as navbar, lighter) */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.75 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-              >
-                <motion.div
-                  animate={{
-                    filter: [
-                      "drop-shadow(0 0 0px rgba(122,173,104,0))",
-                      "drop-shadow(0 0 14px rgba(122,173,104,0.30))",
-                      "drop-shadow(0 0 0px rgba(122,173,104,0))",
-                    ],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  whileHover={{
-                    scale: 1.08,
-                    filter: "drop-shadow(0 0 20px rgba(122,173,104,0.50))",
-                    transition: { duration: 0.25 },
-                  }}
-                  whileTap={{ scale: 0.94, transition: { duration: 0.1 } }}
-                >
-                  <Image
-                    src="/logo.png"
-                    alt="Raft Garments"
-                    width={140}
-                    height={68}
-                    className="h-16 w-auto object-contain"
-                  />
-                </motion.div>
-              </motion.div>
-            </Link>
-            <p className="mt-4 text-sm text-white/50 leading-relaxed">
-              One of India&apos;s leading fully vertical clothing manufacturers. Fiber to fashion, since 1993.
-            </p>
-            <motion.div
-              className="flex items-center gap-2 mt-6"
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              {socialLinks.map((s) => (
-                <motion.div key={s.label} variants={col}>
-                  <Link
-                    href={s.href}
-                    title={s.title}
-                    className="w-8 h-8 flex items-center justify-center border border-white/20 text-white/50 hover:border-brand-accent hover:text-brand-accent transition-colors text-xs font-bold"
-                  >
-                    {s.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+        {/* Top band */}
+        <div className="py-10 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <Link href="/">
+            <Image src="/logo.png" alt="Raft Garments" width={120} height={48} className="h-10 w-auto object-contain brightness-0 invert" />
+          </Link>
+          <p className="text-xs text-white/40 max-w-xs leading-relaxed">One of India&apos;s leading fully vertical clothing manufacturers. Fiber to fashion, since 1993.</p>
+          <div className="flex gap-2">
+            {socials.map((s) => (
+              <Link key={s.label} href={s.href} title={s.title} className="w-8 h-8 border border-white/20 text-white/40 hover:border-brand-accent hover:text-brand-accent transition-colors text-[10px] font-heading font-700 flex items-center justify-center">
+                {s.label}
+              </Link>
+            ))}
+          </div>
+        </div>
 
-          {/* Link columns */}
-          {Object.entries(footerLinks).map(([heading, links]) => (
-            <motion.div key={heading} variants={col}>
-              <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-5">
-                {heading}
-              </h4>
+        {/* Link grid */}
+        <div className="py-10 grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-white/10">
+          {Object.entries(cols).map(([heading, links]) => (
+            <div key={heading}>
+              <h4 className="text-[9px] font-heading font-700 uppercase tracking-[0.3em] text-white/30 mb-5">{heading}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/60 hover:text-white hover:pl-1 transition-all duration-200"
-                    >
-                      {link.label}
-                    </Link>
+                    <Link href={link.href} className="text-sm text-white/55 hover:text-white transition-colors font-sans">{link.label}</Link>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Contact strip */}
-        <motion.div
-          className="py-8 border-b border-white/10 grid md:grid-cols-3 gap-6 text-sm text-white/40"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.15, ease: "easeOut" }}
-        >
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/25 block mb-2">Address</span>
-            {siteConfig.address.full}
-          </div>
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/25 block mb-2">Phone</span>
-            <a href={`tel:${siteConfig.phone}`} className="hover:text-white transition-colors">
-              {siteConfig.phone}
-            </a>
-          </div>
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/25 block mb-2">Email</span>
-            <a href={`mailto:${siteConfig.email}`} className="hover:text-white transition-colors">
-              {siteConfig.email}
-            </a>
-          </div>
-        </motion.div>
+        <div className="py-7 border-b border-white/10 grid md:grid-cols-3 gap-5 text-sm text-white/35">
+          {[
+            { label: "Address", val: siteConfig.address.full, href: null },
+            { label: "Phone", val: siteConfig.phone, href: `tel:${siteConfig.phone}` },
+            { label: "Email", val: siteConfig.email, href: `mailto:${siteConfig.email}` },
+          ].map((item) => (
+            <div key={item.label}>
+              <span className="text-[9px] font-heading font-700 uppercase tracking-[0.3em] text-white/20 block mb-1">{item.label}</span>
+              {item.href ? <a href={item.href} className="hover:text-white transition-colors">{item.val}</a> : <span>{item.val}</span>}
+            </div>
+          ))}
+        </div>
 
-        <motion.div
-          className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
+        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-white/20 font-heading font-700 uppercase tracking-[0.2em]">
           <p>© {new Date().getFullYear()} Raft-Garments. All rights reserved.</p>
           <p>Tirupur, Tamil Nadu, India</p>
-        </motion.div>
-
+        </div>
       </div>
     </footer>
   )

@@ -4,8 +4,9 @@ import { useState } from "react"
 import dynamicImport from "next/dynamic"
 import Image from "next/image"
 import { Save, Loader2, ChevronDown, ChevronUp } from "lucide-react"
-import { apiPatch } from "@/lib/api"
+import { apiPatch, apiDelete } from "@/lib/api"
 import { useContent } from "@/context/ContentContext"
+import { invalidateDivisionImageCache } from "@/components/shared/DivisionImageSlider"
 
 const CldUploadWidget = dynamicImport(
   () => import("next-cloudinary").then((m) => m.CldUploadWidget),
@@ -34,16 +35,20 @@ interface Section {
 }
 
 const DIVISION_NAMES: Record<string, string> = {
-  "01": "Cutting",   "02": "Printing",  "03": "Embroidery",
-  "04": "Sewing",    "05": "Finishing", "06": "Packaging",
+  "01": "Knitting",
+  "02": "Fabric Inspection",
+  "03": "Cutting",
+  "04": "Elastic Weaving",
+  "05": "Sewing",
+  "06": "Finishing & Packing",
 }
 const DIVISION_DEFAULTS: Record<string, { capacity: string; description: string }> = {
-  "01": { capacity: "4M+ Units/Month",    description: "Precision CAD-driven cutting systems deliver 92%+ fabric utilisation with zero-defect protocol and inline quality checks at every layer." },
-  "02": { capacity: "50,000+ Pieces/Day", description: "Full-spectrum print capability — screen, rotary, digital, discharge, sublimation, and foil — in up to 20 colours using Oeko-Tex certified, azo-free inks." },
-  "03": { capacity: "10M Stitches/Day",   description: "500-head multi-needle embroidery fleet handling complex logo digitising, 3D puff, chenille, and appliqué for the world's leading brands." },
-  "04": { capacity: "100,000 Pieces/Day", description: "18 high-efficiency sewing lines equipped for flatlock, coverstitch, and overlock operations, governed by ISO 9001-certified quality processes." },
-  "05": { capacity: "AQL 2.5 Standard",   description: "100% inline inspection followed by AQL 2.5 final audit, professional steam pressing, precise folding and hanging — all in temperature-controlled pre-export storage." },
-  "06": { capacity: "3 Tons/Day",         description: "In-house corrugated box manufacturing, polybag printing, custom retail-ready packaging, branded hang-tags, and full barcode and compliance labeling." },
+  "01": { capacity: "High-Volume Production",   description: "State-of-the-art knitting machines producing premium knitted fabric for innerwear and outerwear — including cotton, bamboo, viscose, Tencel, nylon, and recycled polyester constructions." },
+  "02": { capacity: "4-Point System",           description: "Every roll of knitted fabric passes through a dedicated fabric inspection machine before it moves to cutting. Using the internationally recognised 4-Point system, trained inspectors identify and record defects in each roll." },
+  "03": { capacity: "Precision Scale Output",   description: "Fully automated Italian cutting systems integrated with CAD and CAM software deliver pinpoint accuracy across every lay, significantly reducing material waste and maximising fabric utilisation." },
+  "04": { capacity: "High-Volume Daily Output", description: "Jacquard and solid weaving looms built on German design technology deliver a substantial daily elastic output, producing shrink-controlled elastic with superior stability and consistent quality." },
+  "05": { capacity: "High Daily Capacity",      description: "Sewing lines equipped with a specialised array of machines designed to handle the unique requirements of both innerwear and outerwear. Skilled operators ensure seamless garment construction and precise stitching." },
+  "06": { capacity: "AQL 1.5–2.5",              description: "Final garment inspection carried out to AQL 1.5–2.5 standards. Professional steam pressing, precise folding or hanging, in-house corrugated box manufacturing, polybag printing, and retail-ready packing." },
 }
 
 const SECTIONS: Section[] = [
@@ -51,7 +56,7 @@ const SECTIONS: Section[] = [
     id: "infrastructure", title: "Infrastructure", page: "/infrastructure",
     fields: [
       { key: "page-infrastructure-title",    label: "Page Title",    type: "text",     placeholder: "End-to-End. In-House. In Control." },
-      { key: "page-infrastructure-subtitle", label: "Page Subtitle", type: "textarea", rows: 2, placeholder: "9 integrated manufacturing divisions…" },
+      { key: "page-infrastructure-subtitle", label: "Page Subtitle", type: "textarea", rows: 2, placeholder: "6 integrated manufacturing divisions…" },
       ...["01","02","03","04","05","06"].flatMap((n): Field[] => [
         { key: `division-${n}-image`,       label: `Division ${n} — ${DIVISION_NAMES[n]} Images`,      type: "multi-image", folder: "Raft-Garments/infrastructure", maxImages: 5 },
         { key: `division-${n}-name`,        label: `Division ${n} — Name`,        type: "text",     placeholder: DIVISION_NAMES[n] },
@@ -61,27 +66,27 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    id: "kids-innerwear", title: "Kids Innerwear", page: "/products/kids-innerwear",
+    id: "kids-innerwear", title: "Kids' Innerwear", page: "/products/kids-innerwear",
     fields: [
-      { key: "page-kids-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Kids Innerwear" },
+      { key: "page-kids-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Kids' Innerwear" },
       { key: "page-kids-innerwear-subtitle", label: "Page Subtitle",    type: "textarea", rows: 2, placeholder: "Soft, breathable innerwear for children aged 2–14…" },
-      { key: "product-kids-innerwear-styles", label: "Available Styles", type: "list", placeholder: "Boys Briefs, Boys Boxer Shorts, Boys Trunks, Girls Briefs, Girls Boy Shorts, Girls Hipster, Training Pants", hint: "Comma-separated" },
-      { key: "product-kids-innerwear-gallery", label: "Style Images", type: "gallery", folder: "Raft-Garments/products/kids-innerwear", defaultStyles: ["Boys Briefs","Boys Boxer Shorts","Boys Trunks","Girls Briefs","Girls Boy Shorts","Girls Hipster","Training Pants"] },
+      { key: "product-kids-innerwear-styles", label: "Available Styles", type: "list", placeholder: "Boys' Briefs, Boys' Boxer Shorts, Boys' Trunks, Girls' Briefs, Girls' Boy Shorts, Girls' Hipster, Training Pants", hint: "Comma-separated" },
+      { key: "product-kids-innerwear-gallery", label: "Style Images", type: "gallery", folder: "Raft-Garments/products/kids-innerwear", defaultStyles: ["Boys' Briefs","Boys' Boxer Shorts","Boys' Trunks","Girls' Briefs","Girls' Boy Shorts","Girls' Hipster","Training Pants"] },
     ],
   },
   {
-    id: "mens-innerwear", title: "Mens Innerwear", page: "/products/mens-innerwear",
+    id: "mens-innerwear", title: "Men's Innerwear", page: "/products/mens-innerwear",
     fields: [
-      { key: "page-mens-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Mens Innerwear" },
+      { key: "page-mens-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Men's Innerwear" },
       { key: "page-mens-innerwear-subtitle", label: "Page Subtitle",    type: "textarea", rows: 2, placeholder: "Combed cotton. Modal blends. 150+ colors…" },
       { key: "product-mens-innerwear-styles", label: "Available Styles", type: "list", placeholder: "Briefs, Boxer Briefs, Trunks, Boxers (Loose), Hipster Briefs, Sports / Compression", hint: "Comma-separated" },
       { key: "product-mens-innerwear-gallery", label: "Style Images", type: "gallery", folder: "Raft-Garments/products/mens-innerwear", defaultStyles: ["Briefs","Boxer Briefs","Trunks","Boxers (Loose)","Hipster Briefs","Sports / Compression"] },
     ],
   },
   {
-    id: "womens-innerwear", title: "Womens Innerwear", page: "/products/womens-innerwear",
+    id: "womens-innerwear", title: "Women's Innerwear", page: "/products/womens-innerwear",
     fields: [
-      { key: "page-womens-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Womens Innerwear" },
+      { key: "page-womens-innerwear-title",    label: "Page Title",       type: "text",     placeholder: "Women's Innerwear" },
       { key: "page-womens-innerwear-subtitle", label: "Page Subtitle",    type: "textarea", rows: 2, placeholder: "Cotton, modal, and microfibre constructions…" },
       { key: "product-womens-innerwear-styles", label: "Available Styles", type: "list", placeholder: "Bikini Briefs, Hipster Briefs, Boy Shorts, High-Waist Briefs, Thongs", hint: "Comma-separated" },
       { key: "product-womens-innerwear-gallery", label: "Style Images", type: "gallery", folder: "Raft-Garments/products/womens-innerwear", defaultStyles: ["Bikini Briefs","Hipster Briefs","Boy Shorts","High-Waist Briefs","Thongs"] },
@@ -145,11 +150,35 @@ export default function AdminContentPage() {
   async function saveKey(key: string, value: string) {
     if (!value.trim()) return
     setSaving((p) => ({ ...p, [key]: true }))
-    await apiPatch(`/content/${key}`, { value: value.trim() })
-    setSaving((p) => ({ ...p, [key]: false }))
-    setSaved((p) => ({ ...p, [key]: true }))
-    await reload()
-    setTimeout(() => setSaved((p) => ({ ...p, [key]: false })), 2500)
+    try {
+      await apiPatch(`/content/${key}`, { value: value.trim() })
+      setSaved((p) => ({ ...p, [key]: true }))
+      await reload()
+      setTimeout(() => setSaved((p) => ({ ...p, [key]: false })), 2500)
+    } catch (err) {
+      alert(`Save failed: ${err instanceof Error ? err.message : "Unknown error"}`)
+    } finally {
+      setSaving((p) => ({ ...p, [key]: false }))
+    }
+  }
+
+  async function deleteKey(key: string) {
+    if (!confirm("Remove this image?")) return
+    setSaving((p) => ({ ...p, [key]: true }))
+    try {
+      const res = await apiDelete(`/content/${key}`)
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body?.error ?? `Server returned ${res.status}`)
+      }
+      invalidateDivisionImageCache() // clear slider cache so re-navigation shows fresh data
+      set(key, "")
+      await reload()
+    } catch (err) {
+      alert(`Delete failed: ${err instanceof Error ? err.message : "Unknown error"}`)
+    } finally {
+      setSaving((p) => ({ ...p, [key]: false }))
+    }
   }
 
   async function saveSection(section: Section) {
@@ -290,9 +319,13 @@ export default function AdminContentPage() {
                                   <>
                                     <Image src={imgUrl} alt={`Image ${idx + 1}`} fill className="object-cover" unoptimized />
                                     <button
-                                      onClick={async () => { set(imgKey, ""); await saveKey(imgKey, " ") }}
-                                      className="absolute top-1 right-1 bg-red-600 text-white text-[9px] px-1 py-0.5 font-bold hover:bg-red-700"
-                                    >✕</button>
+                                      onClick={() => deleteKey(imgKey)}
+                                      disabled={saving[imgKey]}
+                                      className="absolute top-1 right-1 bg-red-600 text-white text-[9px] px-1.5 py-0.5 font-bold hover:bg-red-700 disabled:opacity-50 leading-none"
+                                      title="Delete image"
+                                    >
+                                      {saving[imgKey] ? "…" : "✕"}
+                                    </button>
                                   </>
                                 ) : (
                                   <div className="absolute inset-0 flex items-center justify-center text-brand-ash text-[10px]">{idx + 1}</div>
@@ -323,6 +356,7 @@ export default function AdminContentPage() {
                     </div>
                   )}
 
+
                   {(field.type === "text" || field.type === "list") && (
                     <div className="space-y-1">
                       <div className="flex gap-2">
@@ -331,7 +365,7 @@ export default function AdminContentPage() {
                           className="flex-1 border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-accent"
                         />
                         <button onClick={() => saveKey(field.key, val(field.key, field.placeholder))} disabled={saving[field.key]}
-                          className="flex items-center gap-1 bg-brand-navy text-white px-3 py-2 text-xs font-bold uppercase hover:bg-black transition-colors disabled:opacity-50 shrink-0">
+                          className="flex items-center gap-1 bg-brand-navy text-white px-3 py-2 text-xs font-bold uppercase hover:bg-brand-charcoal transition-colors disabled:opacity-50 shrink-0">
                           {saving[field.key] ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
                           {saved[field.key] ? "✓" : "Save"}
                         </button>
@@ -353,7 +387,7 @@ export default function AdminContentPage() {
                           className="flex-1 border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-accent resize-none"
                         />
                         <button onClick={() => saveKey(field.key, val(field.key, field.placeholder))} disabled={saving[field.key]}
-                          className="flex items-center gap-1 bg-brand-navy text-white px-3 py-2 text-xs font-bold uppercase hover:bg-black transition-colors disabled:opacity-50 shrink-0">
+                          className="flex items-center gap-1 bg-brand-navy text-white px-3 py-2 text-xs font-bold uppercase hover:bg-brand-charcoal transition-colors disabled:opacity-50 shrink-0">
                           {saving[field.key] ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
                           {saved[field.key] ? "✓" : "Save"}
                         </button>
@@ -371,7 +405,7 @@ export default function AdminContentPage() {
 
               {section.fields.some((f) => f.type !== "image") && (
                 <button onClick={() => saveSection(section)}
-                  className="flex items-center gap-2 bg-black text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-navy transition-colors">
+                  className="flex items-center gap-2 bg-brand-navy text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-charcoal transition-colors">
                   <Save className="w-3.5 h-3.5" />
                   Save All in This Section
                 </button>

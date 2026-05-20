@@ -25,7 +25,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <p className="text-brand-slate text-sm">
             {hasToken ? "Session expired. Please sign in again." : "Please sign in to access your dashboard."}
           </p>
-          <Link href="/login" className="inline-block bg-brand-navy text-white px-6 py-2.5 text-sm font-semibold hover:bg-black transition-colors">
+          <Link href="/login" className="inline-block bg-brand-navy text-white px-6 py-2.5 text-sm font-semibold hover:bg-brand-charcoal transition-colors">
             Sign In
           </Link>
         </div>

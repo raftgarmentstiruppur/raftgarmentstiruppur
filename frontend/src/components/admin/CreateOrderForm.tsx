@@ -41,7 +41,7 @@ export default function CreateOrderForm({ quoteId, userId, product }: CreateOrde
 
   return (
     <div className="bg-brand-light-gray border border-brand-border p-6 space-y-4">
-      <h3 className="font-bold text-black uppercase tracking-tight text-sm">Create Order from this Quote</h3>
+      <h3 className="font-bold text-brand-navy uppercase tracking-tight text-sm">Create Order from this Quote</h3>
       {error && <p className="text-red-600 text-sm">{error}</p>}
 
       <div className="grid grid-cols-2 gap-4">
@@ -97,7 +97,7 @@ export default function CreateOrderForm({ quoteId, userId, product }: CreateOrde
       <button
         onClick={handleCreate}
         disabled={loading}
-        className="w-full bg-black text-white font-bold py-2.5 text-xs uppercase tracking-widest hover:bg-brand-charcoal transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+        className="w-full bg-brand-navy text-white font-bold py-2.5 text-xs uppercase tracking-widest hover:bg-brand-charcoal transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {loading && <Loader2 className="w-4 h-4 animate-spin" />}
         {loading ? "Creating…" : "Create Order"}

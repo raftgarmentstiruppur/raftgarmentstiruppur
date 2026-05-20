@@ -42,7 +42,7 @@ export default function UpdateOrderForm({ orderId, currentStatus, currentTrackin
 
   return (
     <div className="bg-white border border-brand-border p-6 space-y-4">
-      <h3 className="font-bold text-black uppercase tracking-tight text-sm">Update Order Status</h3>
+      <h3 className="font-bold text-brand-navy uppercase tracking-tight text-sm">Update Order Status</h3>
 
       <div>
         <label className="block text-xs font-semibold uppercase tracking-wide text-brand-slate mb-1.5">Status</label>
@@ -94,7 +94,7 @@ export default function UpdateOrderForm({ orderId, currentStatus, currentTrackin
       <button
         onClick={handleSave}
         disabled={saving}
-        className="w-full bg-black text-white font-bold py-2.5 text-xs uppercase tracking-widest hover:bg-brand-charcoal transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+        className="w-full bg-brand-navy text-white font-bold py-2.5 text-xs uppercase tracking-widest hover:bg-brand-charcoal transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {saving && <Loader2 className="w-4 h-4 animate-spin" />}
         {saving ? "Saving…" : saved ? "✓ Saved" : "Update Order"}

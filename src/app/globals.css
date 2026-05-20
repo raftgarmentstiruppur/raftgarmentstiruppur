@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ── Brand design tokens ─────────────────────────────────── */
+/* ── Design tokens ─────────────────────────────────── */
 @theme inline {
   /* shadcn semantic tokens */
   --color-background: var(--background);
@@ -30,26 +30,31 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
 
-  /* Brand palette — Bella+Canvas inspired */
-  --color-brand-navy:        #000000;
-  --color-brand-charcoal:    #111111;
+  /* Brand palette */
+  --color-brand-navy:        #0A0A0A;
+  --color-brand-blue:        #0F2044;
+  --color-brand-charcoal:    #1A1A1A;
   --color-brand-slate:       #555555;
-  --color-brand-ash:         #9B9B9B;
+  --color-brand-ash:         #999999;
+  --color-brand-surface:     #FFFFFF;
+  --color-brand-off-white:   #F5F5F0;
   --color-brand-cream:       #FFFFFF;
   --color-brand-accent:      #7AAD68;
   --color-brand-accent-hover:#5E9450;
-  --color-brand-red:         #7AAD68;
-  --color-brand-light-gray:  #F4F4F4;
+  --color-brand-accent-light:#EAF4E6;
+  --color-brand-light-gray:  #F0F0EE;
   --color-brand-border:      #E0E0E0;
 
   /* Fonts */
-  --font-sans: var(--font-barlow), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-display:  var(--font-display), impact, sans-serif;
+  --font-heading:  var(--font-heading), system-ui, sans-serif;
+  --font-sans:     var(--font-inter), system-ui, sans-serif;
+  --font-mono:     monospace;
 
-  /* Custom spacing */
+  /* Spacing */
   --spacing-section: 6rem;
 
-  /* Marquee animation */
+  /* Marquee */
   --animate-marquee: marquee 30s linear infinite;
 }
 
@@ -58,48 +63,46 @@
   100% { transform: translateX(-50%); }
 }
 
-/* ── shadcn theme variables ──────────────────────────────── */
+/* ── shadcn theme variables ─────────────────────── */
 :root {
   --background: #FFFFFF;
-  --foreground: #111111;
+  --foreground: #0A0A0A;
   --card: #FFFFFF;
-  --card-foreground: #111111;
+  --card-foreground: #0A0A0A;
   --popover: #FFFFFF;
-  --popover-foreground: #111111;
-  --primary: #000000;
+  --popover-foreground: #0A0A0A;
+  --primary: #0A0A0A;
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F4F4;
-  --secondary-foreground: #111111;
-  --muted: #F4F4F4;
-  --muted-foreground: #9B9B9B;
+  --secondary: #F5F5F0;
+  --secondary-foreground: #0A0A0A;
+  --muted: #F5F5F0;
+  --muted-foreground: #999999;
   --accent: #7AAD68;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #E0E0E0;
   --input: #E0E0E0;
-  --ring: #000000;
+  --ring: #0A0A0A;
   --radius: 0rem;
 }
 
-/* ── Base styles ─────────────────────────────────────────── */
+/* ── Base styles ────────────────────────────────── */
 @layer base {
-  * {
-    @apply border-border;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-white text-brand-charcoal font-sans;
+    @apply bg-white text-brand-navy font-sans;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  ::-webkit-scrollbar {
-    width: 5px;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
   }
-  ::-webkit-scrollbar-track {
-    background: #F4F4F4;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #000000;
-    border-radius: 0;
-  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #F5F5F0; }
+  ::-webkit-scrollbar-thumb { background: #0A0A0A; }
 }

@@ -6,7 +6,7 @@ export const divisions: Division[] = [
     name: "Knitting",
     capacity: "High-Volume Production",
     description:
-      "State-of-the-art knitting machines producing premium knitted fabric for innerwear and outerwear — including cotton, bamboo, viscose, Tencel, nylon, and recycled polyester constructions. In-house knitting gives us full control over fabric weight, texture, and quality from the very first stage of production.",
+      "State-of-the-art knitting machines producing premium fabric in cotton, bamboo, viscose, Tencel, nylon, and recycled polyester. In-house knitting gives us full control over fabric weight, texture, and quality from the very first stage.",
     icon: "Grid3x3",
   },
   {
@@ -14,39 +14,39 @@ export const divisions: Division[] = [
     name: "Fabric Inspection",
     capacity: "4-Point System",
     description:
-      "Every roll of knitted fabric passes through a dedicated fabric inspection machine before it moves to cutting. Using the internationally recognised 4-Point system, trained inspectors identify and record defects in each roll, ensuring only approved fabric enters the cutting floor. This step eliminates defect propagation and protects garment quality at the source.",
+      "Every roll of knitted fabric passes through a dedicated inspection machine using the internationally recognised 4-Point system. Trained inspectors identify and record defects before fabric reaches the cutting floor.",
     icon: "ScanSearch",
   },
   {
     number: "03",
     name: "Cutting",
-    capacity: "15M Pieces/Year",
+    capacity: "Precision Scale Output",
     description:
-      "Globally renowned fully automated Italian machines integrated with CAD and CAM software enable fabric to be cut with pinpoint accuracy, significantly reducing material waste and enhancing efficiency. With two spreaders and one auto cutter, the system is optimised for both speed and consistency, supporting an annual output of up to 15 million pieces across inner and outer garments.",
+      "Fully automated Italian cutting systems integrated with CAD and CAM software deliver pinpoint accuracy across every lay. Dedicated spreaders and auto-cutter support consistent, high-volume output with minimal material waste.",
     icon: "Scissors",
   },
   {
     number: "04",
     name: "Elastic Weaving",
-    capacity: "25,000 m/Day",
+    capacity: "High-Volume Daily Output",
     description:
-      "14 Jacquard and solid weaving looms built on German design technology — recognised globally for excellence in narrow fabric innovation — weave up to 25,000 metres of elastic per day. The process is further enhanced with a state-of-the-art heat-setting machine, enabling the production of shrink-controlled elastic with an annual capacity of 10 million pieces, ensuring superior stability and long-lasting durability.",
+      "Jacquard and solid weaving looms built on German design technology deliver substantial daily elastic output. A state-of-the-art heat-setting machine ensures shrink-controlled elastic with superior stability and durability.",
     icon: "Layers",
   },
   {
     number: "05",
     name: "Sewing",
-    capacity: "80K Garments/Day",
+    capacity: "High Daily Capacity",
     description:
-      "Sewing lines equipped with a specialised array of machines designed to handle the unique requirements of both innerwear and outerwear. Skilled operators ensure seamless garment construction, precise stitching, and exceptional finishing. In-house processes allow for stringent quality control, faster turnaround times, and the flexibility to manage complex or custom production efficiently.",
+      "Specialised sewing lines handle both innerwear and outerwear with precision stitching and exceptional finishing. In-house processes allow stringent quality control and the flexibility to manage complex or custom production.",
     icon: "Workflow",
   },
   {
     number: "06",
-    name: "Finishing & Packaging",
-    capacity: "AQL 1.5–2.5",
+    name: "Finishing & Packing",
+    capacity: "AQL 1.5",
     description:
-      "Final garment inspection carried out to AQL 1.5–2.5 standards. Professional steam pressing, precise folding or hanging, followed by in-house corrugated box manufacturing, polybag printing, and retail-ready packaging. Full capability for branded hang-tags, barcode labeling, size stickers, and compliance documentation — tailored to each market's retail and import requirements.",
+      "Final inspection to AQL 1.5 standards, followed by steam pressing, folding, and retail-ready packing. Full capability for branded hang-tags, barcode labeling, and compliance documentation for each market.",
     icon: "Package",
   },
 ]

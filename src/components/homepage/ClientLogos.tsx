@@ -1,44 +1,25 @@
 import type { Client } from "@/types"
-import SectionHeader from "@/components/shared/SectionHeader"
 import Link from "next/link"
 import Image from "next/image"
 
-interface ClientLogosProps {
-  clients: Client[]
-  heading?: string
-}
-
-export default function ClientLogos({ clients, heading }: ClientLogosProps) {
+export default function ClientLogos({ clients, heading }: { clients: Client[]; heading?: string }) {
   return (
-    <section className="py-section bg-brand-light-gray">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section className="border-t-2 border-brand-navy bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-14">
         {heading && (
-          <SectionHeader
-            overline="Our Clients"
-            title={heading}
-            className="mb-14"
-          />
+          <p className="text-[10px] font-heading font-700 uppercase tracking-[0.3em] text-brand-ash mb-8 text-center">{heading}</p>
         )}
-        <div className="flex flex-wrap items-center justify-center gap-12">
+        <div className="flex flex-wrap items-center justify-center gap-10">
           {clients.map((client) => (
-            <Link
-              key={client.name}
-              href={client.href ?? "#"}
-              className="group flex items-center justify-center"
-            >
-              <div className="relative h-10 w-32 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  fill
-                  className="object-contain"
-                />
+            <Link key={client.name} href={client.href ?? "#"} className="group">
+              <div className="relative h-9 w-28 grayscale opacity-35 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                <Image src={client.logo} alt={client.name} fill className="object-contain" />
               </div>
             </Link>
           ))}
         </div>
-        <p className="text-center mt-10 text-xs text-brand-ash uppercase tracking-widest font-semibold">
-          And many more global brands across Europe, North America, and Australia.
+        <p className="text-center mt-8 text-xs text-brand-ash uppercase tracking-[0.2em] font-heading font-700">
+          And many more global brands across Europe, North America &amp; Australia
         </p>
       </div>
     </section>

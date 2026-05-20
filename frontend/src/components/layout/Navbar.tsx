@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
+import ScrollLink from "@/components/shared/ScrollLink"
 import { motion } from "framer-motion"
 import { navItems } from "@/data/navigation"
 import NavDesktop from "./NavDesktop"
@@ -11,73 +11,104 @@ import { useAuthContext } from "@/context/AuthContext"
 
 export default function Navbar() {
   const { user } = useAuthContext()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const [mounted, setMounted]   = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    const handler = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handler, { passive: true })
+    return () => window.removeEventListener("scroll", handler)
+  }, [])
 
   const portalLink = mounted && user?.role === "ADMIN"
-    ? { href: "/admin",     label: "Admin Panel" }
+    ? { href: "/admin",     label: "Admin" }
     : mounted && user?.role === "BUYER"
-    ? { href: "/dashboard", label: "My Dashboard" }
+    ? { href: "/dashboard", label: "Dashboard" }
     : { href: "/login",     label: "Sign In" }
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-white/10"
-      initial={{ y: -80, opacity: 0 }}
+      className="fixed top-0 left-0 right-0 z-40"
+      style={{
+        background: scrolled ? "rgba(6,25,74,0.98)" : "rgba(6,25,74,0.90)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        boxShadow: scrolled ? "0 8px 40px rgba(6,25,74,0.5)" : "none",
+      }}
+      initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ type: "spring", stiffness: 90, damping: 22, delay: 0.1 }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between h-28">
-        <Link href="/" className="shrink-0 flex items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            whileHover={{ scale: 1.08, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.94, transition: { duration: 0.1 } }}
-            className="logo-glow"
-          >
-            <Image
-              src="/logo.png"
-              alt="Raft Garments"
-              width={180}
-              height={88}
-              className="h-20 w-auto object-contain"
-              priority
-            />
-          </motion.div>
-        </Link>
+      {/* Top accent line */}
+      <div className="h-[3px] bg-gradient-to-r from-transparent via-brand-accent to-transparent" />
 
-        <NavDesktop items={navItems} />
+      <div className="px-3 sm:px-5 lg:px-6 xl:px-10 w-full max-w-[1600px] mx-auto">
 
-        <div className="hidden lg:flex items-center gap-4 shrink-0">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35, duration: 0.35 }}
-          >
-            <Link
-              href={portalLink.href}
-              className="text-sm font-semibold text-white/70 hover:text-white transition-colors duration-200 uppercase tracking-wide"
+        {/* 3-column: Logo | Nav (centered) | Actions */}
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-[60px] xl:h-[72px] gap-2 xl:gap-6">
+
+          {/* ── LOGO ── */}
+          <ScrollLink href="/" className="flex items-center shrink-0">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="logo-glow bg-white px-2 py-1 lg:px-2.5 xl:px-3"
             >
-              {portalLink.label}
-            </Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45, duration: 0.35 }}
-          >
-            <Link
-              href="/contact"
-              className="bg-brand-accent text-white text-xs font-bold px-5 py-2.5 hover:bg-brand-accent-hover transition-colors duration-200 uppercase tracking-widest"
-            >
-              Get a Quote
-            </Link>
-          </motion.div>
+              <Image
+                src="/logo.png"
+                alt="Raft Garments"
+                width={220}
+                height={108}
+                className="h-[38px] xl:h-[52px] w-auto object-contain"
+                priority
+              />
+            </motion.div>
+          </ScrollLink>
+
+          {/* ── NAV LINKS — centered, desktop only ── */}
+          <div className="hidden xl:flex justify-center min-w-0">
+            <NavDesktop items={navItems} />
+          </div>
+
+          {/* ── RIGHT ACTIONS ── */}
+          <div className="flex items-center gap-2 xl:gap-3 shrink-0">
+            <div className="hidden xl:flex items-center gap-2 xl:gap-3">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.35 }}
+              >
+                <ScrollLink
+                  href={portalLink.href}
+                  className="text-xs xl:text-sm font-semibold text-white/75 hover:text-white transition-colors duration-200 uppercase tracking-wide whitespace-nowrap"
+                >
+                  {portalLink.label}
+                </ScrollLink>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.45, type: "spring", stiffness: 200 }}
+              >
+                <ScrollLink
+                  href="/contact"
+                  className="group relative overflow-hidden bg-brand-accent text-white text-xs xl:text-sm font-black px-3 xl:px-5 py-2 xl:py-2.5 uppercase tracking-wide inline-flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <span className="absolute inset-0 bg-brand-accent-hover -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-[cubic-bezier(0.76,0,0.24,1)]" />
+                  <span className="relative z-10">Get a Quote</span>
+                  <span className="relative z-10 group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+                </ScrollLink>
+              </motion.div>
+            </div>
+
+            {/* Mobile hamburger */}
+            <NavMobile items={navItems} />
+          </div>
+
         </div>
-
-        <NavMobile items={navItems} />
       </div>
     </motion.header>
   )
