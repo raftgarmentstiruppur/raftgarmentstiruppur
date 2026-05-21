@@ -87,7 +87,14 @@
       "Bash(findstr /i \"script\\\\|build\\\\|start\\\\|deploy\")",
       "Bash(vercel *)",
       "Bash(dir *)",
-      "Read(//mnt/c/Users/shaju/Draft-Garments/backend/**)"
+      "Read(//mnt/c/Users/shaju/Draft-Garments/backend/**)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(gh *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Remove-Item *)",
+      "Bash(git commit *)"
     ]
   }
 }
