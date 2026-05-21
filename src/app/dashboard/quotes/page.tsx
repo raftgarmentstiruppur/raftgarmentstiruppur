@@ -4,8 +4,6 @@ import { db } from "@/lib/db"
 import Link from "next/link"
 import { QuoteStatusBadge } from "@/components/dashboard/StatusBadge"
 
-export const dynamic = 'force-dynamic'
-
 export default async function MyQuotesPage() {
   const session = await auth()
   const quotes = await db.quoteRequest.findMany({

@@ -7,8 +7,6 @@ import { OrderStatusBadge } from "@/components/dashboard/StatusBadge"
 import OrderTimeline from "@/components/dashboard/OrderTimeline"
 import UpdateOrderForm from "@/components/admin/UpdateOrderForm"
 
-export const dynamic = 'force-dynamic'
-
 export default async function AdminOrderDetailPage({
   params,
 }: {

@@ -4,8 +4,6 @@ import { db } from "@/lib/db"
 import Link from "next/link"
 import { OrderStatusBadge } from "@/components/dashboard/StatusBadge"
 
-export const dynamic = 'force-dynamic'
-
 export default async function MyOrdersPage() {
   const session = await auth()
   const orders = await db.order.findMany({

@@ -4,7 +4,6 @@ import Link from "next/link"
 import { FileText, Clock, Package, Users } from "lucide-react"
 import { QuoteStatusBadge, OrderStatusBadge } from "@/components/dashboard/StatusBadge"
 
-export const dynamic = 'force-dynamic'
 
 export default async function AdminOverviewPage() {
   const [totalQuotes, pendingQuotes, activeOrders, totalBuyers, recentQuotes, recentOrders] =

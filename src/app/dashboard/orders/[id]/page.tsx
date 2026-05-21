@@ -7,8 +7,6 @@ import { ChevronLeft } from "lucide-react"
 import { OrderStatusBadge } from "@/components/dashboard/StatusBadge"
 import OrderTimeline from "@/components/dashboard/OrderTimeline"
 
-export const dynamic = 'force-dynamic'
-
 export default async function OrderDetailPage({
   params,
 }: {

@@ -7,8 +7,6 @@ import { QuoteStatusBadge } from "@/components/dashboard/StatusBadge"
 import UpdateQuoteForm from "@/components/admin/UpdateQuoteForm"
 import CreateOrderForm from "@/components/admin/CreateOrderForm"
 
-export const dynamic = 'force-dynamic'
-
 export default async function AdminQuoteDetailPage({
   params,
 }: {

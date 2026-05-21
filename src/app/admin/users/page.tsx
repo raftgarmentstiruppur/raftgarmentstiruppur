@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic"
 import { db } from "@/lib/db"
 import Link from "next/link"
 
-export const dynamic = 'force-dynamic'
 
 export default async function AdminUsersPage() {
   const buyers = await db.user.findMany({

@@ -5,7 +5,6 @@ import Link from "next/link"
 import { FileText, Package, Clock, CheckCircle } from "lucide-react"
 import { QuoteStatusBadge, OrderStatusBadge } from "@/components/dashboard/StatusBadge"
 
-export const dynamic = 'force-dynamic'
 
 export default async function DashboardPage() {
   const session = await auth()
