@@ -3,8 +3,6 @@
 import Image from "next/image"
 
 const ROW1 = [
-  { src: "/images/hero/slide2.png", alt: "Women's Collection" },
-  { src: "/images/hero/slide3.png", alt: "Family Comfort" },
   { src: "/images/hero/slide7.png", alt: "Premium Quality" },
   { src: "/images/hero/slide4.png", alt: "Kids' Innerwear" },
   { src: "/images/hero/slide1.png", alt: "Women's Range" },
