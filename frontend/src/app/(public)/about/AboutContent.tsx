@@ -222,7 +222,7 @@ export default function AboutContent() {
                 </div>
 
                 {/* Body */}
-                <p className="text-base text-white leading-relaxed relative z-10 text-justify">
+                <p className="text-base text-white leading-relaxed relative z-10">
                   {v.body}
                 </p>
               </motion.div>
