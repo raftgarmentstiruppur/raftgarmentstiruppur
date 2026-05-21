@@ -15,11 +15,11 @@ interface HeroSectionProps {
 
 export default function HeroSection({ headline, ctaPrimary, ctaSecondary }: HeroSectionProps) {
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative h-screen overflow-hidden" style={{ background: "linear-gradient(135deg, #06194A 0%, #0B2D6E 50%, #0E3A8C 100%)" }}>
 
       {/* Video */}
       <video
-        autoPlay muted loop playsInline
+        autoPlay muted loop playsInline preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
