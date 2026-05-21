@@ -14,8 +14,8 @@ export default function CertificationsPage() {
       <ContentPageHero
         titleKey="page-certifications-title"
         subtitleKey="page-certifications-subtitle"
-        defaultTitle="10+ active certifications."
-        defaultSubtitle="Independently verified quality, social, sustainability, and security standards — covering every aspect of our operations."
+        defaultTitle="10+ active certifications"
+        defaultSubtitle="Independently verified quality, social, sustainability, and security standards — covering every aspect of our operations"
         breadcrumb={[{ label: "Certifications", href: "/certifications" }]}
         defaultImage="/images/certifications-hero.png"
       />

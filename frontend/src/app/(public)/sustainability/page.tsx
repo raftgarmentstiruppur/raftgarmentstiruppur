@@ -13,8 +13,8 @@ export default function SustainabilityPage() {
       <ContentPageHero
         titleKey="sustainability-title"
         subtitleKey="sustainability-subtitle"
-        defaultTitle="Responsible by design."
-        defaultSubtitle="Sustainable fabrics, ethical labor, and certified practices — knitted into every garment we make."
+        defaultTitle="Responsible by design"
+        defaultSubtitle="Sustainable fabrics, ethical labor, and certified practices — knitted into every garment we make"
         breadcrumb={[{ label: "Sustainability", href: "/sustainability" }]}
         imageKey="sustainability-hero"
         defaultImage="/images/sustainability-hero.png"

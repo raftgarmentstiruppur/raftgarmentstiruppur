@@ -13,8 +13,8 @@ export default function AboutPage() {
       <ContentPageHero
         titleKey="about-headline"
         subtitleKey="about-subheadline"
-        defaultTitle="50+ years of knitwear excellence."
-        defaultSubtitle="Taking India's finest knitwear to the world — crafting quality, pioneering sustainability, shaping fashion."
+        defaultTitle="50+ years of knitwear excellence"
+        defaultSubtitle="Taking India's finest knitwear to the world — crafting quality, pioneering sustainability, shaping fashion"
         breadcrumb={[{ label: "About Us", href: "/about" }]}
         imageKey="about-hero"
         defaultImage="/images/about-hero.png"

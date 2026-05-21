@@ -11,13 +11,13 @@ import { sustainabilityData } from "@/data/sustainability"
 const UNSPLASH_ECO = "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?w=1920&auto=format&fit=crop"
 
 const commitments = [
-  "BCI (Better Cotton Initiative) certified sourcing — supporting responsible cotton farming and farmer livelihoods",
-  "Oeko-Tex Standard 100 — every component tested and certified free from harmful substances",
-  "WRAP certified manufacturing — fair wages, safe working conditions, and legal compliance across all operations",
-  "SMETA/Sedex audited — independent ethical trade audits covering labor rights, health, safety, and environment",
-  "Higg Index assessed — measuring and continuously improving our environmental and social performance",
-  "Sustainable fabric options: organic cotton, bamboo, Tencel, viscose, and recycled polyester available across product lines",
-  "AQL quality inspection standard — inline and final inspection to minimize waste and rework",
+  "BCI (Better Cotton Initiative) certified sourcing — supporting responsible cotton farming and farmer livelihoods.",
+  "Oeko-Tex Standard 100 — every component tested and certified free from harmful substances.",
+  "WRAP certified manufacturing — fair wages, safe working conditions, and legal compliance across all operations.",
+  "SMETA/Sedex audited — independent ethical trade audits covering labor rights, health, safety, and environment.",
+  "Higg Index assessed — measuring and continuously improving our environmental and social performance.",
+  "Sustainable fabric options: organic cotton, bamboo, Tencel, viscose, and recycled polyester available across product lines.",
+  "AQL quality inspection standard — inline and final inspection to minimize waste and rework.",
 ]
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } }
