@@ -13,7 +13,7 @@ const UNSPLASH_GARMENT = "/images/building-final.png"
 
 const milestones = [
   { key: "milestone-1", year: "1971", event: "Raft Garments was founded in Tirupur, India's knitwear capital, with a clear vision of crafting premium knitted garments and building lasting relationships with domestic buyers." },
-  { key: "milestone-2", year: "2017", event: "Second-generation leadership begins as Mr. Siva Subramaniam takes the helm, bringing fresh direction and driving the company's growth across men's, women's, and kids' innerwear for global export markets." },
+  { key: "milestone-2", year: "2017", event: "Second-generation leadership begins as Rtn. Shiva Subramaniam takes the helm, bringing fresh direction and driving the company's growth across men's, women's, and kids' innerwear for global export markets." },
   { key: "milestone-3", year: "2020", event: "A dedicated cutting section was commissioned with state-of-the-art machinery, significantly strengthening production capacity and export capabilities to buyers across USA, Europe, and Middle East Asia." },
   { key: "milestone-4", year: "2022", event: "Expanded into a purpose-built 1 lakh square feet manufacturing facility at Netaji Apparel Park, Tirupur — housing integrated divisions for knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing." },
 ]
