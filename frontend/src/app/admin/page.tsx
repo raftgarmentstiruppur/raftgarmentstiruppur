@@ -2,27 +2,34 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { FileText, Clock, Package, Users } from "lucide-react"
+import { FileText, Clock, Package, Users, Download } from "lucide-react"
 import { QuoteStatusBadge, OrderStatusBadge } from "@/components/dashboard/StatusBadge"
-import { apiGet } from "@/lib/api"
+import { apiGet, getStoredToken } from "@/lib/api"
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"
 
 interface Quote { id: string; product: string; status: string; createdAt: string; company: string; user?: { company: string } }
 interface Order { id: string; orderNumber: string; product: string; status: string; user?: { company: string } }
+interface DownloadRecord { id: string; name: string; company: string; document: string; createdAt: string }
 
 export default function AdminOverviewPage() {
-  const [quotes, setQuotes] = useState<Quote[]>([])
-  const [orders, setOrders] = useState<Order[]>([])
-  const [stats, setStats] = useState({ totalQuotes: 0, pendingQuotes: 0, activeOrders: 0, totalBuyers: 0 })
+  const [quotes, setQuotes]       = useState<Quote[]>([])
+  const [orders, setOrders]       = useState<Order[]>([])
+  const [downloads, setDownloads] = useState<DownloadRecord[]>([])
+  const [stats, setStats]         = useState({ totalQuotes: 0, pendingQuotes: 0, activeOrders: 0, totalBuyers: 0 })
 
   useEffect(() => {
+    const token = getStoredToken()
     Promise.all([
       apiGet("/admin/stats").then((r) => r.json()),
       apiGet("/quotes").then((r) => r.json()),
       apiGet("/orders").then((r) => r.json()),
-    ]).then(([s, q, o]) => {
+      fetch(`${API}/downloads`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+    ]).then(([s, q, o, d]) => {
       setStats(s)
       setQuotes((Array.isArray(q) ? q : []).slice(0, 6))
       setOrders((Array.isArray(o) ? o : []).slice(0, 6))
+      setDownloads((Array.isArray(d) ? d : []).slice(0, 6))
     }).catch(() => {/* backend offline — keep empty state */})
   }, [])
 
@@ -31,12 +38,13 @@ export default function AdminOverviewPage() {
     { label: "Pending Review",     value: stats.pendingQuotes, icon: Clock,    href: "/admin/quotes?status=PENDING", color: "text-yellow-600" },
     { label: "Active Orders",      value: stats.activeOrders,  icon: Package,  href: "/admin/orders",                color: "text-orange-600" },
     { label: "Registered Buyers",  value: stats.totalBuyers,   icon: Users,    href: "/admin/users",                 color: "text-green-600" },
+    { label: "Download Requests",  value: downloads.length,    icon: Download, href: "/admin/downloads",             color: "text-purple-600" },
   ]
 
   return (
     <div className="space-y-8">
       <h1 className="text-2xl font-bold text-brand-navy">Admin Overview</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {statCards.map((s) => (
           <Link key={s.label} href={s.href} className="bg-white border border-brand-border p-5 hover:border-brand-accent transition-colors">
             <s.icon className={`w-5 h-5 mb-3 ${s.color}`} />
@@ -83,6 +91,29 @@ export default function AdminOverviewPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Download Requests */}
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="font-semibold text-brand-navy">Latest Download Requests</h2>
+          <Link href="/admin/downloads" className="text-xs text-brand-accent hover:underline">View all</Link>
+        </div>
+        <div className="bg-white border border-brand-border divide-y divide-brand-border">
+          {downloads.length === 0 ? (
+            <p className="px-4 py-6 text-sm text-brand-ash text-center">No download requests yet.</p>
+          ) : downloads.map((d) => (
+            <div key={d.id} className="flex items-center justify-between px-4 py-3">
+              <div>
+                <p className="text-sm font-medium text-brand-navy">{d.name} · {d.company}</p>
+                <p className="text-xs text-brand-ash">{d.document} · {new Date(d.createdAt).toLocaleDateString("en-GB")}</p>
+              </div>
+              <span className="text-xs bg-purple-100 text-purple-700 font-bold px-2 py-1 rounded">
+                {d.document}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
