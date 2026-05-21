@@ -9,7 +9,7 @@ import FloatingElements from "@/components/shared/FloatingElements"
 import MagneticButton from "@/components/shared/MagneticButton"
 import { leadership } from "@/data/leadership"
 
-const UNSPLASH_GARMENT = "/images/about-story.png"
+const UNSPLASH_GARMENT = "/images/building-final.png"
 
 const milestones = [
   { key: "milestone-1", year: "1971", event: "Raft Garments was founded in Tirupur, India's knitwear capital, with a clear vision of crafting premium knitted garments and building lasting relationships with domestic buyers." },
