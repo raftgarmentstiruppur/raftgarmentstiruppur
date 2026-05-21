@@ -248,7 +248,7 @@ export default function AboutContent() {
               {/* ── Left panel — identity ── */}
               <div className="relative lg:w-[42%] bg-brand-navy flex flex-col overflow-hidden">
 
-                {/* Photo area — swap src to /images/md-siva.jpg when photo is ready */}
+                {/* Photo area — swap src to /images/md-shiva.jpg when photo is ready */}
                 <div className="relative w-full aspect-[3/4] bg-brand-dark overflow-hidden">
                   {/* Placeholder gradient shown until real photo is added */}
                   <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-charcoal to-brand-dark flex items-center justify-center">
