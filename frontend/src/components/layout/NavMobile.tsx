@@ -28,7 +28,7 @@ export default function NavMobile({ items }: NavMobileProps) {
   const close = () => { setOpen(false); setExpanded(null) }
 
   const portalHref  = user?.role === "ADMIN" ? "/admin" : user?.role === "BUYER" ? "/dashboard" : "/login"
-  const portalLabel = user?.role === "ADMIN" ? "Admin Panel" : user?.role === "BUYER" ? "My Dashboard" : "Sign In"
+  const portalLabel = user?.role === "ADMIN" ? "Admin panel" : user?.role === "BUYER" ? "My dashboard" : "Sign in"
 
   const drawer = (
     <AnimatePresence>
@@ -91,28 +91,40 @@ export default function NavMobile({ items }: NavMobileProps) {
 
                   {item.megaMenu ? (
                     <>
-                      <button
-                        onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                        style={{
-                          display: "flex", alignItems: "center", justifyContent: "space-between",
-                          width: "100%", padding: "17px 20px",
-                          background: "none", border: "none", cursor: "pointer",
-                          color: "#fff", fontSize: 13, fontWeight: 700,
-                          letterSpacing: "0.1em", textTransform: "uppercase",
-                          textAlign: "left",
-                        }}
-                      >
-                        {item.label}
-                        <ChevronDown
-                          size={16}
+                      {/* Label navigates to parent page; chevron toggles accordion */}
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <ScrollLink
+                          href={item.href}
+                          onClick={close}
                           style={{
-                            color: "rgba(255,255,255,0.4)",
-                            transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)",
-                            transition: "transform 0.2s",
-                            flexShrink: 0,
+                            flex: 1, padding: "17px 20px",
+                            color: "#fff", fontSize: 13, fontWeight: 700,
+                            letterSpacing: "0.1em", textTransform: "uppercase",
+                            textDecoration: "none",
                           }}
-                        />
-                      </button>
+                        >
+                          {item.label}
+                        </ScrollLink>
+                        <button
+                          onClick={() => setExpanded(expanded === item.label ? null : item.label)}
+                          aria-label={`Toggle ${item.label} submenu`}
+                          style={{
+                            padding: "17px 16px",
+                            background: "none", border: "none", cursor: "pointer",
+                            borderLeft: "1px solid rgba(255,255,255,0.1)",
+                            lineHeight: 0,
+                          }}
+                        >
+                          <ChevronDown
+                            size={16}
+                            style={{
+                              color: "rgba(255,255,255,0.4)",
+                              transform: expanded === item.label ? "rotate(180deg)" : "rotate(0deg)",
+                              transition: "transform 0.2s",
+                            }}
+                          />
+                        </button>
+                      </div>
 
                       <AnimatePresence initial={false}>
                         {expanded === item.label && (

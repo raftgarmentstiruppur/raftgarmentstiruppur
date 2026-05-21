@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { useAuthContext } from "@/context/AuthContext"
 import {
   LayoutDashboard, FileText, Package, Users,
-  LayoutPanelLeft, ShoppingBag, LogOut, Menu, X, ArrowLeft,
+  LayoutPanelLeft, ShoppingBag, LogOut, Menu, X, ArrowLeft, Download,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -17,7 +17,8 @@ const navItems = [
   { label: "Orders",   href: "/admin/orders",   icon: Package },
   { label: "Buyers",   href: "/admin/users",    icon: Users },
   { label: "Products", href: "/admin/products", icon: ShoppingBag },
-  { label: "Content",  href: "/admin/content",  icon: LayoutPanelLeft },
+  { label: "Content",   href: "/admin/content",   icon: LayoutPanelLeft },
+  { label: "Downloads", href: "/admin/downloads", icon: Download },
 ]
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {

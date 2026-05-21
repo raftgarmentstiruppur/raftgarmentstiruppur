@@ -37,7 +37,7 @@ const BULLETS: Record<string, string[]> = {
   "03": ["Italian CAD/CAM auto-cutting systems", "Pinpoint accuracy — minimal waste", "Handles innerwear and outerwear simultaneously"],
   "04": ["Jacquard & solid looms with German technology", "Heat-setting for shrink-controlled elastic", "Substantial daily output across all categories"],
   "05": ["Specialised arrays for innerwear & outerwear", "Skilled operators — seamless construction", "Complex custom production end-to-end"],
-  "06": ["Final inspection to AQL 1.5 standards", "Steam pressing & retail-ready packaging", "Barcodes, hang-tags & compliance docs included"],
+  "06": ["Final inspection to AQL standards", "Steam pressing & retail-ready packaging", "Barcodes, hang-tags & compliance docs included"],
 }
 
 // Zoom-out card entrance
@@ -129,10 +129,10 @@ export default function InfrastructureCards({ divisions }: InfrastructureCardsPr
           >
             <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-accent mb-4 flex items-center gap-3">
               <span className="w-6 h-0.5 bg-brand-accent" />
-              Our Infrastructure
+              Our infrastructure
             </p>
             <h2 className="text-display-md font-black text-white uppercase tracking-tight leading-none">
-              Fiber to Fashion<br />Under One Roof.
+              Fiber to fashion<br />Under one roof.
             </h2>
           </motion.div>
           <motion.div
@@ -141,7 +141,7 @@ export default function InfrastructureCards({ divisions }: InfrastructureCardsPr
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <CTAButton label="Full Infrastructure" href="/infrastructure" variant="outline-light" size="md" arrow />
+            <CTAButton label="Full infrastructure" href="/infrastructure" variant="outline-light" size="md" arrow />
           </motion.div>
         </div>
 

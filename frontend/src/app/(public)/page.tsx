@@ -21,30 +21,30 @@ import type { CTACard } from "@/types"
 const fourColumnCards: CTACard[] = [
   {
     icon: "Package",
-    title: "Wholesale Direct",
+    title: "Wholesale direct",
     description: "Order in bulk, direct from manufacturer. No agents, no markups. MOQ from 500 units per style.",
-    ctaLabel: "Get a Quote",
+    ctaLabel: "Get a quote",
     ctaHref: "/contact",
   },
   {
     icon: "Tag",
-    title: "Private Label",
+    title: "Private label",
     description: "Your brand on our world-class garments. Full service from tech pack to retail-ready packaging.",
-    ctaLabel: "Learn More",
+    ctaLabel: "Learn more",
     ctaHref: "/about#private-label",
   },
   {
     icon: "Globe",
-    title: "Global Distributors",
+    title: "Global distributors",
     description: "Authorized distributor programs with dedicated account management and preferential pricing.",
-    ctaLabel: "Partner With Us",
+    ctaLabel: "Partner with us",
     ctaHref: "/contact",
   },
   {
     icon: "BookOpen",
-    title: "Catalog & Samples",
+    title: "Catalog & samples",
     description: "Download our 2025 product catalog or request physical fabric swatches and garment samples.",
-    ctaLabel: "Request Samples",
+    ctaLabel: "Request samples",
     ctaHref: "/resources",
   },
 ]
@@ -54,10 +54,10 @@ export default function HomePage() {
     <>
       {/* 1 — Full-screen video hero */}
       <HeroSection
-        headline="Built For Better Comfort"
+        headline="Built for better comfort"
         subheadline="India's finest knitwear — crafted for the world."
         ctaPrimary={{ label: "Request a Sample", href: "/contact" }}
-        ctaSecondary={{ label: "Browse Products", href: "/products" }}
+        ctaSecondary={{ label: "Browse products", href: "/products" }}
         bgImage=""
       />
 
@@ -70,9 +70,9 @@ export default function HomePage() {
       {/* 4 — Full-bleed editorial banner */}
       <MarketingBanner
         eyebrow="2025 Collection"
-        headline="Crafted at Scale. Finished to Perfection."
+        headline="Crafted at scale. Finished to perfection."
         description="Premium innerwear and outerwear — cotton, bamboo, Tencel, recycled polyester, and more. Custom NOOS programs available."
-        ctaLabel="Download Catalog"
+        ctaLabel="Download catalog"
         ctaHref="/resources"
       />
 
@@ -81,10 +81,10 @@ export default function HomePage() {
 
       {/* 6 — Split image + brand story */}
       <BrandNarrative
-        eyebrow="40+ Years of Legacy"
-        statement="Different by Design. Driven by Craft."
-        body="For over four decades, Raft Garments has built its reputation on quality without compromise. Every garment carries the trust of 40+ years and the strength of 10+ global certifications."
-        ctaLabel="Our Story"
+        eyebrow="50+ years of legacy"
+        statement="Different by design. Driven by craft."
+        body="For over five decades, Raft Garments has built its reputation on quality without compromise. Every garment carries the trust of 50+ years and the strength of 10+ global certifications."
+        ctaLabel="Our story"
         ctaHref="/about"
         stat1={{ value: "Expert",    label: "Skilled Workforce" }}
         stat2={{ value: "Precision", label: "Advanced Machinery" }}
@@ -93,7 +93,7 @@ export default function HomePage() {
       />
 
       {/* 7 — Partnership CTA grid */}
-      <FourColumnCTA cards={fourColumnCards} heading="Create With Us" />
+      <FourColumnCTA cards={fourColumnCards} heading="Create with us" />
 
       {/* 8 — Infrastructure division cards */}
       <InfrastructureCards divisions={divisions} />
@@ -102,7 +102,7 @@ export default function HomePage() {
       <SustainabilityBanner
         headline={sustainabilityData.headline}
         stats={sustainabilityData.stats}
-        ctaLabel="Our Green Journey"
+        ctaLabel="Our green journey"
         ctaHref="/sustainability"
       />
 
@@ -110,11 +110,11 @@ export default function HomePage() {
       <FAQAccordion faqs={faqs} />
 
       {/* 11 — Client logos */}
-      <ClientLogos clients={clients} heading="Trusted by Leading Global Brands" />
+      <ClientLogos clients={clients} heading="Trusted by leading global brands" />
 
       {/* 12 — Newsletter */}
       <NewsletterSignup
-        headline="Stay Ahead of the Trend"
+        headline="Stay ahead of the trend"
         description="Get quarterly updates on new fabric developments, collection previews, and sustainability reports."
         placeholder="Enter your business email"
         buttonLabel="Subscribe"

@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Raft Garments",
-  tagline: "Crafting Quality, Pioneering Sustainability, Shaping Fashion.",
+  tagline: "Crafting quality, pioneering sustainability, shaping fashion.",
   description:
-    "A leading knitwear manufacturer based in Tirupur — premium innerwear and outerwear for brands across Europe, USA, and India.",
-  founded: "1985",
+    "A leading knitwear manufacturer based in Tirupur — premium innerwear and outerwear for brands across USA, Europe, and Middle East Asia.",
+  founded: "1971",
   address: {
     label: "Address",
     line1: "Shed No. 3C, SF No. 562 (Part), Netaji Apparel Park",

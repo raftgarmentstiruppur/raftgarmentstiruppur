@@ -7,7 +7,7 @@ import { divisions } from "@/data/infrastructure"
 
 export const metadata: Metadata = {
   title: "Infrastructure",
-  description: "6 integrated manufacturing divisions — knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing & packing. Italian CAD/CAM and German Jacquard technology in Tirupur, India.",
+  description: "6 integrated manufacturing divisions — knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing and packing. Italian CAD/CAM and German Jacquard technology in Tirupur, India.",
 }
 
 export default function InfrastructurePage() {
@@ -16,8 +16,8 @@ export default function InfrastructurePage() {
       <ContentPageHero
         titleKey="page-infrastructure-title"
         subtitleKey="page-infrastructure-subtitle"
-        defaultTitle="End-to-End. In-House. In Control."
-        defaultSubtitle="6 integrated divisions. Complete control over quality, cost and lead times."
+        defaultTitle="End-to-end. In-house. In control."
+        defaultSubtitle="6 integrated divisions. Complete control over quality, cost, and lead times."
         breadcrumb={[{ label: "Infrastructure", href: "/infrastructure" }]}
         imageKey="infrastructure-hero"
         defaultImage="/images/infra-hero.png"

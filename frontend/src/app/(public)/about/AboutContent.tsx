@@ -12,13 +12,10 @@ import { leadership } from "@/data/leadership"
 const UNSPLASH_GARMENT = "/images/about-story.png"
 
 const milestones = [
-  { key: "milestone-1", year: "1985", event: "Founded in Tirupur — India's Knitwear Capital — with a focus on premium knitted garments for domestic and export markets." },
-  { key: "milestone-2", year: "1995", event: "First international export orders to European markets, establishing a foundation of quality and reliability with overseas brands." },
-  { key: "milestone-3", year: "2000", event: "Second-generation leadership. Mr. Siva Subramaniam joins and spearheads expansion into men's, women's, and kids' innerwear." },
-  { key: "milestone-4", year: "2008", event: "Invested in Italian CAD/CAM auto-cutting technology and German Jacquard elastic looms — raising precision and output capacity." },
-  { key: "milestone-5", year: "2015", event: "Achieved ISO 9001:2015, WRAP, and Oeko-Tex Standard 100 certifications. Walt Disney and Walmart compliance approvals secured." },
-  { key: "milestone-6", year: "2018", event: "BCI, SMETA/Sedex, Higg Index, and Global Recycled Standard certifications completed. CTPAT accreditation for secure exports." },
-  { key: "milestone-7", year: "2022", event: "Commissioned Unit 2 at Netaji Apparel Park, Tirupur — a purpose-built facility with advanced machinery, a skilled workforce, and high-volume daily production capacity." },
+  { key: "milestone-1", year: "1971", event: "Raft Garments was founded in Tirupur, India's knitwear capital, with a clear vision of crafting premium knitted garments and building lasting relationships with domestic buyers." },
+  { key: "milestone-2", year: "2017", event: "Second-generation leadership begins as Mr. Siva Subramaniam takes the helm, bringing fresh direction and driving the company's growth across men's, women's, and kids' innerwear for global export markets." },
+  { key: "milestone-3", year: "2020", event: "A dedicated cutting section was commissioned with state-of-the-art machinery, significantly strengthening production capacity and export capabilities to buyers across USA, Europe, and Middle East Asia." },
+  { key: "milestone-4", year: "2022", event: "Expanded into a purpose-built 1 lakh square feet manufacturing facility at Netaji Apparel Park, Tirupur — housing integrated divisions for knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing." },
 ]
 
 const teamKeys = ["team-1"]
@@ -56,8 +53,8 @@ export default function AboutContent() {
             {/* Bullets */}
             <motion.ul variants={fadeUp} className="space-y-5 mb-10">
               {[
-                { k: "about-story-1", fallback: "Established in Tirupur — India's Knitwear Capital — Raft Garments has evolved from a focused innerwear manufacturer into a fully integrated, vertically controlled production enterprise." },
-                { k: "about-story-2", fallback: "Under second-generation leadership, the company operates a modern, purpose-built manufacturing facility at Netaji Apparel Park, Tirupur — housing dedicated divisions for knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing & packing." },
+                { k: "about-story-1", fallback: "Established in Tirupur — India's knitwear capital — Raft Garments has evolved from a focused innerwear manufacturer into a fully integrated, vertically controlled production enterprise." },
+                { k: "about-story-2", fallback: "Under second-generation leadership, the company operates a modern, purpose-built manufacturing facility at Netaji Apparel Park, Tirupur — housing dedicated divisions for knitting, fabric inspection, cutting, elastic weaving, sewing, and finishing and packing." },
                 { k: "about-story-3", fallback: "Our product range spans premium innerwear and outerwear — crafted in cotton, bamboo, viscose, Tencel, nylon, and recycled polyester. Every garment is backed by an extensive portfolio of global certifications." },
               ].map((item) => (
                 <li key={item.k} className="flex items-start gap-4">
@@ -70,7 +67,7 @@ export default function AboutContent() {
             {/* CTA */}
             <motion.div variants={fadeUp} className="mb-12">
               <MagneticButton>
-                <CTAButton label="Our Infrastructure" href="/infrastructure" variant="primary" size="lg" arrow />
+                <CTAButton label="Our infrastructure" href="/infrastructure" variant="primary" size="lg" arrow />
               </MagneticButton>
             </motion.div>
           </motion.div>
@@ -84,10 +81,10 @@ export default function AboutContent() {
             viewport={{ once: true }}
           >
             {[
-              { value: "40+",  label: "Years of Legacy" },
+              { value: "50+",  label: "Years of legacy" },
               { value: "10+",  label: "Certifications" },
               { value: "6",    label: "Divisions" },
-              { value: "100%", label: "In-House" },
+              { value: "100%", label: "In-house" },
             ].map((s) => (
               <motion.div
                 key={s.label}
@@ -134,7 +131,7 @@ export default function AboutContent() {
             transition={{ type: "spring" as const, stiffness: 70, damping: 18 }}
             className="mb-12"
           >
-            <SectionHeader overline="Purpose & Direction" title="Why We Exist" light />
+            <SectionHeader overline="Purpose & Direction" title="Why we exist" light />
           </motion.div>
           <motion.div
             className="grid md:grid-cols-2 gap-px"
@@ -176,7 +173,7 @@ export default function AboutContent() {
             transition={{ type: "spring" as const, stiffness: 70, damping: 18 }}
             className="mb-14"
           >
-            <SectionHeader overline="Core Values" title="What We Stand For" light />
+            <SectionHeader overline="Core Values" title="What we stand for" light />
           </motion.div>
 
           <motion.div
@@ -189,8 +186,8 @@ export default function AboutContent() {
             {[
               { number: "01", title: "Quality",        body: "Delivering products that surpass known standards, ensuring customer satisfaction at every stage." },
               { number: "02", title: "Innovation",     body: "Promoting creativity and experimentation to stay ahead of the curve in an ever-evolving textile industry." },
-              { number: "03", title: "Sustainability", body: "Prioritizing sustainability, reducing our environmental footprint and promoting responsible supply chain practices." },
-              { number: "04", title: "Customer Focus", body: "Customers are always at the forefront — we understand their needs and deliver tailor-made solutions." },
+              { number: "03", title: "Sustainability", body: "Prioritizing sustainability, reducing our environmental footprint, and promoting responsible supply chain practices." },
+              { number: "04", title: "Customer focus", body: "Customers are always at the forefront — we understand their needs and deliver tailor-made solutions." },
               { number: "05", title: "Integrity",      body: "Transparency, accountability, and trust with all stakeholders and within our community." },
             ].map((v) => (
               <motion.div
@@ -249,41 +246,32 @@ export default function AboutContent() {
               transition={{ duration: 0.6 }}
             >
               {/* ── Left panel — identity ── */}
-              <div className="relative lg:w-[42%] bg-brand-navy flex flex-col justify-between px-10 sm:px-14 lg:px-16 py-14 lg:py-20 overflow-hidden">
-                {/* Giant faint watermark */}
-                <span aria-hidden className="absolute -bottom-6 -right-4 text-[14rem] font-black text-white/[0.035] leading-none select-none pointer-events-none">
-                  {initials}
-                </span>
+              <div className="relative lg:w-[42%] bg-brand-navy flex flex-col overflow-hidden">
 
-                {/* Top label */}
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-accent flex items-center gap-3 mb-10">
-                    <span className="w-6 h-0.5 bg-brand-accent" />
-                    Leadership
-                  </p>
-
-                  {/* Large initials avatar */}
-                  <div className="w-24 h-24 bg-brand-accent flex items-center justify-center mb-8">
-                    <span className="text-4xl font-black text-white">{initials}</span>
+                {/* Photo area — swap src to /images/md-siva.jpg when photo is ready */}
+                <div className="relative w-full aspect-[3/4] bg-brand-dark overflow-hidden">
+                  {/* Placeholder gradient shown until real photo is added */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-charcoal to-brand-dark flex items-center justify-center">
+                    <span className="text-[8rem] font-black text-white/10 leading-none select-none">{initials}</span>
                   </div>
+                  {/* Accent bar at bottom of photo */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-accent" />
+                </div>
 
-                  {/* Name + role */}
+                {/* Name + role strip */}
+                <div className="px-8 py-8 flex flex-col gap-2 bg-brand-navy">
+                  <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-accent flex items-center gap-2">
+                    <span className="w-5 h-0.5 bg-brand-accent" />
+                    Managing Director
+                  </p>
                   <ContentText
                     contentKey={`${k}-name`}
                     fallback={member.name}
                     as="h2"
-                    className="text-3xl sm:text-4xl font-black text-white leading-tight tracking-tight mb-3"
+                    className="text-2xl sm:text-3xl font-black text-white leading-tight tracking-tight"
                   />
-                  <ContentText
-                    contentKey={`${k}-role`}
-                    fallback={member.role}
-                    as="p"
-                    className="text-base font-black uppercase tracking-[0.2em] text-brand-accent"
-                  />
+                  <div className="w-10 h-0.5 bg-brand-accent mt-2" />
                 </div>
-
-                {/* Bottom accent rule */}
-                <div className="w-16 h-0.5 bg-brand-accent mt-10" />
               </div>
 
               {/* ── Right panel — detail ── */}
@@ -309,8 +297,8 @@ export default function AboutContent() {
                   {/* Key highlights */}
                   <ul className="space-y-3">
                     {[
-                      "Second-generation family business — founded 1985 in Tirupur",
-                      "Leading exports to Europe, USA, Australia & global markets",
+                      "Second-generation family business — founded 1971 in Tirupur",
+                      "Leading exports to USA, Europe, Middle East Asia, and global markets",
                       "Committed to certified, sustainable, and ethical manufacturing",
                     ].map((point) => (
                       <li key={point} className="flex items-start gap-3">
@@ -336,7 +324,7 @@ export default function AboutContent() {
             transition={{ type: "spring" as const, stiffness: 70, damping: 18 }}
             className="mb-16"
           >
-            <SectionHeader overline="Our Journey" title="40+ Years of Growth" light />
+            <SectionHeader overline="Our Journey" title="50+ years of growth" light />
           </motion.div>
 
           <div className="space-y-0">
@@ -391,11 +379,11 @@ export default function AboutContent() {
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent" />
         <FloatingElements variant="dark" count={4} />
         <div className="relative z-10 container mx-auto px-4 max-w-2xl">
-          <ContentText contentKey="about-cta-title" fallback="Ready to Work Together?" as="h2" className="text-display-md font-black text-white uppercase tracking-tight leading-none mb-6" />
+          <ContentText contentKey="about-cta-title" fallback="Ready to work together?" as="h2" className="text-display-md font-black text-white uppercase tracking-tight leading-none mb-6" />
           <ContentText contentKey="about-cta-subtitle" fallback="Join the global brands that trust Raft Garments for quality, reliability, and scale." as="p" className="text-2xl text-white mb-10 leading-relaxed" />
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <MagneticButton><CTAButton label="Contact Us" href="/contact" variant="primary" size="lg" arrow /></MagneticButton>
-            <MagneticButton><CTAButton label="Browse Products" href="/products" variant="outline-light" size="lg" /></MagneticButton>
+            <MagneticButton><CTAButton label="Contact us" href="/contact" variant="primary" size="lg" arrow /></MagneticButton>
+            <MagneticButton><CTAButton label="Browse products" href="/products" variant="outline-light" size="lg" /></MagneticButton>
           </div>
         </div>
       </section>

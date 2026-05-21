@@ -10,14 +10,19 @@ import uploadRoutes from "./routes/upload"
 import mediaRoutes  from "./routes/media"
 import adminRoutes   from "./routes/admin"
 import contentRoutes from "./routes/content"
-import catalogRoutes from "./routes/catalog"
+import catalogRoutes   from "./routes/catalog"
+import downloadsRoutes from "./routes/downloads"
 
 const app = express()
 
+const allowedOrigins = new Set([
+  ...(process.env.FRONTEND_URL ?? "").split(",").map(s => s.trim()).filter(Boolean),
+  "http://localhost:3000",
+])
+
 app.use(cors({
   origin: (origin, cb) => {
-    const allowed = process.env.FRONTEND_URL ?? "http://localhost:3000"
-    if (!origin || origin === allowed || /^http:\/\/localhost:\d+$/.test(origin))
+    if (!origin || allowedOrigins.has(origin) || /^http:\/\/localhost:\d+$/.test(origin))
       cb(null, true)
     else
       cb(new Error(`CORS: ${origin} not allowed`))
@@ -37,7 +42,8 @@ app.use("/upload", uploadRoutes)
 app.use("/media",  mediaRoutes)
 app.use("/admin",   adminRoutes)
 app.use("/content", contentRoutes)
-app.use("/catalog", catalogRoutes)
+app.use("/catalog",   catalogRoutes)
+app.use("/downloads", downloadsRoutes)
 
 const PORT = process.env.PORT ?? 4000
 app.listen(PORT, () => console.log(`Backend running on port ${PORT}`))

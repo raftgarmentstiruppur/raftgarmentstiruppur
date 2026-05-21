@@ -8,6 +8,7 @@ import { quoteSchema, type QuoteInput } from "@/lib/validations"
 import { cn } from "@/lib/utils"
 
 const WA_NUMBER = "919843166345"
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"
 
 const productOptions = [
   "Kids' Innerwear",
@@ -50,7 +51,14 @@ export default function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<QuoteInput>({ resolver: zodResolver(quoteSchema) })
 
-  function onSubmit(data: QuoteInput) {
+  async function onSubmit(data: QuoteInput) {
+    // Save to admin panel (fire-and-forget — don't block WhatsApp)
+    fetch(`${API}/quotes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).catch(() => {})
+
     const msg = buildWhatsAppMessage(data)
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank", "noopener,noreferrer")
     setSubmitted(true)
@@ -62,9 +70,9 @@ export default function ContactForm() {
         <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center mx-auto">
           <MessageCircle className="w-7 h-7 text-white" />
         </div>
-        <p className="font-bold text-brand-navy text-lg uppercase tracking-tight">WhatsApp Opened!</p>
+        <p className="font-bold text-brand-navy text-lg uppercase tracking-tight">WhatsApp opened!</p>
         <p className="text-brand-slate text-sm leading-relaxed">
-          Your enquiry has been prepared. Complete sending it on WhatsApp — our team will respond promptly.
+          Your enquiry is ready. Send it on WhatsApp and our team will respond promptly.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -90,7 +98,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold uppercase tracking-wide text-brand-slate mb-1">
-            Company Name *
+            Company name *
           </label>
           <input
             suppressHydrationWarning
@@ -103,7 +111,7 @@ export default function ContactForm() {
         </div>
         <div>
           <label className="block text-xs font-semibold uppercase tracking-wide text-brand-slate mb-1">
-            Contact Name *
+            Contact name *
           </label>
           <input
             suppressHydrationWarning
@@ -163,7 +171,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold uppercase tracking-wide text-brand-slate mb-1">
-            Product Category *
+            Product category *
           </label>
           <select
             suppressHydrationWarning
@@ -180,7 +188,7 @@ export default function ContactForm() {
         </div>
         <div>
           <label className="block text-xs font-semibold uppercase tracking-wide text-brand-slate mb-1">
-            Inquiry Type *
+            Inquiry type *
           </label>
           <select
             suppressHydrationWarning

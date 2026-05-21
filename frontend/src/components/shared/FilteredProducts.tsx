@@ -181,7 +181,7 @@ function Inner() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <SectionHeader
             overline="Our Range"
-            title="Explore Our Categories"
+            title="Explore our categories"
             subtitle="Each category is engineered with category-specific fabric constructions, safety standards, and finishing requirements."
             className="mb-12"
           />
@@ -203,7 +203,7 @@ export default function FilteredProducts() {
     <Suspense fallback={
       <section className="py-section bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <SectionHeader overline="Our Range" title="Explore Our Categories" className="mb-12" />
+          <SectionHeader overline="Our Range" title="Explore our categories" className="mb-12" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {productCategories.map((cat) => <ProductCard key={cat.id} {...cat} />)}
           </div>

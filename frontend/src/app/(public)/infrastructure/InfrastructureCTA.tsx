@@ -10,10 +10,10 @@ import FloatingElements from "@/components/shared/FloatingElements"
 const UNSPLASH_FACTORY = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&auto=format&fit=crop"
 
 const stats = [
-  { value: "AQL 1.5", label: "Quality Standard" },
-  { value: "100%",    label: "In-House Control" },
-  { value: "6",       label: "Integrated Divisions" },
-  { value: "40+",     label: "Years Manufacturing" },
+  { value: "AQL", label: "Quality standard" },
+  { value: "100%",    label: "In-house control" },
+  { value: "6",       label: "Integrated divisions" },
+  { value: "50+",     label: "Years manufacturing" },
 ]
 
 export default function InfrastructureCTA() {
@@ -69,11 +69,11 @@ export default function InfrastructureCTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] as const }}
             >
-              See It in Person.
+              See it in person.
             </motion.h2>
           </div>
           <MagneticButton>
-            <CTAButton label="Request a Factory Tour" href="/contact" variant="primary" size="lg" arrow />
+            <CTAButton label="Request a factory tour" href="/contact" variant="primary" size="lg" arrow />
           </MagneticButton>
         </div>
       </div>

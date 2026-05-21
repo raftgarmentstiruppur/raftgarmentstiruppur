@@ -8,10 +8,19 @@ interface ScrollLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 
 }
 
 function scrollTop() {
-  // Multiple methods for full browser compatibility
   try { window.scrollTo({ top: 0, left: 0, behavior: "smooth" }) } catch { /* noop */ }
   document.documentElement.scrollTop = 0
   document.body.scrollTop = 0
+}
+
+function scrollToHash(hash: string) {
+  const id = hash.startsWith("#") ? hash.slice(1) : hash
+  const el = document.getElementById(id)
+  if (!el) return
+  // Offset for fixed navbar (~72px) plus a small visual gap
+  const offset = 80
+  const y = el.getBoundingClientRect().top + window.scrollY - offset
+  window.scrollTo({ top: y, behavior: "smooth" })
 }
 
 export default function ScrollLink({ href, onClick, children, ...props }: ScrollLinkProps) {
@@ -24,14 +33,21 @@ export default function ScrollLink({ href, onClick, children, ...props }: Scroll
 
     e.preventDefault()
 
-    const hrefPath = href.split("?")[0].split("#")[0].replace(/\/$/, "") || "/"
-    const current  = pathname.replace(/\/$/, "") || "/"
+    const withoutQuery = href.split("?")[0]
+    const hashIdx      = withoutQuery.indexOf("#")
+    const hrefPath     = (hashIdx === -1 ? withoutQuery : withoutQuery.slice(0, hashIdx)).replace(/\/$/, "") || "/"
+    const hashPart     = hashIdx === -1 ? "" : withoutQuery.slice(hashIdx)
+    const current      = pathname.replace(/\/$/, "") || "/"
 
     if (hrefPath === current) {
-      scrollTop()
+      // Same page — scroll to hash section or back to top
+      if (hashPart) {
+        scrollToHash(hashPart)
+      } else {
+        scrollTop()
+      }
     } else {
       router.push(href)
-      // router.push scrolls to top by default in Next.js App Router
     }
 
     onClick?.(e)

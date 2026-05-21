@@ -12,13 +12,12 @@ const UNSPLASH_ECO = "https://images.unsplash.com/photo-1487088678257-3a541e6e39
 
 const commitments = [
   "BCI (Better Cotton Initiative) certified sourcing — supporting responsible cotton farming and farmer livelihoods",
-  "Global Recycled Standard certified — verified recycled content in polyester and other synthetic fabrics",
   "Oeko-Tex Standard 100 — every component tested and certified free from harmful substances",
   "WRAP certified manufacturing — fair wages, safe working conditions, and legal compliance across all operations",
-  "SMETA / Sedex audited — independent ethical trade audits covering labor rights, health, safety, and environment",
+  "SMETA/Sedex audited — independent ethical trade audits covering labor rights, health, safety, and environment",
   "Higg Index assessed — measuring and continuously improving our environmental and social performance",
   "Sustainable fabric options: organic cotton, bamboo, Tencel, viscose, and recycled polyester available across product lines",
-  "AQL 1.5–2.5 quality inspection standard — inline and final inspection to minimize waste and rework",
+  "AQL quality inspection standard — inline and final inspection to minimize waste and rework",
 ]
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } }
@@ -42,7 +41,7 @@ export default function SustainabilityContent() {
             viewport={{ once: true, margin: "-60px" }}
           >
             <motion.div variants={fadeUp}>
-              <SectionHeader overline="Our Approach" title={sustainabilityData.headline} subtitle={sustainabilityData.subheadline} className="mb-12" light />
+              <SectionHeader overline="Our approach" title={sustainabilityData.headline} subtitle={sustainabilityData.subheadline} className="mb-12" light />
             </motion.div>
 
             {/* Glass stat cards */}
@@ -66,7 +65,7 @@ export default function SustainabilityContent() {
               ))}
             </motion.div>
 
-            <motion.p variants={fadeUp} className="text-lg text-center text-white/75 max-w-2xl mx-auto leading-relaxed">
+            <motion.p variants={fadeUp} className="text-lg text-justify text-white/75 max-w-2xl mx-auto leading-relaxed">
               {sustainabilityData.body}
             </motion.p>
           </motion.div>
@@ -76,7 +75,7 @@ export default function SustainabilityContent() {
       {/* ── Awards ── */}
       <section className="py-section bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <SectionHeader overline="Recognition" title="Independently Verified" subtitle="Our sustainability commitments are not just claims — they are audited, certified, and renewed annually." className="mb-12" />
+          <SectionHeader overline="Recognition" title="Independently verified" subtitle="Our sustainability commitments are not just claims — they are audited, certified, and renewed annually." className="mb-12" />
           <motion.div
             className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto"
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
@@ -102,7 +101,7 @@ export default function SustainabilityContent() {
       {/* ── Commitments ── */}
       <section className="py-section bg-brand-light-gray">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <SectionHeader overline="Our Commitments" title="How We Practice Responsibility" className="mb-12" />
+          <SectionHeader overline="Our commitments" title="How we practice responsibility" className="mb-12" />
           <motion.ul
             className="space-y-4"
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
@@ -127,7 +126,7 @@ export default function SustainabilityContent() {
           </motion.ul>
           <div className="text-center mt-12">
             <MagneticButton>
-              <CTAButton label="Download Sustainability Report" href="/resources#sustainability" variant="primary" arrow />
+              <CTAButton label="Download sustainability report" href="/resources#sustainability" variant="primary" arrow />
             </MagneticButton>
           </div>
         </div>

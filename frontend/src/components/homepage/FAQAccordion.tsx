@@ -87,10 +87,10 @@ export default function FAQAccordion({ faqs }: FAQAccordionProps) {
           >
             <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-accent mb-3 flex items-center gap-2">
               <span className="w-5 h-0.5 bg-brand-accent" />
-              Quick Answers
+              Quick answers
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight leading-none mb-4">
-              Common<br />Questions.
+              Common<br />questions.
             </h2>
             <div className="w-10 h-0.5 bg-brand-accent" />
           </motion.div>

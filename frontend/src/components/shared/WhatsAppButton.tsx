@@ -1,36 +1,34 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 
 const WA_NUMBER = "919843166345"
 const WA_DEFAULT_MSG = encodeURIComponent("Hello! I'd like to enquire about Raft Garments products.")
 
+const STORAGE_KEY = "wa_bubble_seen"
+
 export default function WhatsAppButton() {
   const [showBubble, setShowBubble] = useState(false)
-  const [bubbleDismissed, setBubbleDismissed] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const dismissedRef = useRef(false)
 
   useEffect(() => {
     setMounted(true)
 
-    let showTimer: ReturnType<typeof setTimeout>
-    let hideTimer: ReturnType<typeof setTimeout>
+    // Never show again if user has already seen it
+    if (localStorage.getItem(STORAGE_KEY)) return
 
-    const cycle = () => {
-      if (dismissedRef.current) return
-      showTimer = setTimeout(() => {
-        if (dismissedRef.current) return
-        setShowBubble(true)
-        hideTimer = setTimeout(() => {
-          setShowBubble(false)
-          cycle()
-        }, 5000)
-      }, 1500)
-    }
+    const showTimer = setTimeout(() => {
+      setShowBubble(true)
+      // Mark as seen immediately so refreshing never shows it again
+      localStorage.setItem(STORAGE_KEY, "1")
 
-    cycle()
-    return () => { clearTimeout(showTimer); clearTimeout(hideTimer) }
+      const hideTimer = setTimeout(() => {
+        setShowBubble(false)
+      }, 5000)
+      return () => clearTimeout(hideTimer)
+    }, 2000)
+
+    return () => clearTimeout(showTimer)
   }, [])
 
   if (!mounted) return null
@@ -49,7 +47,7 @@ export default function WhatsAppButton() {
         <div className="relative bg-white rounded-2xl rounded-br-none shadow-xl px-4 py-3 max-w-[220px] border border-gray-100">
           {/* Close */}
           <button
-            onClick={() => { setShowBubble(false); setBubbleDismissed(true); dismissedRef.current = true }}
+            onClick={() => setShowBubble(false)}
             className="absolute -top-2 -right-2 w-5 h-5 bg-gray-400 hover:bg-gray-600 text-white rounded-full text-[10px] flex items-center justify-center transition-colors"
             aria-label="Close"
           >
@@ -93,8 +91,7 @@ export default function WhatsAppButton() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          onClick={() => { setShowBubble(false); setBubbleDismissed(true); dismissedRef.current = true }}
-          onMouseEnter={() => !bubbleDismissed && setShowBubble(true)}
+          onClick={() => setShowBubble(false)}
           className="relative w-14 h-14 rounded-full bg-[#25D366] shadow-lg shadow-green-500/40 flex items-center justify-center hover:scale-110 hover:shadow-green-500/60 transition-all duration-300"
         >
           <WhatsAppIcon className="w-7 h-7 fill-white" />

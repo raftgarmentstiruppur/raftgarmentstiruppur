@@ -9,7 +9,7 @@ import { siteConfig } from "@/data/siteConfig"
 import { leadership } from "@/data/leadership"
 import { MapPin, Phone, Mail } from "lucide-react"
 
-const UNSPLASH_FACTORY = "/images/contact-panel.png"
+const UNSPLASH_FACTORY = "/images/find-us.png"
 
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } }
@@ -25,7 +25,7 @@ export default function ContactContent() {
         <div className="relative lg:w-[55%] overflow-hidden" style={{ minHeight: "clamp(320px, 40vw, 500px)" }}>
           <Image
             src={UNSPLASH_FACTORY}
-            alt="40+ Years of Manufacturing Excellence — Raft Garments"
+            alt="50+ years of manufacturing excellence — Raft Garments"
             fill
             unoptimized
             priority
@@ -47,13 +47,13 @@ export default function ContactContent() {
           >
             {/* Form */}
             <motion.div variants={fadeUp}>
-              <SectionHeader overline="Get in Touch" title="Send Us a Message" align="left" className="mb-8" />
+              <SectionHeader overline="Get in touch" title="Send us a message" align="left" className="mb-8" />
               <ContactForm />
             </motion.div>
 
             {/* Contact info */}
             <motion.div variants={fadeUp} className="space-y-6 pt-8 border-t border-brand-border">
-              <SectionHeader overline="Our Details" title="Find Us" align="left" className="mb-0" />
+              <SectionHeader overline="Our details" title="Find us" align="left" className="mb-0" />
 
               <div className="space-y-5">
                 {[
@@ -80,7 +80,7 @@ export default function ContactContent() {
 
             {/* Key contacts — horizontal strip */}
             <motion.div variants={fadeUp}>
-              <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-4">Key Contacts</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-4">Key contacts</p>
               <div className="flex gap-3 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden">
                 {leadership.map((member) => (
                   <div key={member.name} className="flex items-center gap-3 p-4 border border-brand-border bg-brand-light-gray shrink-0 min-w-[200px]">

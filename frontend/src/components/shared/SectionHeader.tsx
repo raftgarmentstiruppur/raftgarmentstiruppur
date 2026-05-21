@@ -36,7 +36,7 @@ export default function SectionHeader({
     >
       {overline && (
         <p className={cn(
-          "text-xs font-black uppercase tracking-[0.25em] flex items-center gap-3",
+          "text-xs font-black tracking-[0.25em] flex items-center gap-3",
           align === "center" && "justify-center",
           align === "right"  && "justify-end",
           light ? "text-brand-accent" : "text-brand-accent"

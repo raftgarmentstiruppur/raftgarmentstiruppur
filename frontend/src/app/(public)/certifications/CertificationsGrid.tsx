@@ -67,14 +67,14 @@ export default function CertificationsGrid() {
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent" />
         <p className="text-sm font-black uppercase tracking-[0.25em] text-brand-accent mb-4">Documents</p>
         <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-4">
-          Need Certification Letters?
+          Need certification letters?
         </h3>
         <p className="text-lg text-white/75 mb-8 max-w-xl mx-auto leading-relaxed">
           All certification documents are available for download, or request them directly by email.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <CTAButton label="Download Documents" href="/resources" variant="primary" size="lg" arrow />
-          <CTAButton label="Email Us" href="/contact" variant="outline-light" size="lg" />
+          <CTAButton label="Download documents" href="/resources" variant="primary" size="lg" arrow />
+          <CTAButton label="Email us" href="/contact" variant="outline-light" size="lg" />
         </div>
       </motion.div>
     </>

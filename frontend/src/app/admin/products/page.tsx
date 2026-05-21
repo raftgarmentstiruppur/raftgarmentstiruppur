@@ -97,19 +97,19 @@ const CATEGORIES = [
 
 const SUBCATEGORIES: Record<string, string[]> = {
   "kids-innerwear": [
-    "Boys Briefs", "Boys Boxer Shorts", "Boys Trunks",
-    "Girls Briefs", "Girls Boy Shorts", "Girls Hipster", "Training Pants",
+    "Boys' briefs", "Boys' boxer shorts", "Boys' trunks",
+    "Girls' briefs", "Girls' boy shorts", "Girls' hipster", "Training pants",
   ],
   "mens-innerwear": [
-    "Briefs", "Boxer Briefs", "Trunks", "Boxers (Loose)", "Hipster Briefs",
-    "Sports / Compression",
+    "Briefs", "Boxer briefs", "Trunks", "Boxers (loose)", "Hipster briefs",
+    "Sports / compression",
   ],
   "womens-innerwear": [
-    "Bikini Briefs", "Hipster Briefs", "Boy Shorts", "High-Waist Briefs", "Thongs",
+    "Bikini briefs", "Hipster briefs", "Boy shorts", "High-waist briefs", "Thongs",
   ],
   "outerwear": [
-    "T-Shirts", "Polo Shirts", "Sweatshirts", "Hoodies",
-    "Track Pants / Joggers", "Casual Shorts",
+    "T-shirts", "Polo shirts", "Sweatshirts", "Hoodies",
+    "Track pants / joggers", "Casual shorts",
   ],
 }
 
@@ -273,7 +273,7 @@ export default function AdminProductsPage() {
                 <label className="block text-xs font-semibold uppercase tracking-wide text-brand-ash mb-1.5">Subcategory</label>
                 <select value={form.subcategory} onChange={e => set("subcategory", e.target.value)}
                   className="w-full border border-brand-border px-3 py-2 text-sm focus:outline-none focus:border-brand-accent bg-white">
-                  <option value="">— Select subcategory —</option>
+                  <option value="">Select subcategory</option>
                   {(SUBCATEGORIES[activeCategory] ?? []).map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
@@ -283,7 +283,7 @@ export default function AdminProductsPage() {
                   <label className="block text-xs font-semibold uppercase tracking-wide text-brand-ash mb-1.5">Badge / Browse By</label>
                   <select value={form.badge} onChange={e => set("badge", e.target.value)}
                     className="w-full border border-brand-border px-3 py-2 text-sm focus:outline-none focus:border-brand-accent bg-white">
-                    <option value="">— None —</option>
+                    <option value="">None</option>
                     <option value="New Arrival">New Arrival</option>
                     <option value="Best Seller">Best Seller</option>
                     <option value="Sustainable">Sustainable</option>
@@ -294,7 +294,7 @@ export default function AdminProductsPage() {
                   <label className="block text-xs font-semibold uppercase tracking-wide text-brand-ash mb-1.5">Price Range</label>
                   <input value={form.priceRange} onChange={e => set("priceRange", e.target.value)}
                     className="w-full border border-brand-border px-3 py-2 text-sm focus:outline-none focus:border-brand-accent"
-                    placeholder="e.g. $2.50 – $4.00 / unit" />
+                    placeholder="e.g. $2.50 – $4.00/unit" />
                 </div>
               </div>
 

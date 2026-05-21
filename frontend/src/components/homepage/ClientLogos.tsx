@@ -29,7 +29,7 @@ export default function ClientLogos({ clients, heading }: ClientLogosProps) {
         >
           <div className="w-8 h-0.5 bg-brand-accent" />
           <span className="text-sm font-black uppercase tracking-[0.25em] text-brand-accent">
-            {heading ?? "Trusted By Leading Global Brands"}
+            {heading ?? "Trusted by leading global brands"}
           </span>
         </motion.div>
         <motion.p
@@ -39,7 +39,7 @@ export default function ClientLogos({ clients, heading }: ClientLogosProps) {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          Europe · North America · Australia
+          USA · Europe · Middle East Asia
         </motion.p>
       </div>
 
@@ -98,7 +98,7 @@ export default function ClientLogos({ clients, heading }: ClientLogosProps) {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          And many more across Europe, North America &amp; Australia
+          And many more across USA, Europe, and Middle East Asia
         </motion.p>
       </div>
 

@@ -53,7 +53,7 @@ export default function NewsletterSignup({ headline, description, placeholder, b
           >
             <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-accent mb-5 flex items-center gap-3">
               <span className="w-6 h-0.5 bg-brand-accent" />
-              Stay Connected
+              Stay connected
             </p>
             <div className="overflow-hidden">
               <motion.h2

@@ -1,19 +1,18 @@
 import type { SustainabilityData } from "@/types"
 
 export const sustainabilityData: SustainabilityData = {
-  headline: "Responsible by Design",
+  headline: "Responsible by design",
   subheadline: "Sustainable fabrics, ethical labor, and certified practices — knitted into every garment.",
-  body: "At Raft Garments, sustainability is not a target or a deadline — it is the way we work. From sourcing Better Cotton and recycled materials to operating under WRAP and SMETA ethical trade standards, every process is designed to minimize environmental impact and protect the people behind our garments.",
+  body: "At Raft Garments, sustainability is not a target or a deadline — it is the way we work. From responsibly sourced raw materials and eco-conscious fabric choices to certified ethical manufacturing under WRAP and SMETA standards, every process is designed to minimize our environmental impact and protect the people behind our garments.",
   stats: [
-    { value: "10+", label: "Active Certifications" },
+    { value: "10+", label: "Active certifications" },
     { value: "BCI", label: "Better Cotton Initiative" },
-    { value: "AQL 1.5", label: "Quality Standard" },
-    { value: "Safe", label: "Ethical Workplace" },
+    { value: "AQL", label: "Quality standard" },
+    { value: "Safe", label: "Ethical workplace" },
   ],
   awards: [
-    { title: "WRAP Certified", year: "Worldwide Responsible Accredited Production" },
-    { title: "SMETA / Sedex Audited", year: "Independently Verified Ethical Trade" },
-    { title: "Oeko-Tex Standard 100", year: "Tested for Harmful Substances" },
-    { title: "Walt Disney Approved", year: "Social Compliance Certified" },
+    { title: "WRAP certified", year: "Worldwide Responsible Accredited Production" },
+    { title: "SMETA / Sedex audited", year: "Independently verified ethical trade" },
+    { title: "Oeko-Tex Standard 100", year: "Tested for harmful substances" },
   ],
 }

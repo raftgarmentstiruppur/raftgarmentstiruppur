@@ -40,7 +40,7 @@ const DIVISION_NAMES: Record<string, string> = {
   "03": "Cutting",
   "04": "Elastic Weaving",
   "05": "Sewing",
-  "06": "Finishing & Packing",
+  "06": "Finishing and packing",
 }
 const DIVISION_DEFAULTS: Record<string, { capacity: string; description: string }> = {
   "01": { capacity: "High-Volume Production",   description: "State-of-the-art knitting machines producing premium knitted fabric for innerwear and outerwear — including cotton, bamboo, viscose, Tencel, nylon, and recycled polyester constructions." },
@@ -48,7 +48,7 @@ const DIVISION_DEFAULTS: Record<string, { capacity: string; description: string 
   "03": { capacity: "Precision Scale Output",   description: "Fully automated Italian cutting systems integrated with CAD and CAM software deliver pinpoint accuracy across every lay, significantly reducing material waste and maximising fabric utilisation." },
   "04": { capacity: "High-Volume Daily Output", description: "Jacquard and solid weaving looms built on German design technology deliver a substantial daily elastic output, producing shrink-controlled elastic with superior stability and consistent quality." },
   "05": { capacity: "High Daily Capacity",      description: "Sewing lines equipped with a specialised array of machines designed to handle the unique requirements of both innerwear and outerwear. Skilled operators ensure seamless garment construction and precise stitching." },
-  "06": { capacity: "AQL 1.5–2.5",              description: "Final garment inspection carried out to AQL 1.5–2.5 standards. Professional steam pressing, precise folding or hanging, in-house corrugated box manufacturing, polybag printing, and retail-ready packing." },
+  "06": { capacity: "AQL",              description: "Final garment inspection carried out to AQL standards. Professional steam pressing, precise folding or hanging, in-house corrugated box manufacturing, polybag printing, and retail-ready packing." },
 }
 
 const SECTIONS: Section[] = [

@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     template: "%s | Raft Garments",
   },
   description:
-    "Raft Garments — 40+ years of knitwear manufacturing excellence from Tirupur, India. Premium innerwear and outerwear for brands across Europe, USA, and India.",
+    "Raft Garments — 50+ years of knitwear manufacturing excellence from Tirupur, India. Premium innerwear and outerwear for brands across USA, Europe, and Middle East Asia.",
   keywords: ["knitwear manufacturer","innerwear","outerwear","B2B","Tirupur","private label","kids innerwear","mens innerwear","womens innerwear","export","NOOS"],
   openGraph: {
     type: "website",
     siteName: "Raft Garments",
     title: "Raft Garments | Crafting Quality, Pioneering Sustainability",
-    description: "40+ years of innerwear manufacturing excellence from Tirupur, India. Taking India's finest knitwear to the world.",
+    description: "50+ years of innerwear manufacturing excellence from Tirupur, India. Taking India's finest knitwear to the world.",
   },
 }
 

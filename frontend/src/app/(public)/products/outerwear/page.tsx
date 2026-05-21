@@ -35,7 +35,7 @@ export default function OuterwearPage() {
 
       <section className="py-section bg-brand-light-gray">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <SectionHeader overline="Available Styles" title="Full Outerwear Range" className="mb-10" />
+          <SectionHeader overline="Available Styles" title="Full outerwear range" className="mb-10" />
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <ContentStyleGrid productKey={P} defaultStyles={DEFAULT_STYLES} />
           </div>

@@ -17,12 +17,12 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const BULLETS: Record<string, string[]> = {
   "01": [
-    "Cotton, bamboo, viscose, Tencel, nylon & recycled polyester blends",
-    "Full control over fabric weight, texture and structure from yarn stage",
+    "Cotton, bamboo, viscose, Tencel, nylon, and recycled polyester blends",
+    "Full control over fabric weight, texture, and structure from yarn stage",
     "Zero outsourcing — in-house knitting means zero compromise on quality",
   ],
   "02": [
-    "100% roll-by-roll inspection using the international 4-Point system",
+    "100% roll-by-roll inspection using the international 4-point system",
     "Every defect identified, logged and resolved before cutting floor entry",
     "Eliminates defect propagation — quality secured at the absolute source",
   ],
@@ -32,7 +32,7 @@ const BULLETS: Record<string, string[]> = {
     "Handles high-volume innerwear and outerwear output simultaneously",
   ],
   "04": [
-    "Jacquard & solid looms engineered on German narrow-fabric technology",
+    "Jacquard and solid looms engineered on German narrow-fabric technology",
     "Heat-setting machine ensures shrink-controlled, dimensionally stable elastic",
     "Substantial daily output across all waistband and elastic categories",
   ],
@@ -42,7 +42,7 @@ const BULLETS: Record<string, string[]> = {
     "Complex and custom production handled end-to-end — no third parties",
   ],
   "06": [
-    "Final inspection conducted to AQL 1.5–2.5 international quality standards",
+    "Final inspection conducted to AQL international quality standards",
     "Professional steam pressing, retail-ready folding and branded packaging",
     "Barcodes, hang-tags, size stickers and full compliance documentation",
   ],

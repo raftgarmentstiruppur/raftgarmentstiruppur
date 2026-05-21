@@ -5,7 +5,7 @@ import CertificationsGrid from "./CertificationsGrid"
 
 export const metadata: Metadata = {
   title: "Certifications",
-  description: "10+ active certifications including ISO 9001:2015, WRAP, BCI, Oeko-Tex Standard 100, Walt Disney Approval, CTPAT, and more.",
+  description: "10+ active certifications including ISO 9001:2015, WRAP, BCI, Oeko-Tex Standard 100, CTPAT, and more.",
 }
 
 export default function CertificationsPage() {
@@ -14,7 +14,7 @@ export default function CertificationsPage() {
       <ContentPageHero
         titleKey="page-certifications-title"
         subtitleKey="page-certifications-subtitle"
-        defaultTitle="10+ Active Certifications."
+        defaultTitle="10+ active certifications."
         defaultSubtitle="Independently verified quality, social, sustainability, and security standards — covering every aspect of our operations."
         breadcrumb={[{ label: "Certifications", href: "/certifications" }]}
         defaultImage="/images/certifications-hero.png"
@@ -27,7 +27,7 @@ export default function CertificationsPage() {
           <div className="mb-14">
             <SectionHeader
               overline="Our Certifications"
-              title="Verified at Every Level"
+              title="Verified at every level"
               subtitle="From product safety to ethical trade — every certification is independently audited and renewed annually."
               light
             />

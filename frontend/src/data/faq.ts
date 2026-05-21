@@ -5,7 +5,7 @@ export const faqs: FAQ[] = [
     id: "faq-1",
     question: "What is the minimum order quantity (MOQ)?",
     answer:
-      "Our standard MOQ is 500 units per style, per color. For new clients or trial orders, we offer a sample program starting at 50 pieces per style. Contact our sales team to discuss your specific requirements.",
+      "Our standard MOQ is 500 units per style, per colour. For new clients or trial orders, we offer a sample program starting at 50 pieces per style. Contact our sales team to discuss your specific requirements.",
   },
   {
     id: "faq-2",
@@ -17,7 +17,7 @@ export const faqs: FAQ[] = [
     id: "faq-3",
     question: "What certifications does Raft Garments hold?",
     answer:
-      "We hold 10+ active certifications including ISO 9001:2015, WRAP, SMETA/Sedex, BCI, Global Recycled Standard, Higg Index, Oeko-Tex Standard 100, Walt Disney Approval, Walmart Approval, and CTPAT.",
+      "We hold 10+ active certifications including ISO 9001:2015, WRAP, SMETA/Sedex, BCI, Higg Index, Oeko-Tex Standard 100, Walmart Approval, and CTPAT.",
   },
   {
     id: "faq-4",
@@ -29,7 +29,7 @@ export const faqs: FAQ[] = [
     id: "faq-5",
     question: "What countries do you export to?",
     answer:
-      "We export to markets across Europe, the USA, and India. We also offer NOOS (Never Out Of Stock) programs for repeat buyers. Contact us to discuss incoterms, freight options, and market-specific compliance requirements.",
+      "We export to markets across USA, Europe, and Middle East Asia. We also offer NOOS (Never Out Of Stock) programs for repeat buyers. Contact us to discuss incoterms, freight options, and market-specific compliance requirements.",
   },
   {
     id: "faq-6",

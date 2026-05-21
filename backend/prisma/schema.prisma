@@ -139,6 +139,16 @@ model OrderStatusHistory {
   order Order @relation(fields: [orderId], references: [id])
 }
 
+model DownloadRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String
+  phone     String?
+  document  String
+  createdAt DateTime @default(now())
+}
+
 model SiteContent {
   key       String   @id
   value     String

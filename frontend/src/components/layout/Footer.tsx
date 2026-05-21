@@ -17,22 +17,22 @@ const footerLinks = {
     { label: "Outerwear",        href: "/products/outerwear" },
   ],
   Company: [
-    { label: "About Us",       href: "/about" },
+    { label: "About us",       href: "/about" },
     { label: "Infrastructure", href: "/infrastructure" },
     { label: "Sustainability", href: "/sustainability" },
     { label: "Certifications", href: "/certifications" },
   ],
   Resources: [
-    { label: "Corporate Brochure", href: "/resources#corporate-brochure" },
-    { label: "Product Brochure",   href: "/resources#product-brochure" },
+    { label: "Corporate brochure", href: "/resources#corporate-brochure" },
+    { label: "Product brochure",   href: "/resources#product-brochure" },
     { label: "Certifications",     href: "/certifications" },
     { label: "Sustainability",     href: "/sustainability" },
   ],
   Support: [
-    { label: "Contact Us",       href: "/contact" },
-    { label: "Request a Sample", href: "/contact" },
+    { label: "Contact us",       href: "/contact" },
+    { label: "Request a sample", href: "/contact" },
     { label: "FAQs",             href: "/#faq" },
-    { label: "Sign In",          href: "/login" },
+    { label: "Sign in",          href: "/login" },
   ],
 }
 
@@ -114,7 +114,7 @@ export default function Footer() {
             <div className="flex flex-col justify-center gap-6 py-10 lg:pl-14">
               <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-accent flex items-center gap-3">
                 <span className="w-6 h-0.5 bg-brand-accent" />
-                Find Us
+                Find us
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
@@ -153,7 +153,7 @@ export default function Footer() {
               </motion.div>
             </ScrollLink>
             <p className="text-base text-white/70 leading-relaxed mb-6 max-w-[200px]">
-              Premium knitwear manufacturer.<br />Tirupur, India. 40+ years.
+              Premium knitwear manufacturer.<br />Tirupur, India. 50+ years.
             </p>
           </motion.div>
 

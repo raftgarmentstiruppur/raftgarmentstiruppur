@@ -26,12 +26,6 @@ export const certifications: Certification[] = [
     description: "Better Cotton Initiative — responsibly grown cotton that protects farmers, communities, and the environment.",
   },
   {
-    id: "grs",
-    name: "Global Recycled Standard",
-    category: "Recycled",
-    description: "Verified recycled content with responsible social, environmental, and chemical practices throughout the supply chain.",
-  },
-  {
     id: "higg",
     name: "Higg Index",
     category: "Sustainability",
@@ -44,15 +38,9 @@ export const certifications: Certification[] = [
     description: "Every component tested for harmful substances — safe for skin contact at every age, including infants.",
   },
   {
-    id: "disney",
-    name: "Walt Disney Approved",
-    category: "Brand Compliance",
-    description: "Approved licensed manufacturer meeting Disney's rigorous standards for social compliance and product quality.",
-  },
-  {
     id: "walmart",
-    name: "Walmart Approved",
-    category: "Brand Compliance",
+    name: "Walmart approved",
+    category: "Brand compliance",
     description: "Approved supplier meeting Walmart's standards for quality, ethics, and responsible sourcing.",
   },
   {

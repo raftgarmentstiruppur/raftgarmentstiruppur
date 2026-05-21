@@ -68,7 +68,7 @@ function ProductRow({
         ))
       ) : (
         <div className="w-full h-full flex items-center justify-center text-brand-ash text-sm">
-          No Image
+          No image
         </div>
       )}
 
@@ -136,7 +136,7 @@ function ProductRow({
         return (
           <div className="mt-5 space-y-2">
             <p className="text-xs font-black uppercase tracking-widest text-brand-ash flex items-center gap-2">
-              Available Colours
+              Available colours
               <span className="text-brand-accent font-black">{hexArr.length}+</span>
             </p>
             <div className="flex flex-wrap gap-2">
@@ -182,7 +182,7 @@ function ProductRow({
           href={`/contact?product=${encodeURIComponent(product.name)}`}
           className="inline-flex items-center justify-center gap-2 bg-brand-accent text-white px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-brand-accent/90 transition-colors"
         >
-          Get a Quote &rarr;
+          Get a quote →
         </Link>
       </div>
     </div>

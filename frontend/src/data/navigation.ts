@@ -15,12 +15,12 @@ export const navItems: NavItem[] = [
         ],
       },
       {
-        heading: "Browse By",
+        heading: "Browse by",
         links: [
-          { label: "New Arrivals",       href: "/products?filter=New+Arrival" },
-          { label: "Best Sellers",       href: "/products?filter=Best+Seller" },
-          { label: "Sustainable Styles", href: "/products?filter=Sustainable" },
-          { label: "Private Label",      href: "/products?filter=Private+Label" },
+          { label: "New arrivals",       href: "/products?filter=New+Arrival" },
+          { label: "Best sellers",       href: "/products?filter=Best+Seller" },
+          { label: "Sustainable styles", href: "/products?filter=Sustainable" },
+          { label: "Private label",      href: "/products?filter=Private+Label" },
         ],
       },
     ],
@@ -30,14 +30,14 @@ export const navItems: NavItem[] = [
     href: "/infrastructure",
     megaMenu: [
       {
-        heading: "Our Divisions",
+        heading: "Our divisions",
         links: [
           { label: "Knitting",             href: "/infrastructure#knitting" },
           { label: "Fabric Inspection",    href: "/infrastructure#fabric-inspection" },
           { label: "Cutting",              href: "/infrastructure#cutting" },
           { label: "Elastic Weaving",      href: "/infrastructure#elastic-weaving" },
           { label: "Sewing",               href: "/infrastructure#sewing" },
-          { label: "Finishing & Packing",  href: "/infrastructure#finishing-packing" },
+          { label: "Finishing & packing",  href: "/infrastructure#finishing-packing" },
         ],
       },
     ],
@@ -49,9 +49,9 @@ export const navItems: NavItem[] = [
       {
         heading: "Company",
         links: [
-          { label: "Our Story",        href: "/about#story" },
-          { label: "Mission & Vision", href: "/about#mission" },
-          { label: "Core Values",      href: "/about#values" },
+          { label: "Our story",        href: "/about#story" },
+          { label: "Mission & vision", href: "/about#mission" },
+          { label: "Core values",      href: "/about#values" },
           { label: "Leadership",       href: "/about#leadership" },
           { label: "Milestones",       href: "/about#milestones" },
         ],

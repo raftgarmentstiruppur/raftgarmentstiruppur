@@ -16,7 +16,7 @@ export default function ProductsPage() {
   return (
     <>
       <PageHero
-        title="India's Finest Knitwear. Built for the World."
+        title="India's finest knitwear. Built for the world."
         subtitle="Premium innerwear and outerwear — from intimate essentials to versatile casual styles. Cotton, bamboo, Tencel, nylon, viscose, and recycled polyester."
         breadcrumb={[{ label: "Products", href: "/products" }]}
         bgImage="/images/products-hero.png"
@@ -32,7 +32,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
           style={{ background: "radial-gradient(circle, #ffffff 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <SectionHeader overline="Why Raft Garments" title="The Manufacturer Behind the Label" className="mb-12" light />
+          <SectionHeader overline="Why Raft Garments" title="The manufacturer behind the label" className="mb-12" light />
           <div className="grid md:grid-cols-3 gap-px">
             {[
               {
@@ -56,7 +56,7 @@ export default function ProductsPage() {
                 bullets: [
                   "ISO 9001:2015 & WRAP certified",
                   "BCI, Oeko-Tex Standard 100 approved",
-                  "Walt Disney, CTPAT compliance secured",
+                  "CTPAT compliance secured",
                 ],
               },
             ].map((item) => (
@@ -75,7 +75,7 @@ export default function ProductsPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <CTAButton label="Request a Sample" href="/contact" variant="primary" size="lg" arrow />
+            <CTAButton label="Request a sample" href="/contact" variant="primary" size="lg" arrow />
           </div>
         </div>
       </section>
@@ -89,7 +89,7 @@ function CategoryGrid() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <SectionHeader
           overline="Our Range"
-          title="Explore Our Categories"
+          title="Explore our categories"
           subtitle="From innerwear essentials to casual outerwear — each category built with certified materials, precise construction, and AQL-inspected finishing."
           className="mb-12"
         />

@@ -121,9 +121,9 @@ export default function SustainabilityBanner({ headline, stats, ctaLabel, ctaHre
           transition={{ delay: 0.5 }}
         >
           {[
-            "Powered by 100% renewable energy — solar and wind, not the grid",
-            "Sustainability certifications renewed annually across all operations",
-            "Every garment carries our commitment to a greener planet",
+            "Committed to 100% renewable energy — solar and wind across all operations",
+            "Sustainability certifications independently renewed annually",
+            "Every garment we make carries our commitment to a greener planet",
           ].map((point) => (
             <li key={point} className="flex items-start gap-3">
               <span className="mt-2 w-2 h-2 rounded-full bg-brand-accent shrink-0" />

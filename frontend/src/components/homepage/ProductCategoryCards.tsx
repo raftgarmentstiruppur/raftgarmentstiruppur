@@ -80,7 +80,7 @@ function CategoryTile({ category, index }: { category: ProductCategory; index: n
             </h3>
             {/* CTA — slides up on hover */}
             <div className="flex items-center gap-2 mt-2 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-              <span className="text-[10px] font-bold text-white/75 uppercase tracking-[0.2em]">Shop Now</span>
+              <span className="text-[10px] font-bold text-white/75 uppercase tracking-[0.2em]">Shop now</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-white/75" />
             </div>
           </div>

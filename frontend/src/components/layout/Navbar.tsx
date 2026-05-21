@@ -25,7 +25,7 @@ export default function Navbar() {
     ? { href: "/admin",     label: "Admin" }
     : mounted && user?.role === "BUYER"
     ? { href: "/dashboard", label: "Dashboard" }
-    : { href: "/login",     label: "Sign In" }
+    : { href: "/login",     label: "Sign in" }
 
   return (
     <motion.header

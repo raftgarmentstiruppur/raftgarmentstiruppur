@@ -4,7 +4,7 @@ import SustainabilityContent from "./SustainabilityContent"
 
 export const metadata: Metadata = {
   title: "Sustainability",
-  description: "Raft Garments is committed to sustainable innerwear manufacturing — BCI cotton, Global Recycled Standard, Oeko-Tex, WRAP, and SMETA certified.",
+  description: "Raft Garments is committed to sustainable innerwear manufacturing — BCI cotton, Oeko-Tex, WRAP, and SMETA certified.",
 }
 
 export default function SustainabilityPage() {
@@ -13,7 +13,7 @@ export default function SustainabilityPage() {
       <ContentPageHero
         titleKey="sustainability-title"
         subtitleKey="sustainability-subtitle"
-        defaultTitle="Responsible by Design."
+        defaultTitle="Responsible by design."
         defaultSubtitle="Sustainable fabrics, ethical labor, and certified practices — knitted into every garment we make."
         breadcrumb={[{ label: "Sustainability", href: "/sustainability" }]}
         imageKey="sustainability-hero"
