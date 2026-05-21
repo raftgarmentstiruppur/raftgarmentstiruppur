@@ -70,7 +70,7 @@ export default function CertBadge({ id, name, category, description, className, 
       <div className="w-8 h-0.5 bg-brand-accent/50 group-hover:bg-brand-accent group-hover:w-12 transition-all duration-300" />
 
       {/* Description */}
-      <p className="text-base text-white/70 group-hover:text-white/90 leading-relaxed transition-colors duration-300 flex-1">
+      <p className="text-base text-white/70 group-hover:text-white/90 leading-relaxed transition-colors duration-300 flex-1 text-justify">
         {displayDesc}
       </p>
     </motion.div>

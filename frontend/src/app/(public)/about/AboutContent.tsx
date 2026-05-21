@@ -222,7 +222,7 @@ export default function AboutContent() {
                 </div>
 
                 {/* Body */}
-                <p className="text-base text-white leading-relaxed relative z-10">
+                <p className="text-base text-white leading-relaxed relative z-10 text-justify">
                   {v.body}
                 </p>
               </motion.div>
@@ -360,7 +360,7 @@ export default function AboutContent() {
                     contentKey={`${m.key}-event`}
                     fallback={m.event}
                     as="p"
-                    className="text-lg text-white leading-relaxed"
+                    className="text-lg text-white leading-relaxed text-justify"
                   />
                 </div>
               </motion.div>
