@@ -20,7 +20,7 @@ export default function HeroSection({ headline, ctaPrimary, ctaSecondary }: Hero
       {/* Video */}
       <video
         autoPlay muted loop playsInline
-        poster="/images/hero-poster.jpg"
+        poster="/images/hero/slide1.png"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />

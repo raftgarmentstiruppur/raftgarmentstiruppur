@@ -19,7 +19,7 @@ const ContentContext = createContext<ContentContextValue>({
 
 export function ContentProvider({ children }: { children: ReactNode }) {
   const [content, setContent] = useState<ContentMap>({})
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   async function reload() {
     setLoading(true)
