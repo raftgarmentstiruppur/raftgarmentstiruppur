@@ -69,7 +69,7 @@ export default function InfrastructureCTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] as const }}
             >
-              See it in person.
+              See it in person
             </motion.h2>
           </div>
           <MagneticButton>

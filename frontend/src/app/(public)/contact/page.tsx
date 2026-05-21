@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        title="Let's build something together."
+        title="Let's build something together"
         subtitle="Reach our team for wholesale orders, private label enquiries, sampling, or general questions."
         breadcrumb={[{ label: "Contact", href: "/contact" }]}
         bgImage="/images/contact-hero.png"

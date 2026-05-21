@@ -90,7 +90,7 @@ export default function FAQAccordion({ faqs }: FAQAccordionProps) {
               Quick answers
             </p>
             <h2 className="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight leading-none mb-4">
-              Common<br />questions.
+              Common<br />questions
             </h2>
             <div className="w-10 h-0.5 bg-brand-accent" />
           </motion.div>
