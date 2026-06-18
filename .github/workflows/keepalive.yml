@@ -1,14 +1,35 @@
-name: Supabase Keepalive
+name: Keepalive (Render + Supabase)
+
+# Pings the backend /content endpoint, which runs a DB query.
+# This keeps BOTH the Render free-tier backend warm (spins down after ~15 min)
+# AND the Supabase free-tier database active (pauses after ~7 days idle),
+# so DB-driven images keep displaying on the live site.
 
 on:
   schedule:
-    - cron: "0 8 */3 * *"   # every 3 days at 8:00 UTC
-  workflow_dispatch:          # allow manual trigger
+    - cron: "*/10 * * * *"   # every 10 minutes (GitHub minimum is 5)
+  workflow_dispatch:          # allow manual trigger from the Actions tab
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping health endpoint
+      - name: Ping backend content endpoint (DB-backed)
         run: |
-          curl -sf ${{ secrets.APP_URL }}/api/health || echo "Ping failed — check APP_URL secret"
+          URL="${{ secrets.APP_URL }}"
+          if [ -z "$URL" ]; then
+            URL="https://raftgarmentstiruppur.onrender.com"
+          fi
+          echo "Pinging $URL/content"
+          # Retry to absorb Render cold starts (first hit can take 30-60s).
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 "$URL/content")
+            echo "Attempt $i: HTTP $code"
+            if [ "$code" = "200" ]; then
+              echo "Backend + DB are awake."
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "::error::Keepalive failed — backend/DB did not return 200 after retries."
+          exit 1
