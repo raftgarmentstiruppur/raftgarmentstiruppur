@@ -1,14 +1,15 @@
 name: Keepalive (Render + Supabase)
 
-# Pings the backend /content endpoint, which runs a DB query.
-# This keeps BOTH the Render free-tier backend warm (spins down after ~15 min)
-# AND the Supabase free-tier database active (pauses after ~7 days idle),
-# so DB-driven images keep displaying on the live site.
+# Pings the backend /content endpoint, which runs a DB query, to keep the
+# Render backend warm and the Supabase DB active.
+#
+# DISABLED 2026-06-19: the cron schedule is removed because an external
+# UptimeRobot monitor now pings https://raftgarmentstiruppur.onrender.com/content
+# every 5 minutes (GitHub cron was unreliable — barely fired at 10-min cadence).
+# Kept as a manual-only fallback; re-add the `schedule:` block below to revive it.
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"   # every 10 minutes (GitHub minimum is 5)
-  workflow_dispatch:          # allow manual trigger from the Actions tab
+  workflow_dispatch:          # manual trigger only (cron disabled — see note above)
 
 jobs:
   ping:
